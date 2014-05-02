@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="ElggRelease" content="1.8.16" />
+	<meta name="ElggVersion" content="2013051700" />
+	<title>Participatório</title>
+	<link rel="SHORTCUT ICON" href="http://participatorio.juventude.gov.br/mod/hypeThemeX/graphics/favicon.ico" />
+	<link rel="stylesheet" href="http://participatorio.juventude.gov.br/mod/hypeThemeX/stylesheets/jquery-ui-themes-1.10.3/themes/smoothness/jquery-ui.min.css" type="text/css" />
+	<link rel="stylesheet" href="http://participatorio.juventude.gov.br/mod/hypeThemeX/stylesheets/themes/participatorio/theme.css" type="text/css" />
+	<link rel="stylesheet" href="http://participatorio.juventude.gov.br/cache/css/default/elgg.1398859866.css" type="text/css" />
+	<link rel="stylesheet" href="http://participatorio.juventude.gov.br/cache/css/default/hj/comments/base.1398859866.css" type="text/css" />
+	<link rel="stylesheet" href="http://participatorio.juventude.gov.br/mod/highlight_index/vendors/FlexSlider/flexslider.css" type="text/css" />
+
+	<!--[if gt IE 7]>
+		<link rel="stylesheet" type="text/css" href="http://participatorio.juventude.gov.br/cache/css/default/ie.1398859866.css" />
+	<![endif]-->
+	<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="http://participatorio.juventude.gov.br/cache/css/default/ie7.1398859866.css" />
+	<![endif]-->
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="http://participatorio.juventude.gov.br/cache/css/default/ie6.1398859866.css" />
+	<![endif]-->
+
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/mod/hypeThemeX/javascripts/vendor/custom.modernizr.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/mod/hypeThemeX/javascripts/vendor/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/mod/hypeThemeX/javascripts/vendor/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/mod/hypeThemeX/javascripts/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/mod/highlight_index/vendors/FlexSlider/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/vendors/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/cache/js/default/elgg.1398859866.js"></script>
+	<script type="text/javascript" src="http://participatorio.juventude.gov.br/cache/js/default/hj/framework/ajax.1398859866.js"></script>
+
+<script type="text/javascript">
+// <![CDATA[
+	elgg.config.lastcache=1398859866;elgg.config.viewtype='default';elgg.config.simplecache_enabled=1;elgg.security.token.__elgg_ts=1399055364;elgg.security.token.__elgg_token='f5189c265732a7f2be6877db3e2e3589';elgg.trigger_hook('boot','system');// ]]>
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="nimCVHOqcS5-xBgsAcpCtMVkAN-5EhPPiznW7L6hBYQ" />
+<link rel="SHORTCUT ICON" href="http://participatorio.juventude.gov.br/mod/hypeThemeX/graphics/favicon.ico" /></head>
+
+<body class="nologin mod">
+<div id="barra-brasil">
+    <a href="http://brasil.gov.br" style="display: block; padding: 10px; font-size: 0.7em;">Portal do Governo Brasileiro</a></div>
+<div class="elgg-page elgg-page-default">
+	<div class="elgg-page-messages">
+		<ul class="elgg-system-messages"><li class="hidden"></li></ul>	</div>
+
+	<div class="elgg-page-header">
+		<div class="elgg-inner">
+            <div class="elgg-header-itens"><ul id="accessibility">
+    <li><a accesskey="1" href="#corpo" id="link-conteudo">Ir para o conteúdo<span>1</span></a></li>
+	<li><a accesskey="2" href="#menu" id="link-navegacao">Ir para o menu<span>2</span></a></li>
+	<li><a accesskey="3" href="#busca" id="link-buscar">Ir para a busca<span>3</span></a></li>
+	<li class="last-item"><a accesskey="4" href="#rodape" id="link-rodape">Ir para o rodapé<span>4</span></a></li>
+</ul>
+
+<ul id="actionitens">
+    <li><a title="Biblioteca Digital" href="http://participatorio.juventude.gov.br/biblioteca">Biblioteca Digital</a></li>
+    <li><a title="Acessibilidade" href="http://participatorio.juventude.gov.br/accessibility">Acessibilidade</a></li>
+    <li><a title="Dados Abertos" href="http://participatorio.juventude.gov.br/opendata">Dados Abertos</a></li>
+    <li><a titile="Termos de Uso" href="http://participatorio.juventude.gov.br/terms">Termos de Uso</a></li>
+</ul>
+<h1>
+	<a class="elgg-heading-site" href="http://participatorio.juventude.gov.br/">
+		Participatório	</a>
+</h1>
+<a name="busca"></a><div id="header-search">
+<form class="elgg-search" action="http://participatorio.juventude.gov.br/search" method="get">
+	<fieldset>
+		<input type="text" class="search-input" size="21" name="q" value="Procurar" onblur="if (this.value=='') { this.value='Procurar' }" onfocus="if (this.value=='Procurar') { this.value='' };" />
+		<input type="submit" value="Pesquisar" class="search-submit-button" />
+		<input type="hidden" name="search_type" value="all" />
+		<i class="elgg-icon elgg-icon-search"></i>
+	</fieldset>
+</form>
+</div><div id="social-icons">
+   <ul>
+      <li id="redes-facebook">
+           <a href="https://www.facebook.com/Participatorio">
+           <span>Facebook</span>
+          </a>
+      </li>
+      <li id="redes-twitter">
+          <a href="https://twitter.com/Participatorio">
+               <span>Twitter</span>
+          </a>
+      </li>
+      <li id="redes-youtube">
+          <a href="http://www.youtube.com/user/participatoriojovem/videos">
+               <span>YouTube</span>
+          </a>
+      </li>
+    </ul>
+</div>
+<div id="sobre">
+    <ul>
+    <li><a href="http://participatorio.juventude.gov.br/faq" title="Perguntas frequentes">Perguntas frequentes</a></li>
+    <li><a href="http://participatorio.juventude.gov.br/about" title="Sobre o Participatório">Sobre</a></li>
+    <li class="last-item"><a href="http://participatorio.juventude.gov.br/contact" title="Fale Conosco">Fale Conosco</a> </a></li>
+    </ul>
+    </div>
+ </div><!-- end .elgg-header-itens --><nav class="elgg-page-toolbar sticky"><a name="menu"></a><div id="nav-toolbar"><div class="elgg-col elgg-col-3of5"><ul class="elgg-menu elgg-menu-site elgg-menu-site-default clearfix"><li class="elgg-menu-item-activity"><a href="http://participatorio.juventude.gov.br/activity">Atividades</a></li><li class="elgg-menu-item-groups"><a href="http://participatorio.juventude.gov.br/groups/all">Comunidades</a></li><li class="elgg-menu-item-blog"><a href="http://participatorio.juventude.gov.br/blog/all">Blogs</a></li><li class="elgg-menu-item-videos"><a href="http://participatorio.juventude.gov.br/videos/all">Vídeos</a></li><li class="elgg-menu-item-members"><a href="http://participatorio.juventude.gov.br/members">Membros</a></li><li class="elgg-menu-item-custom1"><a href="http://participatorio.juventude.gov.br/discussion">Debates</a></li><li class="elgg-more"><a href="#">Mais</a><ul class="elgg-menu elgg-menu-site elgg-menu-site-more"><li class="elgg-menu-item-file"><a href="http://participatorio.juventude.gov.br/file/all">Arquivos</a></li><li class="elgg-menu-item-bookmarks"><a href="http://participatorio.juventude.gov.br/bookmarks/all">Favoritos</a></li><li class="elgg-menu-item-pages"><a href="http://participatorio.juventude.gov.br/pages/all">Páginas (Wiki)</a></li></ul></li></ul></div><div class="elgg-col elgg-col-2of5"><div id="login-dropdown">
+	<a href="http://participatorio.juventude.gov.br/login#login-dropdown-box" rel="popup" class="elgg-button elgg-button-dropdown">Entrar</a><div class="elgg-module  elgg-module-dropdown" id="login-dropdown-box"><div class="elgg-body"><form method="post" action="https://participatorio.juventude.gov.br/action/login" class="elgg-form elgg-form-login"><fieldset><input type="hidden" name="__elgg_token" value="f5189c265732a7f2be6877db3e2e3589" /><input type="hidden" name="__elgg_ts" value="1399055364" />
+<div>
+	<label>Login ou endereço de email</label>
+	<input type="text" value="" name="username" class="elgg-input-text elgg-autofocus" /></div>
+<div>
+	<label>Senha</label>
+	
+<input type="password" value="" name="password" class="elgg-input-password" />
+</div>
+
+<div id="login_with_facebook">
+	<a href="http://participatorio.juventude.gov.br/facebook_connect/login"><img src="http://participatorio.juventude.gov.br/mod/facebook_connect/graphics/facebook_login.png" alt="Facebook" style="max-width: 140px"/></a>
+</div>
+<div class="elgg-foot">
+	<label class="mtm float-alt">
+		<input type="checkbox" name="persistent" value="true" />
+		Lembrar de mim	</label>
+	
+	<input type="submit" value="Entrar" class="elgg-button elgg-button-submit" />
+	
+	<input type="hidden" name="returntoreferer" value="true" />
+	<ul class="elgg-menu elgg-menu-general mtm">
+	<li><a class="registration_link" href="http://participatorio.juventude.gov.br/register">Criar nova conta</a></li>		<li><a class="forgot_link" href="http://participatorio.juventude.gov.br/forgotpassword">
+			Recuperar senha		</a></li>
+	</ul>
+</div>
+</fieldset></form></div></div></div>
+</div></div></nav>		</div>
+	</div>
+	<a name="corpo"></a>
+	<div class="elgg-page-body">
+		<div class="elgg-inner">
+			<div class="elgg-layout elgg-layout-one-column clearfix elgg-layout-error">
+	<div class="elgg-body elgg-main">
+	<h2>Desculpe. Não foi possível encontrar a página que foi solicitada.</h2>	</div>
+</div>		</div>
+	</div>
+	<a name="rodape"></a>
+	<div class="elgg-page-footer">
+		<div class="elgg-inner">
+			<div id="menu-footer"></div>
+
+<div style="margin-top:50px;">
+	<img id="banner-participatorio" style="height: 109px; width: 990px;" src="http://participatorio.juventude.gov.br/mod/hypeThemeX/graphics/banner.png" alt="Parceiros" usemap="#banner-map" />
+	<map id="banner-map" name="banner-map">
+		<area shape="rect" alt="Universidade Federal do Rio de Janeiro" title="Universidade Federal do Rio de Janeiro" coords="17,40,170,83" href="http://www.ufrj.br/" target="_blank">
+		<area shape="rect" alt="Universidade Federal do Paraná" title="Universidade Federal do Paraná" coords="204,28,298,93" href="http://www.ufpr.br/" target="_blank">
+		<area shape="rect" alt="Secretaria Nacional de Juventude" title="Secretaria Nacional de Juventude" coords="417,43,544,86" href="http://www.juventude.gov.br/" target="_blank">
+		<area shape="rect" alt="Secretaria-Geral da Presidência da República" title="Secretaria-Geral da Presidência da República" coords="563,44,742,88" href="http://www.secretariageral.gov.br/" target="_blank">
+		<area shape="rect" alt="Portal Brasil" title="Portal Brasil" coords="763,28,968,98" href="http://www.brasil.gov.br/" target="_blank">
+	</map>
+</div>
+
+		</div>
+	</div>
+</div>
+<div class="mts clearfix float-alt">
+	<a href="http://www.c3sl.ufpr.br" target="_blank">
+		<img src="http://participatorio.juventude.gov.br/mod/hypeThemeX/graphics/powered_by_c3sl.png" alt="Powered by C3SL" title="Powered and Hosted by C3SL" />
+	</a>
+	<a href="http://elgg.org" target="_blank">
+		<img src="http://participatorio.juventude.gov.br/_graphics/powered_by_elgg_badge_drk_bckgnd.gif" alt="Powered by Elgg" title="Powered by Elgg" width="106" height="15" />
+	</a>
+</div>
+<script src="http://barra.brasil.gov.br/barra.js?cor=cinza" type="text/javascript"></script>
+</body>
+</html>

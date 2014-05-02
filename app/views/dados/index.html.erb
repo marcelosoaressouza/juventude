@@ -1,0 +1,9 @@
+<% @dados.each do |value| %>
+  <% value.each do |key, data| %>
+    <%= pie_chart data, library: { title: { text: "Quantidade Homem/Mulher" }, 
+                                   plotOptions: { pie: { showInLegend: true, dataLabels: { enabled: true, format: '<b>{point.name}</b>: {point.percentage:.1f} %' } } }, 
+                                   series: [{ name: 'Browser share'}] 
+                                 } if key == :pie %>
+    <%= line_chart data, library: { title: { text: "Educação Homem/Mulher" } } if key == :line %>
+  <% end %>
+<% end %>
