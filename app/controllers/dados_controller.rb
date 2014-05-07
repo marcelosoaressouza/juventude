@@ -45,6 +45,17 @@ class DadosController < ApplicationController
                                   }
       @dados = [ { id: 'DE_15_A_24_ANOS', type: 'pie',  data: @sexo_15_a_24,  config: @config[:sexo_de_15_a_24]  } ]
 
+    elsif  params[:type] == 'three'
+
+      @generic  = Dado.where("codigo SIMILAR TO ?", "%0_0_(1|2)_0_2%").group(:sexo).count
+
+      @config[:generic] = { library: { title: { text: "Generic" }, 
+                                               plotOptions: { pie: { showInLegend: true, dataLabels: { enabled: true, format: '{point.name}: <b>{point.percentage:.2f}%</b>' } } }, 
+                                               tooltip: { pointFormat: 'Total: <b>{point.y}</b>' }, 
+                                               series: [{ name: 'Browser share'}] 
+                                             }
+                                  }
+      @dados = [ { id: 'Generic', type: 'pie',  data: @generic,  config: @config[:generic]  } ]
     else
       @dados = []
     end
