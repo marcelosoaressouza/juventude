@@ -1,6 +1,4 @@
 <% @dados.each do |value| %>
-  <% value.each do |key, data| %>
-    <%= pie_chart  data, @config[:pie]  if key == :pie %>
-    <%= line_chart data, @config[:line] if key == :line %>
-  <% end %>
+    <%= pie_chart  value[:data], value[:config] if value[:type] == 'pie' %>
+    <%= line_chart value[:data], value[:config] if value[:type] == 'line' %>
 <% end %>
