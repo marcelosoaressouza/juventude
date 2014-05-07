@@ -15,6 +15,24 @@
 //= require_tree .
 //= require chartkick
 
+$(document).ready (
+  function()
+  {
+    $("#select_dados").change (
+      function()
+      {
+        var id = $(this).children(":selected").val();
+        var params = 'type=' + id;
+        $.ajax({ url: "/dados/show", data: params });
+      }
+    )
+
+    $('#select_dados').val("Selecione");
+
+  }
+);
+
+
 Highcharts.setOptions({
   lang: {
     months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],

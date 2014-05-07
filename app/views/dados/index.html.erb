@@ -1,4 +1,7 @@
-<% @dados.each do |value| %>
-    <%= pie_chart  value[:data], value[:config] if value[:type] == 'pie' %>
-    <%= line_chart value[:data], value[:config] if value[:type] == 'line' %>
-<% end %>
+<select id="select_dados"> 
+  <option value="Selecione" selected> Selecione </option>
+  <option value="one"> One </option>
+  <option value="two"> Two </option>
+</select>
+
+<div id="dados"></div>

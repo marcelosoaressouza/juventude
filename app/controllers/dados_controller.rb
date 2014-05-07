@@ -15,64 +15,92 @@ class DadosController < ApplicationController
   SEXO = { :TOTAL => "Total", :HOMENS => "Homem", :MULHERES => "Mulher" }
   COR  = { :TOTAL => "Total", :BRANCOS_OU_AMARELOS => "Brancos ou Amarelos", :NEGROS => "Negros"}
 
+  def show
+    @config = {}
+
+    if  params[:type] == 'one'
+      @sexo_15_a_29  = Dado.where("cor = ? AND fxid = ? AND univ = ? AND tipo = ? AND area = ? AND (sexo = ? OR sexo = ?)",
+                                   COR[:TOTAL], FXID[:DE_15_A_29_ANOS], UNIV[:BRASIL], TIPO[:ABSOLUTO], AREA[:TOTAL], SEXO[:HOMENS], SEXO[:MULHERES])
+                           .group(:sexo).count
+
+      @config[:sexo_de_15_a_29] = { library: { title: { text: "Geral Homens/Mulheres 15 a 29 Anos" }, 
+                                               plotOptions: { pie: { showInLegend: true, dataLabels: { enabled: true, format: '{point.name}: <b>{point.percentage:.2f}%</b>' } } }, 
+                                               tooltip: { pointFormat: 'Total: <b>{point.y}</b>' }, 
+                                               series: [{ name: 'Browser share'}] 
+                                             }
+                                  }
+      @dados = [ { id: 'DE_15_A_29_ANOS', type: 'pie',  data: @sexo_15_a_29,  config: @config[:sexo_de_15_a_29]  } ]
+
+    elsif  params[:type] == 'two'
+
+      @sexo_15_a_24  = Dado.where("cor = ? AND fxid = ? AND univ = ? AND tipo = ? AND area = ? AND (sexo = ? OR sexo = ?)",
+                                   COR[:TOTAL], FXID[:DE_15_A_24_ANOS], UNIV[:BRASIL], TIPO[:ABSOLUTO], AREA[:TOTAL], SEXO[:HOMENS], SEXO[:MULHERES])
+                           .group(:sexo).count
+
+      @config[:sexo_de_15_a_24] = { library: { title: { text: "Geral Homens/Mulheres 15 a 24 Anos" }, 
+                                               plotOptions: { pie: { showInLegend: true, dataLabels: { enabled: true, format: '{point.name}: <b>{point.percentage:.2f}%</b>' } } }, 
+                                               tooltip: { pointFormat: 'Total: <b>{point.y}</b>' }, 
+                                               series: [{ name: 'Browser share'}] 
+                                             }
+                                  }
+      @dados = [ { id: 'DE_15_A_24_ANOS', type: 'pie',  data: @sexo_15_a_24,  config: @config[:sexo_de_15_a_24]  } ]
+
+    else
+      @dados = []
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
 
     @config = {}
 
-    @sexo_15_a_29  = Dado.where("cor = ? AND fxid = ? AND univ = ? AND tipo = ? AND area = ? AND (sexo = ? OR sexo = ?)",
-                                 COR[:TOTAL], FXID[:DE_15_A_29_ANOS], UNIV[:BRASIL], TIPO[:ABSOLUTO], AREA[:TOTAL], SEXO[:HOMENS], SEXO[:MULHERES])
-                         .group(:sexo).count
+    # Escolaridade 15 a 24
 
-    @config[:de_15_a_29] = { library: { title: { text: "Geral Homens/Mulheres 15 a 29 Anos" }, 
-                                 plotOptions: { pie: { showInLegend: true,
-                                                       dataLabels: { enabled: true, format: '{point.name}: <b>{point.percentage:.2f}%</b>' }
-                                                      }
-                                              }, 
-                                 tooltip: {
-                                            pointFormat: 'Total: <b>{point.y}</b>'
-                                          }, 
-                                 series: [{ name: 'Browser share'}] 
-                               }
-                    }
-
-    @sexo_15_a_24  = Dado.where("cor = ? AND fxid = ? AND univ = ? AND tipo = ? AND area = ? AND (sexo = ? OR sexo = ?)",
-                                 COR[:TOTAL], FXID[:DE_15_A_24_ANOS], UNIV[:BRASIL], TIPO[:ABSOLUTO], AREA[:TOTAL], SEXO[:HOMENS], SEXO[:MULHERES])
-                         .group(:sexo).count
-
-    @config[:de_15_a_24] = { library: { title: { text: "Geral Homens/Mulheres 15 a 24 Anos" }, 
-                                 plotOptions: { pie: { showInLegend: true,
-                                                       dataLabels: { enabled: true, format: '{point.name}: <b>{point.percentage:.2f}%</b>' }
-                                                      }
-                                              }, 
-                                 tooltip: {
-                                            pointFormat: 'Total: <b>{point.y}</b>'
-                                          }, 
-                                 series: [{ name: 'Browser share'}] 
-                               }
-                    }
-
-
-    @educa_homem = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
-                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_29_ANOS], COR[:TOTAL], SEXO[:HOMENS])
+    @educa_homem_15_a_24 = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_24_ANOS], COR[:TOTAL], SEXO[:HOMENS])
                        .group(:ano).sum(:educa)
 
-    @educa_mulher = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
-                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_29_ANOS], COR[:TOTAL], SEXO[:MULHERES])
+    @educa_mulher_15_a_24 = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_24_ANOS], COR[:TOTAL], SEXO[:MULHERES])
                        .group(:ano).sum(:educa)
 
-    @educa = [ { name: 'Homens', data: @educa_homem }, { name: 'Mulheres', data: @educa_mulher } ]
+    @educa_15_a_24 = [ { name: 'Homens', data: @educa_homem_15_a_24 }, { name: 'Mulheres', data: @educa_mulher_15_a_24 } ]
 
 
-    @config[:line] = { library: { title: { text: "Escolaridade Homem/Mulher - 15 a 29 Anos" }, 
+    @config[:educa_de_15_a_24] = { library: { title: { text: "Escolaridade Homem/Mulher - 15 a 24 Anos" }, 
                                   tooltip: { valueSuffix: '%',
                                              pointFormat: '{series.name}: <b>{point.y: .2f}</b>'
                                            } 
                                   }
               }
 
-    @dados = [ { id: 'DE_15_A_29_ANOS', type: 'pie',  data: @sexo_15_a_29,  config: @config[:de_15_a_29] },
-               { id: 'DE_15_A_24_ANOS', type: 'pie',  data: @sexo_15_a_24,  config: @config[:de_15_a_24] },
-               { id: 'DE_15_A_29_ANOS', type: 'line', data: @educa, config: @config[:line] }
+    # Escolaridade 15 a 29
+
+    @educa_homem_15_a_29 = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_29_ANOS], COR[:TOTAL], SEXO[:HOMENS])
+                       .group(:ano).sum(:educa)
+
+    @educa_mulher_15_a_29 = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                               TIPO[:PORCENTAGEM], AREA[:TOTAL], FXID[:DE_15_A_29_ANOS], COR[:TOTAL], SEXO[:MULHERES])
+                       .group(:ano).sum(:educa)
+
+    @educa_15_a_29 = [ { name: 'Homens', data: @educa_homem_15_a_29 }, { name: 'Mulheres', data: @educa_mulher_15_a_29 } ]
+
+
+    @config[:educa_de_15_a_29] = { library: { title: { text: "Escolaridade Homem/Mulher - 15 a 29 Anos" }, 
+                                  tooltip: { valueSuffix: '%',
+                                             pointFormat: '{series.name}: <b>{point.y: .2f}</b>'
+                                           } 
+                                  }
+              }
+
+    @dados = [
+               { id: 'DE_15_A_24_ANOS', type: 'line', data: @educa_15_a_24, config: @config[:educa_de_15_a_24] },
+               { id: 'DE_15_A_29_ANOS', type: 'line', data: @educa_15_a_29, config: @config[:educa_de_15_a_29] }
              ]
 
     respond_to do |format|
