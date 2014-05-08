@@ -22,12 +22,12 @@ $(document).ready (
       function()
       {
         var id = $(this).children(":selected").val();
-        var params = 'type=' + id;
+        var params = 'filtro=' + id;
         $.ajax({ url: "/dados/show", data: params });
       }
     )
 
-    $('#select_dados').val("Selecione");
+    $('#select_dados').val("");
 
   }
 );

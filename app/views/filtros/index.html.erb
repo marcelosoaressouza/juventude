@@ -1,0 +1,41 @@
+<h1>Listing filtros</h1>
+
+<table>
+  <tr>
+    <th>Titulo</th>
+    <th>Tipo grafico</th>
+    <th>Fxid</th>
+    <th>Univ</th>
+    <th>Tipo</th>
+    <th>Area</th>
+    <th>Sexo</th>
+    <th>Cor</th>
+    <th>Grupo</th>
+    <th>Objetivo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @filtros.each do |filtro| %>
+  <tr>
+    <td><%= filtro.titulo %></td>
+    <td><%= filtro.tipo_grafico %></td>
+    <td><%= filtro.fxid %></td>
+    <td><%= filtro.univ %></td>
+    <td><%= filtro.tipo %></td>
+    <td><%= filtro.area %></td>
+    <td><%= filtro.sexo %></td>
+    <td><%= filtro.cor %></td>
+    <td><%= filtro.grupo %></td>
+    <td><%= filtro.objetivo %></td>
+    <td><%= link_to 'Show', filtro %></td>
+    <td><%= link_to 'Edit', edit_filtro_path(filtro) %></td>
+    <td><%= link_to 'Destroy', filtro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Filtro', new_filtro_path %>

@@ -6,8 +6,8 @@ class CreateDados < ActiveRecord::Migration
       t.integer :fxid
       t.integer :univ
       t.integer :area
-      t.string  :sexo
-      t.string  :cor
+      t.integer :sexo
+      t.integer :cor
       t.integer :tipo
       t.float :analf
       t.float :educa

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502135928) do
+ActiveRecord::Schema.define(:version => 20140508144956) do
 
   create_table "dados", :force => true do |t|
     t.string   "codigo"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20140502135928) do
     t.integer  "fxid"
     t.integer  "univ"
     t.integer  "area"
-    t.string   "sexo"
-    t.string   "cor"
+    t.integer  "sexo",
+    t.integer  "cor",
     t.integer  "tipo"
     t.float    "analf"
     t.float    "educa"
@@ -163,7 +163,23 @@ ActiveRecord::Schema.define(:version => 20140502135928) do
     t.float    "vitimapoli"
     t.float    "conflito"
     t.float    "conflitosol"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  create_table "filtros", :force => true do |t|
+    t.string   "titulo"
+    t.string   "tipo_grafico"
+    t.integer  "fxid"
+    t.integer  "univ"
+    t.integer  "tipo"
+    t.integer  "area"
+    t.integer  "sexo"
+    t.integer  "cor"
+    t.string   "grupo"
+    t.string   "objetivo"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
 end

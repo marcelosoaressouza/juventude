@@ -1,0 +1,56 @@
+<%= form_for(@filtro) do |f| %>
+  <% if @filtro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@filtro.errors.count, "error") %> prohibited this filtro from being saved:</h2>
+      <ul>
+      <% @filtro.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :titulo %><br />
+    <%= f.text_field :titulo %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_grafico %><br />
+    <%= f.select :tipo_grafico, Filtro::TIPO_GRAFICO.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :fxid %><br />
+    <%= f.select :fxid, Filtro::FXID.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :univ %><br />
+    <%= f.select :univ, Filtro::UNIV.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo %><br />
+    <%= f.select :tipo, Filtro::TIPO.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :area %><br />
+    <%= f.select :area, Filtro::AREA.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :sexo %><br />
+    <%= f.select :sexo, Filtro::SEXO.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :cor %><br />
+    <%= f.select :cor, Filtro::COR.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :grupo %><br />
+    <%= f.select :grupo, Filtro::GRUPO.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :objetivo %><br />
+    <%= f.select :objetivo, Filtro::OBJETIVO.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
