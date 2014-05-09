@@ -20,18 +20,35 @@ class FiltrosController < ApplicationController
       @dados = []
       @config = {}
 
-      if @filtro.tipo_grafico = 'line'
+      consulta = "tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?"
+      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo ]
 
-        @dado_bruto = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
-                                 @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo)
-                          .group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+#      if @filtro.tipo_grafico == 'line'
+#
+#        @dado_bruto = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+#        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
+#        @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
+#        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
+#
+#      elsif @filtro.tipo_grafico == 'bar'
 
-        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
+        if @filtro.sexo == 3
+          valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, 1 ]
+          @dado_homens = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+          valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, 2 ]
+          @dado_mulheres = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+          @dado_trata = [ { name: 'Homens', data: @dado_homens }, { name: 'Mulheres', data: @dado_mulheres } ]
+        else
+          @dado_bruto = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+          @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
+        end
 
         @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
-
         @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
-      end
+#
+#      end
 
     respond_to do |format|
       format.html # show.html.erb

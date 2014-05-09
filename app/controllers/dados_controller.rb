@@ -5,11 +5,24 @@ class DadosController < ApplicationController
     if params[:filtro]
       @filtro = Filtro.find(params[:filtro])
 
-      # logger.debug("Filtrando #{filtro.tipo}")
 
       @dados = []
 
-      if @filtro.tipo_grafico = 'line'
+      if @filtro.tipo_grafico == 'line'
+        logger.debug("Filtrando line: #{@filtro.tipo_grafico}")
+
+        @dado_bruto = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                                 @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo)
+                          .group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
+
+        @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
+
+        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
+
+      elsif @filtro.tipo_grafico == 'bar'
+        logger.debug("Filtrando bar: #{@filtro.tipo_grafico}")
 
         @dado_bruto = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
                                  @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo)

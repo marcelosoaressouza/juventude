@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.yield {
+  width: 95%;
+  margin-left: 16px;
+}

@@ -1,61 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<% @dados.each do |value| %>
-    <%= pie_chart  value[:data], value[:config] if value[:type] == 'pie' %>
-    <%= line_chart value[:data], value[:config] if value[:type] == 'line' %>
-<% end %>
-
+<%= render partial: "dados/dados", locals: { dados: @dados } %>
 
 <p>
-  <b>Titulo:</b>
+  <b>Título:</b>
   <%= @filtro.titulo %>
 </p>
 
 <p>
-  <b>Tipo grafico:</b>
-  <%= @filtro.tipo_grafico %>
+  <b>Tipo de Gráfico:</b>
+  <%= Filtro::TIPO_GRAFICO.index(@filtro.tipo_grafico) %>
 </p>
 
 <p>
-  <b>Fxid:</b>
-  <%= @filtro.fxid %>
+  <b>Faixa Etária:</b>
+  <%= Filtro::FXID.index(@filtro.fxid) %>
 </p>
 
 <p>
-  <b>Univ:</b>
-  <%= @filtro.univ %>
+  <b>Universo:</b>
+  <%= Filtro::UNIV.index(@filtro.univ) %>
 </p>
 
 <p>
   <b>Tipo:</b>
-  <%= @filtro.tipo %>
+  <%= Filtro::TIPO.index(@filtro.tipo) %>
 </p>
 
 <p>
-  <b>Area:</b>
-  <%= @filtro.area %>
+  <b>Área:</b>
+  <%= Filtro::AREA.index(@filtro.area) %>
 </p>
 
 <p>
   <b>Sexo:</b>
-  <%= @filtro.sexo %>
+  <%= Filtro::SEXO.index(@filtro.sexo) %>
 </p>
 
 <p>
   <b>Cor:</b>
-  <%= @filtro.cor %>
+  <%= Filtro::COR.index(@filtro.cor) %>
 </p>
 
 <p>
   <b>Grupo:</b>
-  <%= @filtro.grupo %>
+  <%= Filtro::GRUPO.index(@filtro.grupo) %>
 </p>
 
 <p>
   <b>Objetivo:</b>
-  <%= @filtro.objetivo %>
+  <%= Filtro::OBJETIVO.index(@filtro.objetivo) %>
 </p>
 
-
-<%= link_to 'Edit', edit_filtro_path(@filtro) %> |
-<%= link_to 'Back', filtros_path %>
+<center>
+  <%= link_to 'Editar', edit_filtro_path(@filtro) %> |
+  <%= link_to 'Voltar', filtros_path %>
+</center>

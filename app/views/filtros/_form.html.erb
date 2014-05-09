@@ -11,46 +11,46 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :titulo %><br />
+    <%= f.label "Título" %><br />
     <%= f.text_field :titulo %>
   </div>
   <div class="field">
-    <%= f.label :tipo_grafico %><br />
+    <%= f.label "Tipo Gráfico" %><br />
     <%= f.select :tipo_grafico, Filtro::TIPO_GRAFICO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :fxid %><br />
+    <%= f.label "Faixa Etária" %><br />
     <%= f.select :fxid, Filtro::FXID.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :univ %><br />
+    <%= f.label "Universo" %><br />
     <%= f.select :univ, Filtro::UNIV.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :tipo %><br />
+    <%= f.label "Tipo" %><br />
     <%= f.select :tipo, Filtro::TIPO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :area %><br />
+    <%= f.label "Área" %><br />
     <%= f.select :area, Filtro::AREA.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :sexo %><br />
+    <%= f.label "Sexo" %><br />
     <%= f.select :sexo, Filtro::SEXO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :cor %><br />
+    <%= f.label "Cor" %><br />
     <%= f.select :cor, Filtro::COR.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :grupo %><br />
+    <%= f.label "Grupo" %><br />
     <%= f.select :grupo, Filtro::GRUPO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
-    <%= f.label :objetivo %><br />
+    <%= f.label "Objetivo" %><br />
     <%= f.select :objetivo, Filtro::OBJETIVO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Enviar" %>
   </div>
 <% end %>
