@@ -1,24 +1,49 @@
 class Filtro < ActiveRecord::Base
   attr_accessible :area, :cor, :fxid, :grupo, :objetivo, :sexo, :tipo, :tipo_grafico, :titulo, :univ
 
-  FXID = { "DE_15_A_29_ANOS" => 1529, "DE_15_A_24_ANOS" => 1524, "DE_18_A_29_ANOS" => 1829, "DE_15_A_17_ANOS" => 1517,
-           "DE_18_A_21_ANOS" => 1821, "DE_18_A_24_ANOS" => 1824, "DE_25_A_29_ANOS" => 2529 }
+  FXID = { "De 15 a 29 Anos" => 1529, "De 15 a 24 Anos" => 1524, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
+           "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
 
-  UNIV = { "BRASIL" => 0, "REGIAO_NORTE" => 10, "REGIAO_NORDESTE" => 20, "REGIAO_SUDESTE" => 30, "REGIAO_SUL" => 40,
-           "REGIAO_CENTRO_OESTE" => 49, "ACRE" => 12, "ALAGOAS" => 27, "AMAPA" => 16, "AMAZONAS" => 13, "BAHIA" => 29,
-           "CEARA" => 23, "DISTRITO_FEDERAL" => 53, "ESPIRITO_SANTO" => 32, "GOIAS" => 52, "MARANHAO" => 21,
-           "MATO_GROSSO" => 51, "MATO_GROSSO_DO_SUL" => 50, "MINAS_GERAIS" => 31, "PARA" => 15, "PARAIBA" => 25,
-           "PARANA" => 41, "PERNAMBUCO" => 26, "PIAUI" => 22, "RIO_DE_JANEIRO" => 33, "RIO_GRANDE_DO_NORTE" => 24,
-           "RIO_GRANDE_DO_SUL" => 43, "RONDONIA" => 11, "RORAIMA" => 14, "SANTA_CATARINA" => 42, "SAO_PAULO" => 35,
-           "SERGIPE" => 28, "TOCANTINS" => 17 }
+  UNIV = { "Brasil" => 0, "Região Norte" => 10, "Região Nordeste" => 20, "Região Sudeste" => 30, "Regiao Sul" => 40,
+           "Regiao Centro Oeste" => 49, "Acre" => 12, "Alagoas" => 27, "Amapá" => 16, "Amazonas" => 13, "Bahia" => 29,
+           "Ceará" => 23, "Distrito Federal" => 53, "Espirito Santo" => 32, "Goiás" => 52, "Maranhão" => 21,
+           "Mato Grosso" => 51, "Mato Grosso do Sul" => 50, "Minas Gerais" => 31, "Pará" => 15, "Paraíba" => 25,
+           "Paraná" => 41, "Pernambuco" => 26, "Piauí" => 22, "Rio de Janeiro" => 33, "Rio Grande do Norte" => 24,
+           "Rio Grande do Sul" => 43, "Rondônia" => 11, "Roraima" => 14, "Santa Catarina" => 42, "São Paulo" => 35,
+           "Sergipe" => 28, "Tocantins" => 17 }
 
-  TIPO = { "PORCENTAGEM" => 1, "ABSOLUTO" => 2 }
-  AREA = { "TOTAL" => 0, "URBANA" => 1, "RURAL" => 2 }
-  SEXO = { "TOTAL" => 0, "HOMENS" => 1, "MULHERES" => 2 }
-  COR  = { "TOTAL" => 0, "BRANCOS_OU_AMARELOS" => 1, "NEGROS" => 2 }
+  TIPO = { "Absoluto" => 2, "Porcentagem" => 1 }
+  AREA = { "Total" => 0, "Urbana" => 1, "Rural" => 2 }
+  SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2 }
+  COR  = { "Total" => 0, "Brancos ou Amarelos" => 1, "Negros" => 2 }
 
-  TIPO_GRAFICO = { "LINHA" => "line" }
-  GRUPO = { "ANO" => "ano" }
-  OBJETIVO = { "EDUCAÇÃO" => "educa" }
+  TIPO_GRAFICO = { "Linha" => "line" }
+  GRUPO = { "Ano" => "ano" }
+  OBJETIVO = {
+              "Taxa de analfabetismo" => "analf",
+              "Média de anos de estudo dos jovens (em anos de estudo)" => "educa",
+              "Porcentagem de jovens que frequentam a escola" => "freq",
+              "Porcentagem de jovens não frequentam a escola" => "nfreq",
+              "Porcentagem de jovens que frequentam o ensino fundamental" => "freqfund",
+              "Porcentagem de jovens que frequentam os anos iniciais do ensino fundamental" => "freqfund1",
+              "Porcentagem de jovens que frequentam os anos finais do ensino fundamental" => "freqfund2",
+              "Porcentagem de jovens que ainda não completaram as séries iniciais do ensino fundamental" => "ncompfund1",
+              "Porcentagem de jovens que ainda não completaram as séries finais do ensino fundamental" => "ncompfund2",
+              "Porcentagem de jovens que não estudam, nem completaram os anos iniciais do ensino fundamental" => "nfncompfund1",
+              "Porcentagem de jovens que não estudam, completaram os anos iniciais do ensino fundamental, mas não frequentaram os anos finais" => "nfncompfund2",
+              "Porcentagem de jovens que não estudam, frequentaram os anos finais do fundamental, mas não completaram o ensino fundamental" => "nfcompfund1n2",
+              "Porcentagem de jovens que não estudam, completaram o fundamental, mas nunca frequentaram o ensino médio" => "nfcompfundnfm",
+              "Porcentagem de jovens que frequentam o ensino médio" => "freqmed",
+              "Porcentagem de jovens que frequentam ou já concluíram o ensino médio" => "freqmed2",
+              "Porcentagem de jovens que ainda não completaram o ensino médio" => "ncompmed",
+              "Porcentagem de jovens que não estudam, frequentaram, mas não completaram o ensino médio" => "nfncompmed",
+              "Porcentagem de jovens que não estudam, completaram o ensino médio, mas nunca frequentaram o ensino superior" => "nfcompmednfs",
+              "Porcentagem de jovens que frequentam curso de educação profissional" => "freqprof",
+              "Porcentagem de jovens que frequentam curso de educação profissional dentre os que frequentam a escola" => "freqprof2",
+              "Porcentagem de jovens que frequentam ou já frequentaram curso de educação profissional" => "freqprof3",
+              "Porcentagem de jovens que frequentam ou já completaram o ensino superior" => "freqcompsup",
+              "Porcentagem de jovens que frequentam ou já concluíram o mestrado ou o doutorado" => "freqcomppos",
+              "Porcentagem de jovens que ainda não completaram o ensino superior" => "ncompsup"
+  }
 
 end

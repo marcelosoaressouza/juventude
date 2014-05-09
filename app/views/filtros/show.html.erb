@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% @dados.each do |value| %>
+    <%= pie_chart  value[:data], value[:config] if value[:type] == 'pie' %>
+    <%= line_chart value[:data], value[:config] if value[:type] == 'line' %>
+<% end %>
+
+
 <p>
   <b>Titulo:</b>
   <%= @filtro.titulo %>

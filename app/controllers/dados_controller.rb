@@ -3,7 +3,6 @@ class DadosController < ApplicationController
     @config = {}
 
     if params[:filtro]
-
       @filtro = Filtro.find(params[:filtro])
 
       # logger.debug("Filtrando #{filtro.tipo}")
@@ -16,13 +15,11 @@ class DadosController < ApplicationController
                                  @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo)
                           .group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
 
-        @dado_trata = [ { name: 'Dados', data: @dado_bruto } ]
+        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
 
         @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
 
-        @dados = [ { id: 'DE_15_A_24_ANOS', type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
-
-        logger.debug("Filtrando #{@dados}")
+        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
       end
     end
 

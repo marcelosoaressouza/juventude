@@ -15,6 +15,24 @@ class FiltrosController < ApplicationController
   def show
     @filtro = Filtro.find(params[:id])
 
+      # logger.debug("Filtrando #{filtro.tipo}")
+
+      @dados = []
+      @config = {}
+
+      if @filtro.tipo_grafico = 'line'
+
+        @dado_bruto = Dado.where("tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?",
+                                 @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo)
+                          .group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
+
+        @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
+
+        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
+      end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @filtro }

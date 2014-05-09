@@ -1,5 +1,5 @@
-<h1>Listing filtros</h1>
-
+<br/>
+<center>
 <table>
   <tr>
     <th>Titulo</th>
@@ -19,23 +19,23 @@
 
 <% @filtros.each do |filtro| %>
   <tr>
-    <td><%= filtro.titulo %></td>
-    <td><%= filtro.tipo_grafico %></td>
-    <td><%= filtro.fxid %></td>
-    <td><%= filtro.univ %></td>
-    <td><%= filtro.tipo %></td>
-    <td><%= filtro.area %></td>
-    <td><%= filtro.sexo %></td>
-    <td><%= filtro.cor %></td>
-    <td><%= filtro.grupo %></td>
-    <td><%= filtro.objetivo %></td>
-    <td><%= link_to 'Show', filtro %></td>
-    <td><%= link_to 'Edit', edit_filtro_path(filtro) %></td>
-    <td><%= link_to 'Destroy', filtro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to filtro.titulo, filtro %></td>
+    <td><%= Filtro::TIPO_GRAFICO.index(filtro.tipo_grafico) %></td>
+    <td><%= Filtro::FXID.index(filtro.fxid) %></td>
+    <td><%= Filtro::UNIV.index(filtro.univ) %></td>
+    <td><%= Filtro::TIPO.index(filtro.tipo) %></td>
+    <td><%= Filtro::AREA.index(filtro.area) %></td>
+    <td><%= Filtro::SEXO.index(filtro.sexo) %></td>
+    <td><%= Filtro::COR.index(filtro.cor) %></td>
+    <td><%= Filtro::GRUPO.index(filtro.grupo) %></td>
+    <td><%= Filtro::OBJETIVO.index(filtro.objetivo) %></td>
+    <td><%= link_to 'Editar', edit_filtro_path(filtro) %></td>
+    <td><%= link_to 'Apagar', filtro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Filtro', new_filtro_path %>
+<%= link_to 'Novo Filtro/Gráfico', new_filtro_path %>
+</center>
