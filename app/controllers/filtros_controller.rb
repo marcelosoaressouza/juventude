@@ -15,40 +15,41 @@ class FiltrosController < ApplicationController
   def show
     @filtro = Filtro.find(params[:id])
 
-      # logger.debug("Filtrando #{filtro.tipo}")
+    # logger.debug("Filtrando #{filtro.tipo}")
 
-      @dados = []
-      @config = {}
+    @dados = []
+    @config = {}
 
-      consulta = "tipo = ? AND area = ? AND fxid = ? AND cor = ? AND sexo = ?"
-      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, @filtro.sexo ]
+    consulta =  "tipo = ?  AND area = ?  AND fxid = ?  AND univ = ?  AND cor = ?  AND sexo = ?"
+    valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.univ, @filtro.cor, @filtro.sexo ]
 
-#      if @filtro.tipo_grafico == 'line'
-#
-#        @dado_bruto = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
-#        @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
-#        @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
-#        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
-#
-#      elsif @filtro.tipo_grafico == 'bar'
+    @dado_bruto = Dado.where(consulta, *valores).group("#{@filtro.grupo}").order("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+    @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
 
-        if @filtro.sexo == 3
-          valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, 1 ]
-          @dado_homens = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+    if @filtro.sexo == 3
 
-          valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.cor, 2 ]
-          @dado_mulheres = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.univ, @filtro.cor, 1 ]
+      @dado_homens = Dado.where(consulta, *valores).group("#{@filtro.grupo}").order("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
 
-          @dado_trata = [ { name: 'Homens', data: @dado_homens }, { name: 'Mulheres', data: @dado_mulheres } ]
-        else
-          @dado_bruto = Dado.where(consulta, *valores).group("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
-          @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
-        end
+      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.univ, @filtro.cor, 2 ]
+      @dado_mulheres = Dado.where(consulta, *valores).group("#{@filtro.grupo}").order("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
 
-        @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
-        @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
-#
-#      end
+      @dado_trata = [ { name: "#{Filtro::SEXO.index(1)}", data: @dado_homens }, { name: "#{Filtro::SEXO.index(2)}", data: @dado_mulheres } ]
+
+    elsif @filtro.cor == 3
+
+      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.univ, 1, @filtro.sexo ]
+      @dado_brancos = Dado.where(consulta, *valores).group("#{@filtro.grupo}").order("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+      valores  = [ @filtro.tipo, @filtro.area, @filtro.fxid, @filtro.univ, 2, @filtro.sexo ]
+      @dado_negros = Dado.where(consulta, *valores).group("#{@filtro.grupo}").order("#{@filtro.grupo}").sum("#{@filtro.objetivo} / 1000")
+
+      @dado_trata = [ { name: "#{Filtro::COR.index(1)}", data: @dado_brancos }, { name: "#{Filtro::COR.index(2)}", data: @dado_negros } ]
+
+    end
+
+    @config[:dado] = { library: { title: { text: "#{@filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
+    @dados = [ { id: "#{@filtro.titulo}", type: "#{@filtro.tipo_grafico}", data: @dado_trata, config: @config[:dado] } ]
 
     respond_to do |format|
       format.html # show.html.erb

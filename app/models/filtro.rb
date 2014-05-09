@@ -15,11 +15,11 @@ class Filtro < ActiveRecord::Base
   TIPO = { "Absoluto" => 2, "Porcentagem" => 1 }
   AREA = { "Total" => 0, "Urbana" => 1, "Rural" => 2 }
   SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
-  COR  = { "Total" => 0, "Brancos ou Amarelos" => 1, "Negros" => 2 }
+  COR  = { "Total" => 0, "Brancos ou Amarelos" => 1, "Negros" => 2, "Brancos e Amarelos ou Negros" => 3 }
 
   TIPO_GRAFICO = { "Linha" => "line", "Barra" => "bar" }
 
-  GRUPO = { "Ano" => "ano", "Sexo" => "sexo" }
+  GRUPO = { "Ano" => "ano", "Sexo" => "sexo", "Cor" => "cor" }
 
   OBJETIVO = {
               "Taxa de analfabetismo" => "analf",

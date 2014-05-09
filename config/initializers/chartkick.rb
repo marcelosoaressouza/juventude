@@ -1,4 +1,5 @@
 Chartkick.options = {
-  width: "800px"
+  width: "1024px",
+  height: "500px"
 }
 
