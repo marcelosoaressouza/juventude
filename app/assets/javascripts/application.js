@@ -15,6 +15,7 @@
 //= require_tree .
 //= require chartkick
 
+// On Change #select_dados for dados
 $(document).ready (
   function()
   {
@@ -22,8 +23,14 @@ $(document).ready (
       function()
       {
         var id = $(this).children(":selected").val();
-        var params = 'filtro=' + id;
-        $.ajax({ url: "/dados/show", data: params });
+        if (id) {
+          var params = 'filtro=' + id;
+          $.ajax({ url: "/dados/show", data: params });
+        }
+        else {
+          $.ajax({ url: "/dados/index", data: params });
+
+        }
       }
     )
 

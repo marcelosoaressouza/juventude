@@ -1,4 +1,4 @@
 <br/>
 <%= collection_select(nil, :id, @filtros, :id, :titulo, {:prompt => "Selecione o Filtro"}, {:id => 'select_dados'}) %>
-
+<%= link_to "Criar Filtro", new_filtro_path %>
 <div id="dados"></div>

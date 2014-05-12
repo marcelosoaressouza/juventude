@@ -1,41 +1,41 @@
 <br/>
 <center>
-<table>
-  <tr>
-    <th>Titulo</th>
-    <th>Gráfico</th>
-    <th>Faixa Etária</th>
-    <th>Universo</th>
-    <th>Tipo</th>
-    <th>Área</th>
-    <th>Sexo</th>
-    <th>Cor</th>
-    <th>Grupo</th>
-    <th>Objetivo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table class="table-dados">
+      <tr id="table-header">
+        <th>Titulo</th>
+        <th>Gráfico</th>
+        <th>Faixa Etária</th>
+        <th>Universo</th>
+        <th>Tipo</th>
+        <th>Área</th>
+        <th>Sexo</th>
+        <th>Cor</th>
+        <th>Grupo</th>
+        <th>Objetivo</th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<% @filtros.each do |filtro| %>
-  <tr>
-    <td><%= link_to filtro.titulo, filtro %></td>
-    <td><%= Filtro::TIPO_GRAFICO.index(filtro.tipo_grafico) %></td>
-    <td><%= Filtro::FXID.index(filtro.fxid) %></td>
-    <td><%= Filtro::UNIV.index(filtro.univ) %></td>
-    <td><%= Filtro::TIPO.index(filtro.tipo) %></td>
-    <td><%= Filtro::AREA.index(filtro.area) %></td>
-    <td><%= Filtro::SEXO.index(filtro.sexo) %></td>
-    <td><%= Filtro::COR.index(filtro.cor) %></td>
-    <td><%= Filtro::GRUPO.index(filtro.grupo) %></td>
-    <td><%= Filtro::OBJETIVO.index(filtro.objetivo) %></td>
-    <td><%= link_to 'Editar', edit_filtro_path(filtro) %></td>
-    <td><%= link_to 'Apagar', filtro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @filtros.each do |filtro| %>
+      <tr class="table-<%= cycle('even', 'odd') -%>">
+        <td><%= link_to filtro.titulo, filtro %></td>
+        <td><%= Filtro::TIPO_GRAFICO.index(filtro.tipo_grafico) %></td>
+        <td><%= Filtro::FXID.index(filtro.fxid) %></td>
+        <td><%= Filtro::UNIV.index(filtro.univ) %></td>
+        <td><%= Filtro::TIPO.index(filtro.tipo) %></td>
+        <td><%= Filtro::AREA.index(filtro.area) %></td>
+        <td><%= Filtro::SEXO.index(filtro.sexo) %></td>
+        <td><%= Filtro::COR.index(filtro.cor) %></td>
+        <td><%= Filtro::GRUPO.index(filtro.grupo) %></td>
+        <td><%= Filtro::OBJETIVO.index(filtro.objetivo) %></td>
+        <td><%= link_to 'Editar', edit_filtro_path(filtro) %></td>
+        <td><%= link_to 'Apagar', filtro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
+    <br />
 
-<%= link_to 'Novo Filtro/Gráfico', new_filtro_path %>
+    <%= link_to 'Novo Filtro/Gráfico', new_filtro_path %> |
+    <%= link_to 'Ver Dados', dados_path %>
 </center>

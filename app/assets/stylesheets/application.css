@@ -16,3 +16,30 @@
   width: 95%;
   margin-left: 16px;
 }
+
+.table-dados {
+  text-align: center;
+  width: 100%;
+  border: 1px solid;
+}
+
+.table-dados .table-odd {
+  background-color: #CCCCCC;
+  border: 1px solid;
+}
+
+.table-dados #table-header {
+  border: 1px solid;
+}
+
+.table-dados th {
+  border:1px solid;
+}
+
+.table-dados td {
+  border:1px solid;
+}
+
+a:hover {
+    color: #FFF;
+}
