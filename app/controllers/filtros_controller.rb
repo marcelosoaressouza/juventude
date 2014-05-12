@@ -49,7 +49,7 @@ class FiltrosController < ApplicationController
 
     respond_to do |format|
       if @filtro.save
-        format.html { redirect_to @filtro, notice: 'Filtro was successfully created.' }
+        format.html { redirect_to @filtro, notice: 'Filtro foi Criado com sucesso.' }
         format.json { render json: @filtro, status: :created, location: @filtro }
       else
         format.html { render action: "new" }
@@ -65,7 +65,7 @@ class FiltrosController < ApplicationController
 
     respond_to do |format|
       if @filtro.update_attributes(params[:filtro])
-        format.html { redirect_to @filtro, notice: 'Filtro was successfully updated.' }
+        format.html { redirect_to @filtro, notice: 'Filtro foi Atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

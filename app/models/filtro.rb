@@ -17,7 +17,7 @@ class Filtro < ActiveRecord::Base
   SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
   COR  = { "Total" => 0, "Brancos ou Amarelos" => 1, "Negros" => 2, "Brancos e Amarelos ou Negros" => 3 }
 
-  TIPO_GRAFICO = { "Linha" => "line", "Barra" => "bar" }
+  TIPO_GRAFICO = { "Linha" => "line", "Barra" => "bar", "Coluna" => "column" , "Área" => 'area', "Torta" => 'pie'}
 
   GRUPO = { "Ano" => "ano", "Sexo" => "sexo", "Cor" => "cor" }
 

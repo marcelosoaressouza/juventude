@@ -1,5 +1,7 @@
 <% dados.each do |value| %>
-  <%= pie_chart  value[:data], value[:config] if value[:type] == 'pie' %>
-  <%= bar_chart  value[:data], value[:config] if value[:type] == 'bar' %>
-  <%= line_chart value[:data], value[:config] if value[:type] == 'line' %>
+  <%= pie_chart    value[:data], value[:config] if value[:type] == 'pie'    %>
+  <%= bar_chart    value[:data], value[:config] if value[:type] == 'bar'    %>
+  <%= line_chart   value[:data], value[:config] if value[:type] == 'line'   %>
+  <%= column_chart value[:data], value[:config] if value[:type] == 'column' %>
+  <%= area_chart   value[:data], value[:config] if value[:type] == 'area'   %>
 <% end %>
