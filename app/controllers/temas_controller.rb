@@ -14,7 +14,6 @@ class TemasController < ApplicationController
   # GET /temas/1.json
   def show
     @tema = Tema.find(params[:id])
-    @filtros = Filtro.all
 
     respond_to do |format|
       format.html # show.html.erb

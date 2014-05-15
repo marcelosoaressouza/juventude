@@ -54,7 +54,21 @@
     <%= f.label "Objetivo" %><br />
     <%= f.select :objetivo, Filtro::OBJETIVO.map { |value| [ value[0], value[1] ] } %>
   </div>
+
+  <% if Tema.first %>
+    <div class="field">
+      <%= f.label "Temas" %><br /><br />
+      <% Tema.all.each do |tema| -%>
+        <div>
+          <%= label_tag :tema_ids, tema.titulo -%>
+          <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
+        </div>
+      <% end -%>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Enviar" %>
   </div>
+
 <% end %>

@@ -1,0 +1,4 @@
+<br/>
+<%= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
+<%= link_to "Administrar Filtros", filtros_path, :style => 'float: right;' %>
+<div id="dados"></div>

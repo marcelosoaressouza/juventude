@@ -17,7 +17,7 @@ class FiltrosController < ApplicationController
 
     if params[:id]
       @filtro = Filtro.find(params[:id])
-      @dados = getDados(@filtro)
+      @dados = getDadosByFiltro(@filtro)
     end
     
     respond_to do |format|
@@ -40,13 +40,13 @@ class FiltrosController < ApplicationController
   # GET /filtros/1/edit
   def edit
     @filtro = Filtro.find(params[:id])
-    @tema = Tema.all
   end
 
   # POST /filtros
   # POST /filtros.json
   def create
     @filtro = Filtro.new(params[:filtro])
+    @filtro.attributes = {'tema_ids' => []}.merge(params[:filtro] || {})
 
     respond_to do |format|
       if @filtro.save

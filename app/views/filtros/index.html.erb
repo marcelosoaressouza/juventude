@@ -1,5 +1,12 @@
 <br/>
 <center>
+    <%= link_to 'Novo Filtro/Gráfico', new_filtro_path %> |
+    <%= link_to 'Novo Tema', temas_path %> |
+    <%= link_to 'Ver Dados por Filtro', dados_path %> |
+    <%= link_to 'Ver Dados por Tema', temas_dados_path %>
+
+    <br /><br />
+
     <table class="table-dados">
       <tr id="table-header">
         <th>Titulo</th>
@@ -35,9 +42,4 @@
       </tr>
     <% end %>
     </table>
-
-    <br />
-
-    <%= link_to 'Novo Filtro/Gráfico', new_filtro_path %> |
-    <%= link_to 'Ver Dados', dados_path %>
 </center>

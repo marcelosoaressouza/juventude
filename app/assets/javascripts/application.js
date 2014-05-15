@@ -15,11 +15,11 @@
 //= require_tree .
 //= require chartkick
 
-// On Change #select_dados for dados
+// On Change #select_filtros for filtros
 $(document).ready (
   function()
   {
-    $("#select_dados").change (
+    $("#select_filtros").change (
       function()
       {
         var id = $(this).children(":selected").val();
@@ -34,7 +34,23 @@ $(document).ready (
       }
     )
 
-    $('#select_dados').val("");
+    $("#select_temas").change (
+      function()
+      {
+        var id = $(this).children(":selected").val();
+        if (id) {
+          var params = 'tema=' + id;
+          $.ajax({ url: "/dados/show", data: params });
+        }
+        else {
+          $.ajax({ url: "/dados/index", data: params });
+
+        }
+      }
+    )
+
+    $('#select_filtros').val("");
+    $('#select_temas').val("");
 
   }
 );
