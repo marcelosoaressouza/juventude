@@ -1,9 +1,12 @@
 class Filtro < ActiveRecord::Base
-  attr_accessible :area, :cor, :fxid, :grupo, :objetivo, :sexo, :tipo, :tipo_grafico, :titulo, :univ, :fonte
+  has_many :temas_filtros, :dependent => :destroy
+  has_many :temas, :through => :temas_filtros
+
+  attr_accessible :area, :cor, :fxid, :grupo, :objetivo, :sexo, :tipo, :tipo_grafico, :titulo, :univ, :fonte, :tema_ids
 
   FONTE = { "PNAD" => 0 }
 
-  FXID = { "De 15 a 29 Anos" => 1529, "De 15 a 24 Anos" => 1524, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
+  FXID = { "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
            "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
 
   UNIV = { "Brasil" => 0, "Região Norte" => 10, "Região Nordeste" => 20, "Região Sudeste" => 30, "Regiao Sul" => 40,

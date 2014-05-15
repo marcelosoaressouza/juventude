@@ -40,6 +40,7 @@ class FiltrosController < ApplicationController
   # GET /filtros/1/edit
   def edit
     @filtro = Filtro.find(params[:id])
+    @tema = Tema.all
   end
 
   # POST /filtros
@@ -62,6 +63,7 @@ class FiltrosController < ApplicationController
   # PUT /filtros/1.json
   def update
     @filtro = Filtro.find(params[:id])
+    @filtro.attributes = {'tema_ids' => []}.merge(params[:filtro] || {})
 
     respond_to do |format|
       if @filtro.update_attributes(params[:filtro])

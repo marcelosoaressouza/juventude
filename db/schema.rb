@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140515122206) do
+ActiveRecord::Schema.define(:version => 20140515125121) do
 
   create_table "dados", :force => true do |t|
     t.string   "codigo"
@@ -182,5 +182,21 @@ ActiveRecord::Schema.define(:version => 20140515122206) do
     t.datetime "updated_at",   :null => false
     t.integer  "fonte"
   end
+
+  create_table "temas", :force => true do |t|
+    t.string   "titulo"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "temas_filtros", :force => true do |t|
+    t.integer  "tema_id"
+    t.integer  "filtro_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "temas_filtros", ["filtro_id"], :name => "index_temas_filtros_on_filtro_id"
+  add_index "temas_filtros", ["tema_id"], :name => "index_temas_filtros_on_tema_id"
 
 end

@@ -59,6 +59,13 @@
   <%= Filtro::OBJETIVO.index(@filtro.objetivo) %>
 </p>
 
+<p>
+  <b>Temas:</b>
+  <% @filtro.temas.each do |tema| %>
+    <%= tema.titulo %>
+  <% end %>
+</p>
+
 <center>
   <%= link_to 'Editar', edit_filtro_path(@filtro) %> |
   <%= link_to 'Voltar', filtros_path %>
