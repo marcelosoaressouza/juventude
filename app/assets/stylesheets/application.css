@@ -43,3 +43,7 @@
 a:hover {
     color: #FFF;
 }
+
+.dados-options {
+  float: right;
+}

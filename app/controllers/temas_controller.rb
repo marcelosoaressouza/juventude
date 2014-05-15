@@ -44,7 +44,7 @@ class TemasController < ApplicationController
 
     respond_to do |format|
       if @tema.save
-        format.html { redirect_to @tema, notice: 'Tema was successfully created.' }
+        format.html { redirect_to @tema, notice: 'Tema foi Criado com sucesso.' }
         format.json { render json: @tema, status: :created, location: @tema }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class TemasController < ApplicationController
 
     respond_to do |format|
       if @tema.update_attributes(params[:tema])
-        format.html { redirect_to @tema, notice: 'Tema was successfully updated.' }
+        format.html { redirect_to @tema, notice: 'Tema foi Atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,9 +1,22 @@
-<p id="notice"><%= notice %></p>
+<center>
+  <p id="notice"><%= notice %></p>
+</center>
 
 <p>
   <b>Titulo:</b>
   <%= @tema.titulo %>
 </p>
 
-<%= link_to 'Edit', edit_tema_path(@tema) %> |
-<%= link_to 'Back', temas_path %>
+<% if @tema.filtros.count > 0 %>
+	<p>
+	  <b>Filtros:</b> <br />
+	  <% @tema.filtros.each do |filtro| %>
+	  <%= link_to filtro.titulo, filtro %><br />
+	  <% end %>
+	</p>
+<% end %>
+
+<center>
+  <%= link_to 'Editar', edit_tema_path(@tema) %> |
+  <%= link_to 'Voltar', temas_path %>
+</center>
