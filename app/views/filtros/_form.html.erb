@@ -15,6 +15,10 @@
     <%= f.text_field :titulo %>
   </div>
   <div class="field">
+    <%= f.label "Fonte" %><br />
+    <%= f.select :fonte, Filtro::FONTE.map { |value| [ value[0], value[1] ] } %>
+  </div>
+  <div class="field">
     <%= f.label "Tipo Gráfico" %><br />
     <%= f.select :tipo_grafico, Filtro::TIPO_GRAFICO.map { |value| [ value[0], value[1] ] } %>
   </div>

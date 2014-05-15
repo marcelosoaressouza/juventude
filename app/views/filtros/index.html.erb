@@ -3,6 +3,7 @@
     <table class="table-dados">
       <tr id="table-header">
         <th>Titulo</th>
+        <th>Fonte</th>
         <th>Gráfico</th>
         <th>Faixa Etária</th>
         <th>Universo</th>
@@ -19,6 +20,7 @@
     <% @filtros.each do |filtro| %>
       <tr class="table-<%= cycle('even', 'odd') -%>">
         <td><%= link_to filtro.titulo, filtro %></td>
+        <td><%= Filtro::FONTE.index(filtro.fonte) %></td>
         <td><%= Filtro::TIPO_GRAFICO.index(filtro.tipo_grafico) %></td>
         <td><%= Filtro::FXID.index(filtro.fxid) %></td>
         <td><%= Filtro::UNIV.index(filtro.univ) %></td>

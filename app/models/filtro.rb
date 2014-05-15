@@ -1,5 +1,7 @@
 class Filtro < ActiveRecord::Base
-  attr_accessible :area, :cor, :fxid, :grupo, :objetivo, :sexo, :tipo, :tipo_grafico, :titulo, :univ
+  attr_accessible :area, :cor, :fxid, :grupo, :objetivo, :sexo, :tipo, :tipo_grafico, :titulo, :univ, :fonte
+
+  FONTE = { "PNAD" => 0 }
 
   FXID = { "De 15 a 29 Anos" => 1529, "De 15 a 24 Anos" => 1524, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
            "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
@@ -12,7 +14,7 @@ class Filtro < ActiveRecord::Base
            "Rio Grande do Sul" => 43, "Rondônia" => 11, "Roraima" => 14, "Santa Catarina" => 42, "São Paulo" => 35,
            "Sergipe" => 28, "Tocantins" => 17 }
 
-  TIPO = { "Absoluto" => 2, "Porcentagem" => 1 }
+  TIPO = { "Porcentagem" => 1, "Absoluto" => 2 }
   AREA = { "Total" => 0, "Urbana" => 1, "Rural" => 2 }
   SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
   COR  = { "Total" => 0, "Brancos ou Amarelos" => 1, "Negros" => 2, "Brancos e Amarelos ou Negros" => 3 }

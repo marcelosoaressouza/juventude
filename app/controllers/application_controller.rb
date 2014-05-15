@@ -9,15 +9,8 @@ class ApplicationController < ActionController::Base
     consulta =  "tipo = ?  AND area = ?  AND fxid = ?  AND univ = ?  AND cor = ?  AND sexo = ?"
     valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, filtro.sexo ]
 
-    # Porcentagem
-    if filtro.tipo = 1
-      @dado_bruto = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
-      @config[:dado] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
-    elsif filtro.tipo = 2
-      @dado_bruto = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo / 1000}")
-      @config[:dado] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .0f}</b>' } } }
-    end
-
+    @dado_bruto = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+    @config[:dado] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
     @dado_trata = [ { name: 'Valor', data: @dado_bruto } ]
 
     if filtro.sexo == 3
