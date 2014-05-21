@@ -1,4 +1,7 @@
 class Filtro < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :titulo, use: :slugged
+
   has_many :temas_filtros, :dependent => :destroy
   has_many :temas, :through => :temas_filtros
 

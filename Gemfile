@@ -46,3 +46,5 @@ gem 'groupdate'
 
 # Active Media
 gem 'active_median'
+
+gem 'friendly_id', '4.0.10.1'
