@@ -69,9 +69,16 @@
 
 <% if ! @filtro.temas.empty? %>
   <p>
-    <b>Temas:</b>
-    <% @filtro.temas.each do |tema| %>
-      <%= tema.titulo %>
-    <% end %>
+    <b>Temas que este Filtro faz Parte:</b>
+      <table class="table-temas">
+        <tr>
+          <% @filtro.temas.each do |tema| -%>
+            <td>
+            <%= link_to (image_tag tema.imagem.url(:thumb)), tema %>
+            <b><%= label_tag :tema_ids, tema.titulo -%></b>
+            </td>
+          <% end -%>
+        </tr>
+      </table>
   </p>
 <% end %>

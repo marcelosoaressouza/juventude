@@ -57,14 +57,18 @@
 
   <% if Tema.first %>
     <div class="field">
-      <%= f.label "Temas" %><br /><br />
-      <% Tema.all.each do |tema| -%>
-        <div class="tema-box">
-          <%= image_tag tema.imagem.url(:thumb) %>
-          <b><%= label_tag :tema_ids, tema.titulo -%></b>
-          <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
-        </div>
-      <% end -%>
+      <%= f.label "Escolha os Temas" %><br /><br />
+      <table class="table-temas">
+        <tr>
+          <% Tema.all.each do |tema| -%>
+            <td>
+            <%= image_tag tema.imagem.url(:thumb) %>
+            <b><%= label_tag :tema_ids, tema.titulo -%></b>
+            <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
+            </td>
+          <% end -%>
+        </tr>
+      </table>
     </div>
   <% end %>
 
