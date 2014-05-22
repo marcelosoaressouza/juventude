@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(:version => 20140522145439) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "slug"
-    t.string   "imagem"
     t.string   "imagem_file_name"
     t.string   "imagem_content_type"
     t.integer  "imagem_file_size"
