@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140521134136) do
+ActiveRecord::Schema.define(:version => 20140522145439) do
+
+  create_table "filtros", :force => true do |t|
+    t.string   "titulo"
+    t.string   "tipo_grafico"
+    t.integer  "fxid"
+    t.integer  "univ"
+    t.integer  "tipo"
+    t.integer  "area"
+    t.integer  "sexo"
+    t.integer  "cor"
+    t.string   "grupo"
+    t.string   "objetivo"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "fonte"
+    t.string   "slug"
+  end
+
+  add_index "filtros", ["slug"], :name => "index_filtros_on_slug", :unique => true
 
   create_table "pnads", :force => true do |t|
     t.string   "codigo"
@@ -167,30 +186,16 @@ ActiveRecord::Schema.define(:version => 20140521134136) do
     t.datetime "updated_at"
   end
 
-  create_table "filtros", :force => true do |t|
-    t.string   "titulo"
-    t.string   "tipo_grafico"
-    t.integer  "fxid"
-    t.integer  "univ"
-    t.integer  "tipo"
-    t.integer  "area"
-    t.integer  "sexo"
-    t.integer  "cor"
-    t.string   "grupo"
-    t.string   "objetivo"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "fonte"
-    t.string   "slug"
-  end
-
-  add_index "filtros", ["slug"], :name => "index_filtros_on_slug", :unique => true
-
   create_table "temas", :force => true do |t|
     t.string   "titulo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "slug"
+    t.string   "imagem"
+    t.string   "imagem_file_name"
+    t.string   "imagem_content_type"
+    t.integer  "imagem_file_size"
+    t.datetime "imagem_updated_at"
   end
 
   add_index "temas", ["slug"], :name => "index_temas_on_slug", :unique => true

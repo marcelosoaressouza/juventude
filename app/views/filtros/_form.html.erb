@@ -16,43 +16,43 @@
   </div>
   <div class="field">
     <%= f.label "Fonte" %><br />
-    <%= f.select :fonte, Filtro::FONTE.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :fonte, Pnad::FONTE.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Tipo Gráfico" %><br />
-    <%= f.select :tipo_grafico, Filtro::TIPO_GRAFICO.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :tipo_grafico, Pnad::TIPO_GRAFICO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Faixa Etária" %><br />
-    <%= f.select :fxid, Filtro::FXID.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :fxid, Pnad::FXID.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Universo" %><br />
-    <%= f.select :univ, Filtro::UNIV.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :univ, Pnad::UNIV.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Tipo" %><br />
-    <%= f.select :tipo, Filtro::TIPO.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :tipo, Pnad::TIPO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Área" %><br />
-    <%= f.select :area, Filtro::AREA.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :area, Pnad::AREA.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Sexo" %><br />
-    <%= f.select :sexo, Filtro::SEXO.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :sexo, Pnad::SEXO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Cor" %><br />
-    <%= f.select :cor, Filtro::COR.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :cor, Pnad::COR.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Grupo" %><br />
-    <%= f.select :grupo, Filtro::GRUPO.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :grupo, Pnad::GRUPO.map { |value| [ value[0], value[1] ] } %>
   </div>
   <div class="field">
     <%= f.label "Objetivo" %><br />
-    <%= f.select :objetivo, Filtro::OBJETIVO.map { |value| [ value[0], value[1] ] } %>
+    <%= f.select :objetivo, Pnad::OBJETIVO.map { |value| [ value[0], value[1] ] } %>
   </div>
 
   <% if Tema.first %>

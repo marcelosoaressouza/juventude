@@ -1,4 +1,8 @@
+<br />
 <center>
+  <%= link_to 'Editar', edit_filtro_path(@filtro) %> |
+  <%= link_to 'Voltar', filtros_path %>
+
   <p id="notice"><%= notice %></p>
 </center>
 
@@ -12,55 +16,55 @@
 
 <p>
   <b>Fonte:</b>
-  <%= Filtro::FONTE.index(@filtro.fonte) %>
+  <%= Pnad::FONTE.index(@filtro.fonte) %>
 </p>
 
 <p>
   <b>Tipo de Gráfico:</b>
-  <%= Filtro::TIPO_GRAFICO.index(@filtro.tipo_grafico) %>
+  <%= Pnad::TIPO_GRAFICO.index(@filtro.tipo_grafico) %>
 </p>
 --> 
 
 <p>
   <b>Faixa Etária:</b>
-  <%= Filtro::FXID.index(@filtro.fxid) %>
+  <%= Pnad::FXID.index(@filtro.fxid) %>
 </p>
 
 <p>
   <b>Universo:</b>
-  <%= Filtro::UNIV.index(@filtro.univ) %>
+  <%= Pnad::UNIV.index(@filtro.univ) %>
 </p>
 
 <!--
 <p>
   <b>Tipo:</b>
-  <%= Filtro::TIPO.index(@filtro.tipo) %>
+  <%= Pnad::TIPO.index(@filtro.tipo) %>
 </p>
 -->
 
 <p>
   <b>Área:</b>
-  <%= Filtro::AREA.index(@filtro.area) %>
+  <%= Pnad::AREA.index(@filtro.area) %>
 </p>
 
 <p>
   <b>Sexo:</b>
-  <%= Filtro::SEXO.index(@filtro.sexo) %>
+  <%= Pnad::SEXO.index(@filtro.sexo) %>
 </p>
 
 <p>
   <b>Cor:</b>
-  <%= Filtro::COR.index(@filtro.cor) %>
+  <%= Pnad::COR.index(@filtro.cor) %>
 </p>
 <!--
 <p>
   <b>Grupo:</b>
-  <%= Filtro::GRUPO.index(@filtro.grupo) %>
+  <%= Pnad::GRUPO.index(@filtro.grupo) %>
 </p>
 -->
 <p>
   <b>Objetivo:</b>
-  <%= Filtro::OBJETIVO.index(@filtro.objetivo) %>
+  <%= Pnad::OBJETIVO.index(@filtro.objetivo) %>
 </p>
 
 <% if ! @filtro.temas.empty? %>
@@ -71,8 +75,3 @@
     <% end %>
   </p>
 <% end %>
-
-<center>
-  <%= link_to 'Editar', edit_filtro_path(@filtro) %> |
-  <%= link_to 'Voltar', filtros_path %>
-</center>

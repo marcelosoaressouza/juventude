@@ -1,11 +1,17 @@
 Juventude::Application.routes.draw do
-  resources :temas
-  resources :filtros
+  resources :temas do
+    collection do
+      get 'admin'
+    end
+  end
+
   resources :pnads do
     collection do
       get 'temas'
     end
   end
 
-  root :to => 'pnads#index'
+  resources :filtros
+
+  root :to => 'temas#index'
 end

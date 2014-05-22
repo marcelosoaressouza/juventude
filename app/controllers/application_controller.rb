@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, filtro.sexo ]
 
     pnad_bruto = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
-    config[:pnad] = { library: { title: { text: "#{filtro.titulo} - #{Filtro::FONTE.index(filtro.fonte)}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+    config[:pnad] = { library: { title: { text: "#{filtro.titulo} - #{Pnad::FONTE.index(filtro.fonte)}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
     pnad_trata = [ { name: 'Valor', data: pnad_bruto } ]
 
     if filtro.sexo == 3
@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
       valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, 2 ]
       pnad_mulheres = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-      pnad_trata = [ { name: "#{Filtro::SEXO.index(1)}", data: pnad_homens },
-                     { name: "#{Filtro::SEXO.index(2)}", data: pnad_mulheres } ]
+      pnad_trata = [ { name: "#{Pnad::SEXO.index(1)}", data: pnad_homens },
+                     { name: "#{Pnad::SEXO.index(2)}", data: pnad_mulheres } ]
     end
 
     if filtro.cor == 3
@@ -54,10 +54,10 @@ class ApplicationController < ActionController::Base
         valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, 2 ]
         pnad_mulheres_negros = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-        pnad_trata = [ { name: "Homens #{Filtro::COR.index(1)}", data: pnad_homens_brancos },
-                       { name: "Homens #{Filtro::COR.index(2)}", data: pnad_homens_negros  },
-                       { name: "Mulheres #{Filtro::COR.index(1)}", data: pnad_mulheres_brancos }, 
-                       { name: "Mulheres #{Filtro::COR.index(2)}", data: pnad_mulheres_negros  } 
+        pnad_trata = [ { name: "Homens #{Pnad::COR.index(1)}", data: pnad_homens_brancos },
+                       { name: "Homens #{Pnad::COR.index(2)}", data: pnad_homens_negros  },
+                       { name: "Mulheres #{Pnad::COR.index(1)}", data: pnad_mulheres_brancos }, 
+                       { name: "Mulheres #{Pnad::COR.index(2)}", data: pnad_mulheres_negros  } 
                      ]
 
       else 
@@ -67,8 +67,8 @@ class ApplicationController < ActionController::Base
         valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, filtro.sexo ]
         pnad_negros = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-        pnad_trata = [ { name: "#{Filtro::COR.index(1)}", data: pnad_brancos },
-                       { name: "#{Filtro::COR.index(2)}", data: pnad_negros  } ]
+        pnad_trata = [ { name: "#{Pnad::COR.index(1)}", data: pnad_brancos },
+                       { name: "#{Pnad::COR.index(2)}", data: pnad_negros  } ]
       end
 
     end
