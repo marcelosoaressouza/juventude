@@ -1,6 +1,6 @@
 <br />
-<% if ! pnads.empty? %>
-  <% pnads.each do |value| %>
+<% if ! dados.empty? %>
+  <% dados.each do |value| %>
     <%= pie_chart    value[:data], value[:config] if value[:type] == 'pie'    %>
     <%= bar_chart    value[:data], value[:config] if value[:type] == 'bar'    %>
     <%= line_chart   value[:data], value[:config] if value[:type] == 'line'   %>

@@ -17,26 +17,31 @@
   margin-left: 16px;
 }
 
-.table-pnads {
+.table-dados {
   text-align: center;
   width: 100%;
   border: 1px solid;
 }
 
-.table-pnads .table-odd {
+.table-temas {
+  text-align: center;
+  width: 100%;
+}
+
+.table-dados .table-odd {
   background-color: #CCCCCC;
   border: 1px solid;
 }
 
-.table-pnads #table-header {
+.table-dados #table-header {
   border: 1px solid;
 }
 
-.table-pnads th {
+.table-dados th {
   border:1px solid;
 }
 
-.table-pnads td {
+.table-dados td {
   border:1px solid;
 }
 
@@ -44,6 +49,11 @@ a:hover {
     color: #FFF;
 }
 
-.pnads-options {
+.dados-options {
   float: right;
+}
+
+.tema-box {
+  width: 160px;
+  text-align: center;
 }

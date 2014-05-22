@@ -6,7 +6,7 @@ class TemasController < ApplicationController
 
     tema = Tema.find(params[:id])
 
-    @pnads = getPnadsByTema(Tema.find(params[:tema]))
+    @dados = getDadosByTema(Tema.find(params[:tema]))
 
     respond_to do |format|
       format.js
@@ -22,17 +22,6 @@ class TemasController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @temas }
-    end
-  end
-
-  # GET /temas/admin
-  # GET /admin/temas.json
-  def admin
-    @temas = Tema.all
-
-    respond_to do |format|
-      format.html # admin.html.erb
       format.json { render json: @temas }
     end
   end

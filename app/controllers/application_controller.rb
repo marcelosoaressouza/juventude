@@ -1,23 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def getPnadsByTema (tema)
-    @pnads = []
+  def getDadosByTema (tema)
+    @dados = []
 
     temas_filtros = TemasFiltro.where("tema_id = ?", tema.id)
 
     temas_filtros.each do |temas_filtro|
       # logger.debug("Filtro ID #{filtro_id.filtro_id}")
       filtro = Filtro.find(temas_filtro.filtro_id)
-      @pnads += getPnadsByFiltro(filtro)
+      @dados += getDadosByFiltro(filtro)
     end
 
-    return @pnads
+    return @dados
   end
 
-  def getPnadsByFiltro (filtro)
+  def getDadosByFiltro (filtro)
     # logger.debug("Filtrando #{filtro.tipo}")
-    @pnads = []
+    @dados = []
     config = {}
 
     consulta =  "tipo = ?  AND area = ?  AND fxid = ?  AND univ = ?  AND cor = ?  AND sexo = ?"
@@ -73,9 +73,9 @@ class ApplicationController < ActionController::Base
 
     end
 
-    @pnads = [ { id: "#{filtro.titulo}", type: "#{filtro.tipo_grafico}", data: pnad_trata, config: config[:pnad] } ]
+    @dados = [ { id: "#{filtro.titulo}", type: "#{filtro.tipo_grafico}", data: pnad_trata, config: config[:pnad] } ]
 
-    return @pnads
+    return @dados
   end
 
 end

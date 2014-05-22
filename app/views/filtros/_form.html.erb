@@ -59,8 +59,9 @@
     <div class="field">
       <%= f.label "Temas" %><br /><br />
       <% Tema.all.each do |tema| -%>
-        <div>
-          <%= label_tag :tema_ids, tema.titulo -%>
+        <div class="tema-box">
+          <%= image_tag tema.imagem.url(:thumb) %>
+          <b><%= label_tag :tema_ids, tema.titulo -%></b>
           <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
         </div>
       <% end -%>

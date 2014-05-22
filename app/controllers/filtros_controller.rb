@@ -13,11 +13,11 @@ class FiltrosController < ApplicationController
   # GET /filtros/1
   # GET /filtros/1.json
   def show
-    @pnads = []
+    @dados = []
 
     if params[:id]
       @filtro = Filtro.find(params[:id])
-      @pnads = getPnadsByFiltro(@filtro)
+      @dados = getDadosByFiltro(@filtro)
     end
     
     respond_to do |format|

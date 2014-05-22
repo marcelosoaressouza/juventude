@@ -25,10 +25,10 @@ $(document).ready (
         var id = $(this).children(":selected").val();
         if (id) {
           var params = 'filtro=' + id;
-          $.ajax({ url: "/pnads/show", data: params });
+          $.ajax({ url: "/dados/show", data: params });
         }
         else {
-          $.ajax({ url: "/pnads/index", data: params });
+          $.ajax({ url: "/dados/index", data: params });
 
         }
       }
@@ -40,10 +40,25 @@ $(document).ready (
         var id = $(this).children(":selected").val();
         if (id) {
           var params = 'tema=' + id;
-          $.ajax({ url: "/pnads/show", data: params });
+          $.ajax({ url: "/dados/show", data: params });
         }
         else {
-          $.ajax({ url: "/pnads/index", data: params });
+          $.ajax({ url: "/dados/index", data: params });
+
+        }
+      }
+    )
+
+    $(".link_tema").on('click', 
+      function(event)
+      {
+        var id = $(this).attr('data-href');
+        if (id) {
+          var params = 'tema=' + id;
+          $.ajax({ url: "/dados/show", data: params });
+        }
+        else {
+          $.ajax({ url: "/dados/index", data: params });
 
         }
       }

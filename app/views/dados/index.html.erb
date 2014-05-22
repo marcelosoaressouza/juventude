@@ -1,0 +1,28 @@
+<br/>
+
+<div class="dados-options">
+  <%= link_to "Administrar Temas",   temas_path %> |
+  <%= link_to "Administrar Filtros", filtros_path %>
+</div>
+
+<br /><br />
+
+<%#= collection_select(nil, :id, @filtros, :id, :titulo, {:prompt => "Selecione o Filtro"}, {:id => 'select_filtros'}) %>
+
+<%#= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
+
+    <br /><br />
+    <% if ! @temas.empty? %>
+      <table class="table-temas">
+        <tr>
+          <% @temas.each do |tema| %>
+            <td><%= link_to image_tag(tema.imagem.url(:thumb)), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+          <% end %>
+        </tr>
+      </table>
+    <% else %>
+        <br />
+        <h3>Nenhum Tema Encontrado.</h3>
+    <% end %>
+
+    <div id="dados"></div>

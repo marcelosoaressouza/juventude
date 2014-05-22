@@ -1,6 +1,10 @@
+<br />
+
 <center>
+  <%= link_to 'Editar', edit_tema_path(@tema) %> |
+  <%= link_to 'Voltar', temas_path %>
+
   <p id="notice"><%= notice %></p>
-</center>
 
 <p>
   <%= image_tag @tema.imagem.url(:thumb) %>
@@ -19,8 +23,4 @@
 	  <% end %>
 	</p>
 <% end %>
-
-<center>
-  <%= link_to 'Editar', edit_tema_path(@tema) %> |
-  <%= link_to 'Voltar', temas_path %>
 </center>
