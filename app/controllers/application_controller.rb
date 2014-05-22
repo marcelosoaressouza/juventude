@@ -1,60 +1,81 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def getDadosByTema (tema)
-    @dados = []
+  def getPnadsByTema (tema)
+    @pnads = []
 
     temas_filtros = TemasFiltro.where("tema_id = ?", tema.id)
 
     temas_filtros.each do |temas_filtro|
       # logger.debug("Filtro ID #{filtro_id.filtro_id}")
       filtro = Filtro.find(temas_filtro.filtro_id)
-      @dados += getDadosByFiltro(filtro)
+      @pnads += getPnadsByFiltro(filtro)
     end
 
-    return @dados
+    return @pnads
   end
 
-  def getDadosByFiltro (filtro)
+  def getPnadsByFiltro (filtro)
     # logger.debug("Filtrando #{filtro.tipo}")
-    @dados = []
+    @pnads = []
     config = {}
 
     consulta =  "tipo = ?  AND area = ?  AND fxid = ?  AND univ = ?  AND cor = ?  AND sexo = ?"
     valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, filtro.sexo ]
 
-    dado_bruto = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
-    config[:dado] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
-    dado_trata = [ { name: 'Valor', data: dado_bruto } ]
+    pnad_bruto = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+    config[:pnad] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+    pnad_trata = [ { name: 'Valor', data: pnad_bruto } ]
 
     if filtro.sexo == 3
 
       # Absoluto? ("#{filtro.objetivo} / 1000")
       valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, 1 ]
-      dado_homens = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+      pnad_homens = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
       valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, 2 ]
-      dado_mulheres = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+      pnad_mulheres = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-      dado_trata = [ { name: "#{Filtro::SEXO.index(1)}", data: dado_homens },
-                     { name: "#{Filtro::SEXO.index(2)}", data: dado_mulheres } ]
+      pnad_trata = [ { name: "#{Filtro::SEXO.index(1)}", data: pnad_homens },
+                     { name: "#{Filtro::SEXO.index(2)}", data: pnad_mulheres } ]
+    end
 
-    elsif filtro.cor == 3
+    if filtro.cor == 3
+      if filtro.sexo == 3
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 1, 1 ]
+        pnad_homens_brancos = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-      valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 1, filtro.sexo ]
-      dado_brancos = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 1, 2 ]
+        pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-      valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, filtro.sexo ]
-      dado_negros = Dado.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, 1 ]
+        pnad_homens_negros = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
 
-      dado_trata = [ { name: "#{Filtro::COR.index(1)}", data: dado_brancos },
-                     { name: "#{Filtro::COR.index(2)}", data: dado_negros  } ]
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, 2 ]
+        pnad_mulheres_negros = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+
+        pnad_trata = [ { name: "Homens #{Filtro::COR.index(1)}", data: pnad_homens_brancos },
+                       { name: "Homens #{Filtro::COR.index(2)}", data: pnad_homens_negros  },
+                       { name: "Mulheres #{Filtro::COR.index(1)}", data: pnad_mulheres_brancos }, 
+                       { name: "Mulheres #{Filtro::COR.index(2)}", data: pnad_mulheres_negros  } 
+                     ]
+
+      else 
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 1, filtro.sexo ]
+        pnad_brancos = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+
+        valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, 2, filtro.sexo ]
+        pnad_negros = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
+
+        pnad_trata = [ { name: "#{Filtro::COR.index(1)}", data: pnad_brancos },
+                       { name: "#{Filtro::COR.index(2)}", data: pnad_negros  } ]
+      end
 
     end
 
-    @dados = [ { id: "#{filtro.titulo}", type: "#{filtro.tipo_grafico}", data: dado_trata, config: config[:dado] } ]
+    @pnads = [ { id: "#{filtro.titulo}", type: "#{filtro.tipo_grafico}", data: pnad_trata, config: config[:pnad] } ]
 
-    return @dados
+    return @pnads
   end
 
 end

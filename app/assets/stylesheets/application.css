@@ -17,26 +17,26 @@
   margin-left: 16px;
 }
 
-.table-dados {
+.table-pnads {
   text-align: center;
   width: 100%;
   border: 1px solid;
 }
 
-.table-dados .table-odd {
+.table-pnads .table-odd {
   background-color: #CCCCCC;
   border: 1px solid;
 }
 
-.table-dados #table-header {
+.table-pnads #table-header {
   border: 1px solid;
 }
 
-.table-dados th {
+.table-pnads th {
   border:1px solid;
 }
 
-.table-dados td {
+.table-pnads td {
   border:1px solid;
 }
 
@@ -44,6 +44,6 @@ a:hover {
     color: #FFF;
 }
 
-.dados-options {
+.pnads-options {
   float: right;
 }

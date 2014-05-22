@@ -1,6 +1,6 @@
-class CreateDados < ActiveRecord::Migration
+class CreatePnads < ActiveRecord::Migration
   def change
-    create_table :dados do |t|
+    create_table :pnads do |t|
       t.string :codigo
       t.integer :ano
       t.integer :fxid

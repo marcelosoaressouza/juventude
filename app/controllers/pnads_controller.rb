@@ -1,6 +1,6 @@
-class DadosController < ApplicationController
-  # GET /dados/temas
-  # GET /dados/temas.json
+class PnadsController < ApplicationController
+  # GET /pnads/temas
+  # GET /pnads/temas.json
   def temas
     @temas = Tema.all
 
@@ -24,12 +24,12 @@ class DadosController < ApplicationController
   # GET /filtros/1
   # GET /filtros/1.json
   def show
-    @dados = []
+    @pnads = []
 
     if params[:filtro]
-      @dados = getDadosByFiltro(Filtro.find(params[:filtro]))
+      @pnads = getPnadsByFiltro(Filtro.find(params[:filtro]))
     elsif params[:tema]
-      @dados = getDadosByTema(Tema.find(params[:tema]))
+      @pnads = getPnadsByTema(Tema.find(params[:tema]))
     end
 
     respond_to do |format|

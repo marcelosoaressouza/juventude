@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20140521134136) do
 
-  create_table "dados", :force => true do |t|
+  create_table "pnads", :force => true do |t|
     t.string   "codigo"
     t.integer  "ano"
     t.integer  "fxid"

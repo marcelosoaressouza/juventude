@@ -2,12 +2,12 @@
 <center>
     <%= link_to 'Novo Filtro/Gráfico', new_filtro_path %> |
     <%= link_to 'Administrar Tema', temas_path %> |
-    <%= link_to 'Ver Dados por Filtro', dados_path %> |
-    <%= link_to 'Ver Dados por Tema', temas_dados_path %>
+    <%= link_to 'Ver Pnads por Filtro', pnads_path %> |
+    <%= link_to 'Ver Pnads por Tema', temas_pnads_path %>
 
     <br /><br />
     <% if ! @filtros.empty? %>
-        <table class="table-dados">
+        <table class="table-pnads">
           <tr id="table-header">
             <th>Titulo</th>
             <th>Fonte</th>
