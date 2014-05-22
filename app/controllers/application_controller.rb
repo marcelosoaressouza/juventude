@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, filtro.sexo ]
 
     pnad_bruto = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
-    config[:pnad] = { library: { title: { text: "#{filtro.titulo}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+    config[:pnad] = { library: { title: { text: "#{filtro.titulo} - #{Filtro::FONTE.index(filtro.fonte)}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
     pnad_trata = [ { name: 'Valor', data: pnad_bruto } ]
 
     if filtro.sexo == 3

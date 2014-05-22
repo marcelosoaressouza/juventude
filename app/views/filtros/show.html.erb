@@ -4,6 +4,7 @@
 
 <%= render partial: "pnads/pnads", locals: { pnads: @pnads } %>
 
+<!--
 <p>
   <b>Título:</b>
   <%= @filtro.titulo %>
@@ -18,6 +19,7 @@
   <b>Tipo de Gráfico:</b>
   <%= Filtro::TIPO_GRAFICO.index(@filtro.tipo_grafico) %>
 </p>
+--> 
 
 <p>
   <b>Faixa Etária:</b>
@@ -29,10 +31,12 @@
   <%= Filtro::UNIV.index(@filtro.univ) %>
 </p>
 
+<!--
 <p>
   <b>Tipo:</b>
   <%= Filtro::TIPO.index(@filtro.tipo) %>
 </p>
+-->
 
 <p>
   <b>Área:</b>
@@ -48,12 +52,12 @@
   <b>Cor:</b>
   <%= Filtro::COR.index(@filtro.cor) %>
 </p>
-
+<!--
 <p>
   <b>Grupo:</b>
   <%= Filtro::GRUPO.index(@filtro.grupo) %>
 </p>
-
+-->
 <p>
   <b>Objetivo:</b>
   <%= Filtro::OBJETIVO.index(@filtro.objetivo) %>
