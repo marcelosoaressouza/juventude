@@ -7,11 +7,10 @@
 
 <br /><br />
 
-<%#= collection_select(nil, :id, @filtros, :id, :titulo, {:prompt => "Selecione o Filtro"}, {:id => 'select_filtros'}) %>
-
-<%#= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
-
-    <br /><br />
+<center>
+  <%#= collection_select(nil, :id, @filtros, :id, :titulo, {:prompt => "Selecione o Filtro"}, {:id => 'select_filtros'}) %>
+  <%#= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
+  <br /><br />
     <% if ! @temas.empty? %>
       <table class="table-temas">
         <tr>
@@ -26,3 +25,4 @@
     <% end %>
 
     <div id="dados"></div>
+</center>
