@@ -13,11 +13,13 @@
   <br /><br />
     <% if ! @temas.empty? %>
       <table class="table-temas">
-        <tr>
-          <% @temas.each do |tema| %>
-            <td><%= link_to image_tag(tema.imagem.url(:thumb)), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
-          <% end %>
-        </tr>
+        <% @temas.each_slice(3) do |tema_slice| %>
+          <tr>
+            <% tema_slice.each do |tema| %>
+              <td><%= link_to image_tag(tema.imagem.url(:thumb)), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+            <% end %>
+          </tr>
+        <% end %>
       </table>
     <% else %>
         <br />

@@ -48,6 +48,9 @@ class Pnad < ActiveRecord::Base
               "Porcentagem de jovens que frequentam ou já frequentaram curso de educação profissional" => "freqprof3",
               "Porcentagem de jovens que frequentam ou já completaram o ensino superior" => "freqcompsup",
               "Porcentagem de jovens que frequentam ou já concluíram o mestrado ou o doutorado" => "freqcomppos",
-              "Porcentagem de jovens que ainda não completaram o ensino superior" => "ncompsup"
+              "Porcentagem de jovens que ainda não completaram o ensino superior" => "ncompsup",
+              "Porcentagem de jovens que vivem em domicílios com TV ou rádio" => "tvrad",
+              "Porcentagem de jovens que vivem em domicílios com DVD" => "dvd",
+              "Porcentagem dos jovens ocupados com jornada de trabalho acima de 40 horas" => "jornada40"
   }
 end

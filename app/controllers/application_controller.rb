@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def getDadosByTema (tema)
     @dados = []
 
-    temas_filtros = TemasFiltro.where("tema_id = ?", tema.id)
+    temas_filtros = TemasFiltro.where("tema_id = ?", tema.id).order("id DESC")
 
     temas_filtros.each do |temas_filtro|
       # logger.debug("Filtro ID #{filtro_id.filtro_id}")
@@ -24,7 +24,19 @@ class ApplicationController < ActionController::Base
     valores  = [ filtro.tipo, filtro.area, filtro.fxid, filtro.univ, filtro.cor, filtro.sexo ]
 
     pnad_bruto = Pnad.where(consulta, *valores).group("#{filtro.grupo}").order("#{filtro.grupo}").sum("#{filtro.objetivo}")
-    config[:pnad] = { library: { title: { text: "#{filtro.titulo} - #{Pnad::FONTE.index(filtro.fonte)}" }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+
+    titulo = "#{Pnad::OBJETIVO.index(filtro.objetivo)} -
+              #{Pnad::UNIV.index(filtro.univ)} - 
+              #{Pnad::FXID.index(filtro.fxid)} - 
+              #{Pnad::SEXO.index(filtro.sexo)} - 
+              #{Pnad::COR.index(filtro.cor)} - 
+              #{Pnad::FONTE.index(filtro.fonte)}"
+
+    config[:pnad] = { library: { title: { text: titulo },
+                                 tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' }
+                               }
+                    }
+
     pnad_trata = [ { name: 'Valor', data: pnad_bruto } ]
 
     if filtro.sexo == 3

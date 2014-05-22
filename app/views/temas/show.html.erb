@@ -11,16 +11,18 @@
 </p>
 
 <p>
-  <b>Titulo:</b>
-  <%= @tema.titulo %>
+  <b><%= @tema.titulo %></b>
 </p>
 
 	<p>
-	  <b>Filtros:</b> <br />
+	  <b>Filtros deste Tema:</b> <br />
           <% if @tema.filtros.count > 0 %>
             <% @tema.filtros.each do |filtro| %>
               <%= link_to filtro.titulo, filtro %><br />
 	    <% end %>
+            <br />
+            <b><%= link_to 'Adicione/Modifique um Novo Filtro', filtros_path %> a este Tema.</b>
+
           <% else %>
             Nenhum Filtro Encontrado. Adicione <%= link_to 'um novo Filtro', new_filtro_path %>
           <% end %>

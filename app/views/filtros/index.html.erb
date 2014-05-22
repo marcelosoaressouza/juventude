@@ -25,7 +25,7 @@
 
         <% @filtros.each do |filtro| %>
           <tr class="table-<%= cycle('even', 'odd') -%>">
-            <td><%= link_to filtro.titulo, filtro %></td>
+            <td><b><%= link_to filtro.titulo, filtro %></b></td>
             <td><%= Pnad::FONTE.index(filtro.fonte) %></td>
             <td><%= Pnad::TIPO_GRAFICO.index(filtro.tipo_grafico) %></td>
             <td><%= Pnad::FXID.index(filtro.fxid) %></td>

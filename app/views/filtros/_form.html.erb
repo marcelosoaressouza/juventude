@@ -59,15 +59,17 @@
     <div class="field">
       <%= f.label "Escolha os Temas" %><br /><br />
       <table class="table-temas">
-        <tr>
-          <% Tema.all.each do |tema| -%>
-            <td>
-            <%= image_tag tema.imagem.url(:thumb) %>
-            <b><%= label_tag :tema_ids, tema.titulo -%></b>
-            <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
-            </td>
-          <% end -%>
-        </tr>
+        <% Tema.all.each_slice(3) do |tema_slice| -%>
+          <tr>
+            <% tema_slice.each do |tema| -%>
+              <td>
+                <%= image_tag tema.imagem.url(:thumb) %>
+                <b><%= label_tag :tema_ids, tema.titulo -%></b>
+                <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
+              </td>
+            <% end -%>
+          </tr>
+        <% end -%>
       </table>
     </div>
   <% end %>
