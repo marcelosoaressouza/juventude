@@ -15,8 +15,11 @@
             options = (this.options.exporting || {}).csv || {},
 
             // Options
-            dateFormat = options.dateFormat || '%Y-%m-%d %H:%M:%S',
-            itemDelimiter = options.itemDelimiter || ',', // use ';' for direct import to Excel
+            // Alterando dateFormat, itemDelimiter e xTitle
+            // dateFormat = options.dateFormat || '%Y-%m-%d %H:%M:%S',
+            dateFormat = options.dateFormat || '%Y',
+            // itemDelimiter = options.itemDelimiter || ',', // use ';' for direct import to Excel
+            itemDelimiter = options.itemDelimiter || ';', // use ';' for direct import to Excel
             lineDelimiter = options.lineDelimeter || '\n';
 
         each (this.series, function (series) {
@@ -28,12 +31,14 @@
                         xData = Highcharts.map(xData, function (x) {
                             return Highcharts.dateFormat(dateFormat, x)
                         });
-                        xTitle = 'DateTime';
+                        // xTitle = 'DateTime';
+                        xTitle = 'ano';
                     } else if (series.xAxis.categories) {
                         xData = Highcharts.map(xData, function (x) {
                             return Highcharts.pick(series.xAxis.categories[x], x);
                         });
-                        xTitle = 'Category';
+                        // xTitle = 'Category';
+                        xTitle = 'categoria';
                     }
                     columns.push(xData);
                     columns[columns.length - 1].unshift(xTitle);
