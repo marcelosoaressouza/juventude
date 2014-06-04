@@ -57,3 +57,10 @@ a:hover {
   width: 160px;
   text-align: center;
 }
+
+
+.select_pnads {
+  font-size: 12px;
+  max-width: 150px;
+  border:1px solid;
+}

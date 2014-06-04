@@ -49,6 +49,28 @@ $(document).ready (
       }
     )
 
+    $(".select_pnads").change (
+      function()
+      {
+        var objetivo = $("#select_pnads_objetivo").val();
+        var fxid = $("#select_pnads_fxid").val();
+        var univ = $("#select_pnads_univ").val();
+        var area = $("#select_pnads_area").val();
+        var sexo = $("#select_pnads_sexo").val();
+        var cor  = $("#select_pnads_cor").val();
+
+        if (objetivo) {
+          var params = 'objetivo=' + objetivo + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
+          // alert(params);
+          $.ajax({ url: "/pnads/show", data: params });
+        }
+        else {
+          $.ajax({ url: "/pnads/index", data: params });
+
+        }
+      }
+    )
+
     $(".link_tema").on('click', 
       function(event)
       {
