@@ -52,6 +52,8 @@ $(document).ready (
     $(".select_pnads").change (
       function()
       {
+        $("#select_pnads_objetivo").css("border", "1px solid #000");
+
         var objetivo = $("#select_pnads_objetivo").val();
         var fxid = $("#select_pnads_fxid").val();
         var univ = $("#select_pnads_univ").val();
@@ -61,10 +63,11 @@ $(document).ready (
 
         if (objetivo) {
           var params = 'objetivo=' + objetivo + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
-          // alert(params);
           $.ajax({ url: "/pnads/show", data: params });
         }
         else {
+          $("#select_pnads_objetivo").css("border", "2px solid #EC1C23");
+          $('#dados').html("<br/><br/><b>Informe o Objetivo</b>");
           $.ajax({ url: "/pnads/index", data: params });
 
         }
@@ -88,6 +91,13 @@ $(document).ready (
 
     $('#select_filtros').val("");
     $('#select_temas').val("");
+    $("#select_pnads_objetivo").val("");
+
+    $("#select_pnads_fxid").val("1524");
+    $("#select_pnads_univ").val("0");
+    $("#select_pnads_area").val("0");
+    $("#select_pnads_sexo").val("0");
+    $("#select_pnads_cor").val("0");
 
   }
 );

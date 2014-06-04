@@ -7,8 +7,6 @@ class PnadsController < ApplicationController
   def show
     @dados = []
 
-    logger.debug(params)
-
     if params
       @dados = getPnads(params)
     end
