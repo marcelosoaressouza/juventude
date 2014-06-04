@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
                        { name: "Homens #{Pnad::COR.index(2)}", data: pnad_homens_negros  },
                        { name: "Mulheres #{Pnad::COR.index(1)}", data: pnad_mulheres_brancos }, 
                        { name: "Mulheres #{Pnad::COR.index(2)}", data: pnad_mulheres_negros  } 
-                     ]
+                     ] if (! pnad_homens_brancos.empty? || ! pnad_mulheres_brancos.empty? || ! pnad_homens_negros.empty? || ! pnad_mulheres_negros.empty?)
 
       else 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, params[:sexo] ]
@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 
 
         pnad_trata = [ { name: "#{Pnad::COR.index(1)}", data: pnad_brancos },
-                       { name: "#{Pnad::COR.index(2)}", data: pnad_negros  } ]
+                       { name: "#{Pnad::COR.index(2)}", data: pnad_negros  } ] if (! pnad_brancos.empty? || ! pnad_negros.empty?)
       end
 
     end
