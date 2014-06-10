@@ -1,16 +1,27 @@
 <br/><br/>
 <center>
   <%= select(nil, :id, Pnad::OBJETIVO.map { |value| [ value[0], value[1] ] }, { include_blank: "Selecione o Objetivo" },
-                                                                              { :id => 'select_pnads_objetivo', :class => 'select_pnads' }) %>
+                                                                              { :id => 'select_pnads_objetivo', 
+                                                                                :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
   <%= select(nil, :id, Pnad::FXID.map { |value| [ value[0], value[1] ] }, {},
-                                                                          { :id => 'select_pnads_fxid', :class => 'select_pnads' }) %>
-  <%= select(nil, :id, Pnad::UNIV.map { |value| [ value[0], value[1] ] }, {},
-                                                                          { :multiple => true, :id => 'select_pnads_univ', :class => 'select_pnads' }) %>
+                                                                          { :id => 'select_pnads_fxid', 
+                                                                            :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+  <%= select(nil, :id, Pnad::UNIV.map { |value| [ value[0], value[1] ] }, { :selected=> 0 },
+                                                                          { :multiple => true, :id => 'select_pnads_univ',
+                                                                            :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
   <%= select(nil, :id, Pnad::AREA.map { |value| [ value[0], value[1] ] }, {},
-                                                                          { :id => 'select_pnads_area', :class => 'select_pnads' }) %>
+                                                                          { :id => 'select_pnads_area', 
+                                                                            :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
   <%= select(nil, :id, Pnad::SEXO.map { |value| [ value[0], value[1] ] }, {},
-                                                                          { :id => 'select_pnads_sexo', :class => 'select_pnads' }) %>
+                                                                          { :id => 'select_pnads_sexo', 
+                                                                            :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
   <%= select(nil, :id, Pnad::COR.map { |value| [ value[0], value[1] ] }, {},
-                                                                         { :id => 'select_pnads_cor', :class => 'select_pnads' }) %>
+                                                                         { :id => 'select_pnads_cor', 
+                                                                           :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
   <div id="dados"></div>
 </center>

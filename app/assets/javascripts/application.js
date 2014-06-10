@@ -15,7 +15,6 @@
 //= require jquery.ui.all
 //= require_tree .
 //= require chartkick
-//= require jquery.multiselect
 
 // On Change #select_filtros for filtros
 $(document).ready (
@@ -55,6 +54,7 @@ $(document).ready (
       function()
       {
         $("#select_pnads_objetivo").css("border", "1px solid #000");
+         $(".ui-multiselect").css("border", "1px solid #000");
 
         var objetivo = $("#select_pnads_objetivo").val();
         var fxid = $("#select_pnads_fxid").val();
@@ -63,14 +63,17 @@ $(document).ready (
         var sexo = $("#select_pnads_sexo").val();
         var cor  = $("#select_pnads_cor").val();
 
-        if (objetivo) {
+        if (objetivo && univ) {
           var params = 'objetivo=' + objetivo + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
           $.ajax({ url: "/pnads/show", data: params });
         }
         else {
-          $("#select_pnads_objetivo").css("border", "2px solid #EC1C23");
-          $('#dados').html("<br/><br/><b>Informe o Objetivo</b>");
-          $.ajax({ url: "/pnads/index", data: params });
+          if (!objetivo) $("#select_pnads_objetivo").css("border", "2px solid #EC1C23");
+          if (!univ) $(".ui-multiselect").css("border", "2px solid #EC1C23");
+
+          $('#dados').html("<br/><br/><b>Informe Todos as Opções de Pesquisa</b>");
+
+          $.ajax({ url: "/pnads", data: params });
 
         }
       }
@@ -91,7 +94,7 @@ $(document).ready (
       }
     )
 
-    $('#select_pnads_univ').multiselect();
+    $('#select_pnads_univ').multiselect({class: "pnads_univ"});
 
     $('#select_filtros').val("");
     $('#select_temas').val("");
