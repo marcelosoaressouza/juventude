@@ -3,29 +3,52 @@ class ApplicationController < ActionController::Base
 
   def getPnads (params)
     @dados = []
-    pnad_trat = []
+    pnad_trata = []
     pnad_bruto = {}
     config = {}
+    consulta = ""
   
-    consulta =  "tipo = ?  AND area = ?  AND fxid = ?  AND univ = ?  AND cor = ?  AND sexo = ?"
+    cons = [ "tipo", "area", "fxid", "univ", "cor", "sexo" ]
     valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], params[:sexo] ]
 
-    pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum(params[:objetivo])
+    cons.each_with_index do |col, i|
+      consulta += " #{col} = ?"
+      consulta += " AND " if ! cons.to_a[i+1].nil?
+    end
 
-    titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} -
-              #{Pnad::FXID.index(params[:fxid].to_i)} -
-              #{Pnad::UNIV.index(params[:univ].to_i)} -
-              #{Pnad::AREA.index(params[:area].to_i)} -
-              #{Pnad::SEXO.index(params[:sexo].to_i)} -
-              #{Pnad::COR.index(params[:cor].to_i)}
-             "
+    if params[:univ] =~ /,/
+      universo = params[:univ].split(',')
 
-    config[:pnad] = { library: { title: { text: titulo },
-                                 tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' }
-                               }
-                    }
+      universo.each_with_index do |univ, i|
+        valores = [ 1, params[:area], params[:fxid], univ, params[:cor], params[:sexo] ]
+        logger.debug("valores  --==> #{valores}")
 
-    pnad_trata = [ { name: 'Valor', data: pnad_bruto } ] if ! pnad_bruto.empty?
+        pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum(params[:objetivo])
+        logger.debug("pnad  --==> #{pnad}")
+
+        name = Pnad::UNIV.index(univ.to_i)
+        logger.debug("name  --==> #{name}")
+
+        resultado = { name: "#{name}", data: pnad }
+        logger.debug("resultado --==> #{resultado}")
+
+        pnad_trata.push(resultado)
+      end
+
+      logger.debug("pnad_trata --==> #{pnad_trata}")
+
+    else
+      pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum(params[:objetivo])
+      titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} -
+                #{Pnad::FXID.index(params[:fxid].to_i)} -
+                #{Pnad::UNIV.index(params[:univ].to_i)} -
+                #{Pnad::AREA.index(params[:area].to_i)} -
+                #{Pnad::SEXO.index(params[:sexo].to_i)} -
+                #{Pnad::COR.index(params[:cor].to_i)}
+               "
+      pnad_trata = [ { name: 'Valor', data: pnad_bruto } ] if ! pnad_bruto.empty?
+
+    end
 
     if params[:sexo] == '3'
 
@@ -72,6 +95,8 @@ class ApplicationController < ActionController::Base
       end
 
     end
+	
+    config[:pnad] = { library: { title: { text: titulo }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
 
     @dados = [ { id: "dados_pnad", type: "line", data: pnad_trata, config: config[:pnad] } ] if pnad_trata
     

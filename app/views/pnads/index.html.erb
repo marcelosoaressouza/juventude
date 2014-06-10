@@ -5,7 +5,7 @@
   <%= select(nil, :id, Pnad::FXID.map { |value| [ value[0], value[1] ] }, {},
                                                                           { :id => 'select_pnads_fxid', :class => 'select_pnads' }) %>
   <%= select(nil, :id, Pnad::UNIV.map { |value| [ value[0], value[1] ] }, {},
-                                                                          { :id => 'select_pnads_univ', :class => 'select_pnads' }) %>
+                                                                          { :multiple => true, :id => 'select_pnads_univ', :class => 'select_pnads' }) %>
   <%= select(nil, :id, Pnad::AREA.map { |value| [ value[0], value[1] ] }, {},
                                                                           { :id => 'select_pnads_area', :class => 'select_pnads' }) %>
   <%= select(nil, :id, Pnad::SEXO.map { |value| [ value[0], value[1] ] }, {},

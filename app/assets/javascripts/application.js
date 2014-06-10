@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require_tree .
 //= require chartkick
+//= require jquery.multiselect
 
 // On Change #select_filtros for filtros
 $(document).ready (
@@ -89,6 +91,8 @@ $(document).ready (
       }
     )
 
+    $('#select_pnads_univ').multiselect();
+
     $('#select_filtros').val("");
     $('#select_temas').val("");
     $("#select_pnads_objetivo").val("");
@@ -101,7 +105,6 @@ $(document).ready (
 
   }
 );
-
 
 Highcharts.setOptions({
   lang: {
