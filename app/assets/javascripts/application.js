@@ -54,7 +54,7 @@ $(document).ready (
       function()
       {
         $("#select_pnads_objetivo").css("border", "1px solid #000");
-         $(".ui-multiselect").css("border", "1px solid #000");
+        $(".pnads_univ").css("border", "1px solid #000");
 
         var objetivo = $("#select_pnads_objetivo").val();
         var fxid = $("#select_pnads_fxid").val();
@@ -69,7 +69,7 @@ $(document).ready (
         }
         else {
           if (!objetivo) $("#select_pnads_objetivo").css("border", "2px solid #EC1C23");
-          if (!univ) $(".ui-multiselect").css("border", "2px solid #EC1C23");
+          if (!univ) $(".pnads_univ").css("border", "2px solid #EC1C23");
 
           $('#dados').html("<br/><br/><b>Informe Todos as Opções de Pesquisa</b>");
 
@@ -94,7 +94,7 @@ $(document).ready (
       }
     )
 
-    $('#select_pnads_univ').multiselect({class: "pnads_univ"});
+    $('#select_pnads_univ').multiselect({classes: "pnads_univ"});
 
     $('#select_filtros').val("");
     $('#select_temas').val("");
