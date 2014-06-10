@@ -94,17 +94,19 @@ $(document).ready (
       }
     )
 
-    $('#select_pnads_univ').multiselect({classes: "pnads_univ"});
+
+    $("#select_pnads_univ").val("0");
 
     $('#select_filtros').val("");
     $('#select_temas').val("");
     $("#select_pnads_objetivo").val("");
-
     $("#select_pnads_fxid").val("1524");
     $("#select_pnads_univ").val("0");
     $("#select_pnads_area").val("0");
     $("#select_pnads_sexo").val("0");
     $("#select_pnads_cor").val("0");
+
+    $('#select_pnads_univ').multiselect({classes: "pnads_univ"});
 
   }
 );
