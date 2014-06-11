@@ -16,25 +16,9 @@
 //= require_tree .
 //= require chartkick
 
-// On Change #select_filtros for filtros
 $(document).ready (
   function()
   {
-    $("#select_filtros").change (
-      function()
-      {
-        var id = $(this).children(":selected").val();
-        if (id) {
-          var params = 'filtro=' + id;
-          $.ajax({ url: "/dados/show", data: params });
-        }
-        else {
-          $.ajax({ url: "/dados/index", data: params });
-
-        }
-      }
-    )
-
     $("#select_temas").change (
       function()
       {
@@ -44,7 +28,7 @@ $(document).ready (
           $.ajax({ url: "/dados/show", data: params });
         }
         else {
-          $.ajax({ url: "/dados/index", data: params });
+          $.ajax({ url: "/dados", data: params });
 
         }
       }
@@ -79,25 +63,26 @@ $(document).ready (
       }
     )
 
+    // Antigo - Ajax
+    /*
     $(".link_tema").on('click', 
       function(event)
       {
         var id = $(this).attr('data-href');
         if (id) {
           var params = 'tema=' + id;
-          $.ajax({ url: "/dados/show", data: params });
+          $.ajax({ url: "/pnads", data: params });
         }
         else {
-          $.ajax({ url: "/dados/index", data: params });
+          $.ajax({ url: "/dados", data: params });
 
         }
       }
-    )
-
+    );
+    */
 
     $("#select_pnads_univ").val("0");
 
-    $('#select_filtros').val("");
     $('#select_temas').val("");
     $("#select_pnads_objetivo").val("");
     $("#select_pnads_fxid").val("1524");

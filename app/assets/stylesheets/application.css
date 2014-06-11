@@ -65,3 +65,11 @@ a:hover {
   max-width: 150px;
   border:1px solid;
 }
+
+#select_pnads_objetivo {
+  min-width: 210px;
+}
+
+#tema {
+  float: right;
+}

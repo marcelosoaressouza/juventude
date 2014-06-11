@@ -15,11 +15,7 @@ class DadosController < ApplicationController
   def show
     @dados = []
 
-    if params[:filtro]
-      @dados = getDadosByFiltro(Filtro.find(params[:filtro]))
-    elsif params[:tema]
-      @dados = getDadosByTema(Tema.find(params[:tema]))
-    end
+    @dados = getDadosByTema(Tema.find(params[:tema]))
 
     respond_to do |format|
       format.js

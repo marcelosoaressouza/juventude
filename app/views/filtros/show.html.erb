@@ -6,65 +6,14 @@
   <p id="notice"><%= notice %></p>
 </center>
 
-<%= render partial: "dados/dados", locals: { dados: @dados } %>
-
-<!--
 <p>
-  <b>Título:</b>
-  <%= @filtro.titulo %>
+  <b>Objetivo:</b>
+  <%= Pnad::OBJETIVO.index(@filtro.objetivo) %>
 </p>
 
 <p>
   <b>Fonte:</b>
   <%= Pnad::FONTE.index(@filtro.fonte) %>
-</p>
-
-<p>
-  <b>Tipo de Gráfico:</b>
-  <%= Pnad::TIPO_GRAFICO.index(@filtro.tipo_grafico) %>
-</p>
---> 
-
-<p>
-  <b>Faixa Etária:</b>
-  <%= Pnad::FXID.index(@filtro.fxid) %>
-</p>
-
-<p>
-  <b>Universo:</b>
-  <%= Pnad::UNIV.index(@filtro.univ) %>
-</p>
-
-<!--
-<p>
-  <b>Tipo:</b>
-  <%= Pnad::TIPO.index(@filtro.tipo) %>
-</p>
--->
-
-<p>
-  <b>Área:</b>
-  <%= Pnad::AREA.index(@filtro.area) %>
-</p>
-
-<p>
-  <b>Sexo:</b>
-  <%= Pnad::SEXO.index(@filtro.sexo) %>
-</p>
-
-<p>
-  <b>Cor:</b>
-  <%= Pnad::COR.index(@filtro.cor) %>
-</p>
-<!--
-<p>
-  <b>Grupo:</b>
-  <%= Pnad::GRUPO.index(@filtro.grupo) %>
-</p>
--->
-<p>
-  <b>Objetivo:</b>
-  <%= Pnad::OBJETIVO.index(@filtro.objetivo) %>
 </p>
 
 <% if ! @filtro.temas.empty? %>

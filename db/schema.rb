@@ -14,23 +14,11 @@
 ActiveRecord::Schema.define(:version => 20140522145439) do
 
   create_table "filtros", :force => true do |t|
-    t.string   "titulo"
-    t.string   "tipo_grafico"
-    t.integer  "fxid"
-    t.integer  "univ"
-    t.integer  "tipo"
-    t.integer  "area"
-    t.integer  "sexo"
-    t.integer  "cor"
-    t.string   "grupo"
     t.string   "objetivo"
+    t.integer  "fonte"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "fonte"
-    t.string   "slug"
   end
-
-  add_index "filtros", ["slug"], :name => "index_filtros_on_slug", :unique => true
 
   create_table "pnads", :force => true do |t|
     t.string   "codigo"

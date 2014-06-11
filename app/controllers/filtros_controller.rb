@@ -15,10 +15,7 @@ class FiltrosController < ApplicationController
   def show
     @dados = []
 
-    if params[:id]
-      @filtro = Filtro.find(params[:id])
-      @dados = getDadosByFiltro(@filtro)
-    end
+    @filtro = Filtro.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb

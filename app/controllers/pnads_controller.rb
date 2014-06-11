@@ -1,5 +1,8 @@
 class PnadsController < ApplicationController
   def index
+    if (params[:tema])
+      @objetivo = Tema.find(params[:tema])
+    end
   end
 
   # GET /pnads/1
