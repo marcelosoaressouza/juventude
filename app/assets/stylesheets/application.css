@@ -30,8 +30,7 @@
 }
 
 .table-dados .table-odd {
-  background-color: #CCCCCC;
-  border: 1px solid;
+
 }
 
 .table-dados #table-header {
@@ -67,9 +66,26 @@ a:hover {
 }
 
 #select_pnads_objetivo {
-  min-width: 210px;
+  min-width: 215px;
 }
 
-#tema {
+.pnad {
+  height: 105px;
+  background: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border:1px solid;
+  
+}
+
+#pnad-tema {
   float: right;
+  width: 105px;
+}
+
+#pnad-opcoes {
+  width:92%;
+  margin-top: auto;
+  margin-bottom: auto;
 }

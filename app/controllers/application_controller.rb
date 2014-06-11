@@ -16,37 +16,22 @@ class ApplicationController < ActionController::Base
       consulta += " AND " if ! cons.to_a[i+1].nil?
     end
 
+    titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} - #{Pnad::FXID.index(params[:fxid].to_i)} - #{Pnad::AREA.index(params[:area].to_i)} - #{Pnad::SEXO.index(params[:sexo].to_i)} - #{Pnad::COR.index(params[:cor].to_i)}"
+
     if params[:univ] =~ /,/
       universo = params[:univ].split(',')
 
       universo.each_with_index do |univ, i|
         valores = [ 1, params[:area], params[:fxid], univ, params[:cor], params[:sexo] ]
-        logger.debug("valores  --==> #{valores}")
-
         pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum(params[:objetivo])
-        logger.debug("pnad  --==> #{pnad}")
-
         name = Pnad::UNIV.index(univ.to_i)
-        logger.debug("name  --==> #{name}")
-
         resultado = { name: "#{name}", data: pnad }
-        logger.debug("resultado --==> #{resultado}")
-
         pnad_trata.push(resultado)
       end
 
-      logger.debug("pnad_trata --==> #{pnad_trata}")
-
     else
       pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum(params[:objetivo])
-      titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} -
-                #{Pnad::FXID.index(params[:fxid].to_i)} -
-                #{Pnad::UNIV.index(params[:univ].to_i)} -
-                #{Pnad::AREA.index(params[:area].to_i)} -
-                #{Pnad::SEXO.index(params[:sexo].to_i)} -
-                #{Pnad::COR.index(params[:cor].to_i)}
-               "
-      pnad_trata = [ { name: 'Valor', data: pnad_bruto } ] if ! pnad_bruto.empty?
+      pnad_trata = [ { name: 'Dados', data: pnad_bruto } ] if ! pnad_bruto.empty?
 
     end
 
@@ -109,7 +94,6 @@ class ApplicationController < ActionController::Base
     temas_filtros = TemasFiltro.where("tema_id = ?", tema.id).order("id DESC")
 
     temas_filtros.each do |temas_filtro|
-      # logger.debug("Filtro ID #{filtro_id.filtro_id}")
       filtro = Filtro.find(temas_filtro.filtro_id)
       @dados += getDadosByFiltro(filtro)
     end
@@ -118,7 +102,6 @@ class ApplicationController < ActionController::Base
   end
 
   def getDadosByFiltro (filtro)
-    # logger.debug("Filtrando #{filtro.tipo}")
     @dados = []
     config = {}
 

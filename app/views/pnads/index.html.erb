@@ -1,12 +1,12 @@
 <br/>
-<center>
 <% if params[:tema] %>
-
-  <div id="tema">
+<div class="pnad">
+  <div id="pnad-tema">
     <%= image_tag @objetivo.imagem(:thumb) %>
   </div>
 
-  <br/><br/>
+  <div id="pnad-opcoes">
+    <br/><br/>
     <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo), v.objetivo ] }, { include_blank: "Selecione o Objetivo" },
                                                                                                              { :id => 'select_pnads_objetivo', 
                                                                                                                :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
@@ -30,8 +30,11 @@
     <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, {},
                                                                { :id => 'select_pnads_cor', 
                                                                  :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
-    <div id="dados"></div>
+  </div>
+</div>
+
+<center><div id="dados"></div></center>
+
 <% else %>
-    <h3> <%= link_to "Escolha um Tema", root_path %> </h3>
+    <br/><br/><center><h2><%= link_to "Escolha um Tema", root_path %></h2></center>
 <% end %>
-</center>
