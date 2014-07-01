@@ -6,31 +6,39 @@ class ApplicationController < ActionController::Base
   #
 
   def getAgendas (params)
-    @dados = []
-    agenda_trata = []
-    agenda_bruto = {}
-    config = {}
+    @dados   = []
+    campos_consulta = []
+    valores  = []
+    agenda   = []
+    config   = {}
     consulta = ""
   
-    cons = [ "tipo", "area", "fxid", "sexo" ]
-    valores  = [ 1, params[:area], params[:fxid], params[:sexo] ]
+    campos_consulta = [ "tipo", "area", "fxid", "sexo", "#{params[:indicador]}" ]
 
-    cons.each_with_index do |col, i|
+    campos_consulta.each_with_index do |col, i|
       consulta += " #{col} = ?"
-      consulta += " AND " if ! cons.to_a[i+1].nil?
+      consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
 
-    # titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} - #{Pnad::FXID.index(params[:fxid].to_i)} - #{Pnad::AREA.index(params[:area].to_i)} - #{Pnad::SEXO.index(params[:sexo].to_i)} - #{Pnad::COR.index(params[:cor].to_i)}"
+    logger.debug("----> #{params[:indicador]}")    
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)}"
 
-    titulo = "Agenda da Juventude"
+    Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
+      valores = [ 1, params[:area], params[:fxid], params[:sexo], indicador[0] ]
+      dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
+      agenda << { name: "#{indicador[1]}", data: dados_agenda }
+    end
 
-    agenda_bruto = Agenda.where(consulta, *valores).group("sexo").order("sexo").sum(params[:indicador])
+    config[:agenda] = {
+                        library:
+                               {
+                                title: { text: titulo },
+                                subtitle: { text: 'Agenda da Juventude' },
+                                xAxis: { title: { text: 'Respostas' } }
+                               }
+                       }
 
-    agenda_trata = [ { name: 'Dados', data: agenda_bruto } ] if ! agenda_bruto.empty?
-
-    config[:agenda] = { library: { title: { text: titulo }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
-
-    @dados = [ { id: "dados_agenda", type: "bar", data: agenda_trata, config: config[:agenda] } ] if agenda_trata
+    @dados = [ { id: "dados_agenda", type: "bar", data: agenda, config: config[:agenda] } ] if agenda
     
     return @dados 
   end
@@ -41,13 +49,14 @@ class ApplicationController < ActionController::Base
   #
   def getPnads (params)
     @dados = []
+    valores = []
     pnad_trata = []
     pnad_bruto = {}
     config = {}
     consulta = ""
   
     cons = [ "tipo", "area", "fxid", "univ", "cor", "sexo" ]
-    valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], params[:sexo] ]
+    valores = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], params[:sexo] ]
 
     cons.each_with_index do |col, i|
       consulta += " #{col} = ?"
@@ -117,7 +126,15 @@ class ApplicationController < ActionController::Base
 
     end
 	
-    config[:pnad] = { library: { title: { text: titulo }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+    config[:pnad] = {
+                        library:
+                               {
+                                title: { text: titulo },
+                                subtitle: { text: 'Dados PNAD (1992 a 2012)' },
+                                yAxis: { title: { text: 'Respostas' } },
+                                tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' }
+                               }
+                       }
 
     @dados = [ { id: "dados_pnad", type: "line", data: pnad_trata, config: config[:pnad] } ] if pnad_trata
     

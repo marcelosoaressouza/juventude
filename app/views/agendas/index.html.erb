@@ -1,2 +1,27 @@
-<h1>Agendas#index</h1>
-<p>Find me in app/views/agendas/index.html.erb</p>
+<br/>
+<div class="agenda">
+  <div id="agenda-tema">
+    <%#= image_tag @indicador.imagem(:thumb) %>
+  </div>
+
+  <div id="agenda-opcoes">
+    <br/><br/>
+    <%= select(nil, :id, Agenda::INDICADOR.map { |v| [ v[1]["Questão"], v[0] ] }, { include_blank: "Selecione o Indicador" },
+                                                                                  { :id => 'select_agendas_indicador', 
+                                                                                  :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+    <%= select(nil, :id, Agenda::FXID.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_agendas_fxid', 
+                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+    <%= select(nil, :id, Agenda::AREA.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_agendas_area', 
+                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+    <%= select(nil, :id, Agenda::SEXO.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_agendas_sexo', 
+                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+  </div>
+</div>
+
+<center><div id="dados"></div></center>

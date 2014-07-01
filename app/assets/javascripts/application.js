@@ -34,6 +34,46 @@ $(document).ready (
       }
     )
 
+    //
+    // Dados Agenda
+    //
+    $('.select_agendas').change (
+      function()
+      {
+        $('#select_agendas_indicador').css('border', '1px solid #fff');
+
+        var indicador = $('#select_agendas_indicador').val();
+        var fxid = $('#select_agendas_fxid').val();
+        var area = $('#select_agendas_area').val();
+        var sexo = $('#select_agendas_sexo').val();
+
+        if (indicador) {
+          var params = 'indicador=' + indicador + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo;
+          $.ajax({ url: '/agendas/show', data: params });
+        }
+        else {
+          if (!indicador) $('#select_agendas_indicador').css('border', '2px solid #EC1C23');
+
+          $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b>');
+
+          $.ajax({ url: '/agendas', data: params });
+
+        }
+      }
+    )
+
+    $('#select_temas').val('');
+    $('#select_agendas_indicador').val('');
+    $('#select_agendas_fxid').val('1');
+    $('#select_agendas_area').val('1');
+    $('#select_agendas_sexo').val('1');
+
+    $('#select_agendas_univ').multiselect({classes: 'agendas_univ'});
+    $('#select_agendas_univ').multiselect('enable');
+
+    //
+    // Dados PNAD
+    //
     $('.select_pnads').change (
       function()
       {
@@ -75,6 +115,17 @@ $(document).ready (
       }
     )
 
+    $('#select_pnads_univ').val('0');
+    $('#select_temas').val('');
+    $('#select_pnads_objetivo').val('');
+    $('#select_pnads_fxid').val('1524');
+    $('#select_pnads_area').val('0');
+    $('#select_pnads_sexo').val('0');
+    $('#select_pnads_cor').val('0');
+
+    $('#select_pnads_univ').multiselect({classes: 'pnads_univ'});
+    $('#select_pnads_univ').multiselect('enable');
+
     // Antigo - Ajax
     /*
     $('.link_tema').on('click', 
@@ -92,18 +143,6 @@ $(document).ready (
       }
     );
     */
-
-    $('#select_pnads_univ').val('0');
-    $('#select_temas').val('');
-    $('#select_pnads_objetivo').val('');
-    $('#select_pnads_fxid').val('1524');
-    $('#select_pnads_area').val('0');
-    $('#select_pnads_sexo').val('0');
-    $('#select_pnads_cor').val('0');
-
-    $('#select_pnads_univ').multiselect({classes: 'pnads_univ'});
-    $('#select_pnads_univ').multiselect('enable');
-
   }
 );
 

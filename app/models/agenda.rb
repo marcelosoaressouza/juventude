@@ -3,28 +3,17 @@ class Agenda < ActiveRecord::Base
 
   FONTE = { "AGENDA" => 1 }
 
-  FXID = { "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
-           "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
+  FXID = { "De 15 a 24 Anos" => 1, "De 15 a 29 Anos" => 2, "De 18 a 29 Anos" => 3, "De 15 a 17 Anos" => 4 }
 
-  UNIV = { "Brasil" => 0, "Região Norte" => 10, "Região Nordeste" => 20, "Região Sudeste" => 30, "Regiao Sul" => 40,
-           "Regiao Centro Oeste" => 49, "Acre" => 12, "Alagoas" => 27, "Amapá" => 16, "Amazonas" => 13, "Bahia" => 29,
-           "Ceará" => 23, "Distrito Federal" => 53, "Espirito Santo" => 32, "Goiás" => 52, "Maranhão" => 21,
-           "Mato Grosso" => 51, "Mato Grosso do Sul" => 50, "Minas Gerais" => 31, "Pará" => 15, "Paraíba" => 25,
-           "Paraná" => 41, "Pernambuco" => 26, "Piauí" => 22, "Rio de Janeiro" => 33, "Rio Grande do Norte" => 24,
-           "Rio Grande do Sul" => 43, "Rondônia" => 11, "Roraima" => 14, "Santa Catarina" => 42, "São Paulo" => 35,
-           "Sergipe" => 28, "Tocantins" => 17 }
-
-  TIPO = { "Porcentagem" => 1, "Absoluto" => 2 }
-  AREA = { "Total" => 0, "Urbana" => 1, "Rural" => 2 }
-  SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
-  COR  = { "Total" => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2, "Branco(a)s e Amarelo(a)s ou Negro(a)s" => 3 }
+  AREA = { "Urbana" => 1, "Rural" => 2 }
+  SEXO = { "Homens" => 1, "Mulheres" => 2 }
 
   INDICADOR = {
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 
                          "Respostas" => { "1" => "Sim", "2" => "Não" }
                        },
                "p1a" => { "Questão"   => "E você sabe escrever? (se sim) Escrever qualquer palavra é uma atividade que você considera?", 
-                          "Respostas" => { "1" => "Fácil", "2" => "Um pouco difícil", "3" => "bastante difícil", "4" => "Não sabe escrever" }
+                          "Respostas" => { "1" => "Fácil", "2" => "Um pouco difícil", "3" => "Bastante difícil" }
                         } 
              }
 
