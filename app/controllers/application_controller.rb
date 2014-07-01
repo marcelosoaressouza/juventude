@@ -1,6 +1,44 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  #
+  # Dados da Agenda da Juventude
+  #
+
+  def getAgendas (params)
+    @dados = []
+    agenda_trata = []
+    agenda_bruto = {}
+    config = {}
+    consulta = ""
+  
+    cons = [ "tipo", "area", "fxid", "sexo" ]
+    valores  = [ 1, params[:area], params[:fxid], params[:sexo] ]
+
+    cons.each_with_index do |col, i|
+      consulta += " #{col} = ?"
+      consulta += " AND " if ! cons.to_a[i+1].nil?
+    end
+
+    # titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} - #{Pnad::FXID.index(params[:fxid].to_i)} - #{Pnad::AREA.index(params[:area].to_i)} - #{Pnad::SEXO.index(params[:sexo].to_i)} - #{Pnad::COR.index(params[:cor].to_i)}"
+
+    titulo = "Agenda da Juventude"
+
+    agenda_bruto = Agenda.where(consulta, *valores).group("sexo").order("sexo").sum(params[:indicador])
+
+    agenda_trata = [ { name: 'Dados', data: agenda_bruto } ] if ! agenda_bruto.empty?
+
+    config[:agenda] = { library: { title: { text: titulo }, tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' } } }
+
+    @dados = [ { id: "dados_agenda", type: "bar", data: agenda_trata, config: config[:agenda] } ] if agenda_trata
+    
+    return @dados 
+  end
+
+
+  #
+  # Dados da PNAD
+  #
   def getPnads (params)
     @dados = []
     pnad_trata = []
