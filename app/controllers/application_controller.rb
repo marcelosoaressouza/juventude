@@ -20,13 +20,12 @@ class ApplicationController < ActionController::Base
       consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
 
-    logger.debug("----> #{params[:indicador]}")    
     titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)}"
 
     Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
       valores = [ 1, params[:area], params[:fxid], params[:sexo], indicador[0] ]
       dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
-      agenda << { name: "#{indicador[1]}", data: dados_agenda }
+      agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
     end
 
     config[:agenda] = {
@@ -34,11 +33,12 @@ class ApplicationController < ActionController::Base
                                {
                                 title: { text: titulo },
                                 subtitle: { text: 'Agenda da Juventude' },
-                                xAxis: { title: { text: 'Respostas' } }
+                                xAxis: { title: { text: 'Respostas' }, labels: { enabled: false } },
+                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y}</b>' }
                                }
                        }
 
-    @dados = [ { id: "dados_agenda", type: "bar", data: agenda, config: config[:agenda] } ] if agenda
+    @dados = [ { id: "dados_agenda", type: "column", data: agenda, config: config[:agenda] } ] if agenda
     
     return @dados 
   end
@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
                                 title: { text: titulo },
                                 subtitle: { text: 'Dados PNAD (1992 a 2012)' },
                                 yAxis: { title: { text: 'Respostas' } },
-                                tooltip: { pointFormat: '{series.name}: <b>{point.y: .3f}</b>' }
+                                tooltip: { headerFormat: 'Ano: {point.key}<br/>', pointFormat: '{series.name}: <b>{point.y: .3f}</b>' }
                                }
                        }
 
