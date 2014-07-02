@@ -3,7 +3,7 @@ class Agenda < ActiveRecord::Base
 
   FONTE = { "AGENDA" => 1 }
 
-  FXID = { "De 15 a 24 Anos" => 1, "De 15 a 29 Anos" => 2, "De 18 a 29 Anos" => 3, "De 15 a 17 Anos" => 4 }
+  FXID = { "De 15 a 17 Anos" => 1, "De 18 a 21 Anos" => 2, "De 22 a 25 Anos" => 3, "De 26 a 29 Anos" => 4 }
 
   AREA = { "Urbana" => 1, "Rural" => 2 }
   SEXO = { "Homens" => 1, "Mulheres" => 2 }
@@ -12,9 +12,12 @@ class Agenda < ActiveRecord::Base
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 
                          "Respostas" => { "1" => "Sim", "2" => "Não" }
                        },
-               "p1a" => { "Questão"   => "E você sabe escrever? (se sim) Escrever qualquer palavra é uma atividade que você considera?", 
+               "p1a" => { "Questão"   => "(se sabe ler) Ler qualquer palavra é uma atividade que você considera", 
                           "Respostas" => { "1" => "Fácil", "2" => "Um pouco difícil", "3" => "Bastante difícil" }
-                        } 
+                        },
+               "p1b" => { "Questão"   => "E você sabe escrever? (se sim) Escrever qualquer palavra é uma atividade que você considera:", 
+                          "Respostas" => { "1" => "Fácil", "2" => "Um pouco difícil", "3" => "Bastante difícil", "4" => "Não sabe escrever" }
+                        }
              }
 
 end

@@ -68,9 +68,6 @@ $(document).ready (
     $('#select_agendas_area').val('1');
     $('#select_agendas_sexo').val('1');
 
-    $('#select_agendas_univ').multiselect({classes: 'agendas_univ'});
-    $('#select_agendas_univ').multiselect('enable');
-
     //
     // Dados PNAD
     //
