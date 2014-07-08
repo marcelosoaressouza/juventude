@@ -3,10 +3,10 @@ class Agenda < ActiveRecord::Base
 
   FONTE = { "AGENDA" => 1 }
 
-  FXID = { "De 15 a 17 Anos" => 1, "De 18 a 21 Anos" => 2, "De 22 a 25 Anos" => 3, "De 26 a 29 Anos" => 4 }
+  FXID = { "Total" => 65534, "De 15 a 17 Anos" => 1, "De 18 a 21 Anos" => 2, "De 22 a 25 Anos" => 3, "De 26 a 29 Anos" => 4 }
 
-  AREA = { "Urbana" => 1, "Rural" => 2 }
-  SEXO = { "Homens" => 1, "Mulheres" => 2 }
+  AREA = { "Total" => 65535, "Urbana" => 1, "Rural" => 2 }
+  SEXO = { "Total" => 65536, "Homens" => 1, "Mulheres" => 2 }
 
   INDICADOR = {
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 
@@ -17,7 +17,154 @@ class Agenda < ActiveRecord::Base
                         },
                "p1b" => { "Questão"   => "E você sabe escrever? (se sim) Escrever qualquer palavra é uma atividade que você considera:", 
                           "Respostas" => { "1" => "Fácil", "2" => "Um pouco difícil", "3" => "Bastante difícil", "4" => "Não sabe escrever" }
-                        }
+                        },
+               "p2"  => { "Questão"   => "Você passou a maior parte da sua infância na cidade ou no campo (na roça, colônia, sertão, floresta)?", 
+                          "Respostas" => { "1" => "em  cidade – PPP.3 ", "2" => "no campo (em área rural)", "3" => "Parte na cidade, parte no campo/ meio a meio....prossiga" }
+                        },
+               "p2b" => { "Questão"   => "Por que você mudou do campo (roça, floresta etc.) para a cidade?", 
+                          "Respostas" => { "1" => "A família mudou", "2" => "Para estudar/ por causa de estudo, escola", "3" => "Para trabalhar/ buscar emprego/ trabalho", "4" => "Outras respostas" }
+                        },
+               "p3"  => { "Questão"   => "Vamos falar um pouco sobre as fases da vida. Você se considera:  adolescente,  jovem  ou  adulto/a?", 
+                          "Respostas" => { "1" => "adolescente", "2" => "jovem", "3" => "adulto/a", "4" => "Outras identidades" }
+                        },
+               "p5"  => { "Questão"   => "Você diria que tem mais coisas boas ou  mais coisas ruins em ser... (repita resposta da P.3)?", 
+                          "Respostas" => { "1" => "mais coisas boas", "2" => "mais coisas ruins ", "3" => "ambas/ meio a meio", "4" => "não sabe" }
+                        },
+               "p8"  => { "Questão"   => "Na sua opinião, o que é melhor como ... (cite resposta da P.3) ... : ser homem ou ser mulher?", 
+                          "Respostas" => { "1" => "é melhor ser homem", "2" => "é melhor ser mulher", "3" => "tanto faz/ ambos/ depende/ às vezes um, às vezes outra", "4" => "Outras respostas", "5" => "não sabe" }
+                        },
+               "p12" => { "Questão"   => "E qual é a chance real, na sua opinião, de que isso [resposta da P.11a] aconteça? Você diria que a chance de que esse seu sonho aconteça de verdade é: (leia até a interrogação)", 
+                          "Respostas" => { "1" => "grande", "2" => "media", "3" => "pequena", "4" => "nenhuma", "5" => "não sabe" }
+                        },
+               "p14a"=> { "Questão"   => "Independente do que você quer que aconteça, o que você acha que vai acontecer de verdade com o mundo nos próximos 5 anos:  na sua opinião o mundo vai melhorar, vai piorar ou vai ficar como está? ", 
+                          "Respostas" => { "1" => "Vai melhorar", "2" => "Vai piorar", "3" => "Vai ficar como está", "4" => "Não sabe" }
+                        },
+               "p14b"=> { "Questão"   => "E o Brasil nos próximos 5 anos, vai melhorar, vai piorar ou vai ficar como está?", 
+                          "Respostas" => { "1" => "Vai melhorar", "2" => "Vai piorar", "3" => "Vai ficar como está", "4" => "Não sabe" }
+                        },
+               "p14c"=> { "Questão"   => "E o seu bairro? ", 
+                          "Respostas" => { "1" => "Vai melhorar", "2" => "Vai piorar", "3" => "Vai ficar como está", "4" => "Não sabe" }
+                        },
+               "p14d"=> { "Questão"   => "E a sua vida pessoal, como você acha que vai estar, independente do que você gostaria: você acredita que vai estar melhor, pior ou igual daqui a 5 anos? ", 
+                          "Respostas" => { "1" => "Vai melhorar", "2" => "Vai piorar", "3" => "Vai ficar como está", "4" => "Não sabe" }
+                        },
+               "p17a"=> { "Questão"   => "Considerando esta lista (mostre CARTÃO 17), a qual dessas classes econômicas você diria que pertence:", 
+                          "Respostas" => { "1" => "muito pobre", "2" => "pobre", "3" => "média baixa", "4" => "média-média", "5" => "média alta", "6" => "rica", "7" => "muito rica", "8" => "Outras respostas", "9" => "Não sabe"  }
+                          # "Respostas" => { "1" => "", "2" => "", "3" => "", "4" => "", "5" => "", "6" => "", "7" => "", "8" => "", "9" => ""  }
+                        },
+               "p17b"=> { "Questão"   => "E a que classe econômica pertenciam seus pais ou a família que te criou, quando você era criança? (continue mostrando CARTÃO 17).", 
+                          "Respostas" => { "1" => "muito pobre", "2" => "pobre", "3" => "média baixa", "4" => "média-média", "5" => "média alta", "6" => "rica", "7" => "muito rica", "8" => "Outras respostas", "9" => "Não sabe"  }                        },
+               
+               "p20" => { "Questão"   => "Você acha que os jovens podem mudar o mundo, ou não podem? (se sim) Muito ou um pouco?", 
+                          "Respostas" => { "1" => "podem mudar muito", "2" => "podem mudar um pouco", "3" => "não podem mudar o mundo", "4" => "não sabe" }
+                        },
+               "p22a"=> { "Questão"   => "No Brasil existem grandes desafios que precisam ser enfrentados. Vou falar alguns deles e gostaria que você me dissesse qual é, para você, a importância de cada um: (Para cada item citado, pergunte) ...é muito importante, mais ou menos importante ou não é importante? - Melhorar saúde", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22b"=> { "Questão"   => "b. Diminuir a diferença entre ricos e pobres", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22c"=> { "Questão"   => "Fazer grander obras de infraestrutura", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22d"=> { "Questão"   => "Controlar o aumento da população", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22e"=> { "Questão"   => "Reduzir o desemprego", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22f"=> { "Questão"   => "Melhorar a educação no país", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22g"=> { "Questão"   => "Reduzir a poluição", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22h"=> { "Questão"   => "Aumentar o respeito pelos direitos humanos", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22i"=> { "Questão"   => "Reduzir o trabalho infantil", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22j"=> { "Questão"   => "Enfrentar as mudanças climáticas", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p22k"=> { "Questão"   => "Acelerar a reforma agrária", 
+                          "Respostas" => { "1" => "Muito importante", "2" => "Mais ou menos importante", "3" => "Não é importante", "4" => "Não sabe" }
+                        },
+               "p23a"=> { "Questão"   => "Pensando no Brasil,  qual destes problemas (mostre CARTÃO 23) é que mais te incomoda hoje?", 
+                          "Respostas" => { "1" => "A grande desigualdade entre ricos e pobres ", "2" => "A corrupção", "3" => "O despreparo do povo", "4" => "O poder dos traficantes", "5" => "O despreparo e a violência da polícia", "6" => "O racismo e outras formas de discriminação", "7" => "A lentidão e outros problemas da Justiça", "8" => "A destruição do meio ambiente", "9" => "A falta de perspectiva profissional para os jovens" }
+                        },
+               "p23b"=> { "Questão"   => "E em segundo lugar? ", 
+                          "Respostas" => { "1" => "A grande desigualdade entre ricos e pobres ", "2" => "A corrupção", "3" => "O despreparo do povo", "4" => "O poder dos traficantes", "5" => "O despreparo e a violência da polícia", "6" => "O racismo e outras formas de discriminação", "7" => "A lentidão e outros problemas da Justiça", "8" => "A destruição do meio ambiente", "9" => "A falta de perspectiva profissional para os jovens" }
+                        },
+               "p23c"=> { "Questão"   => "e em terceiro lugar? ", 
+                          "Respostas" => { "1" => "A grande desigualdade entre ricos e pobres ", "2" => "A corrupção", "3" => "O despreparo do povo", "4" => "O poder dos traficantes", "5" => "O despreparo e a violência da polícia", "6" => "O racismo e outras formas de discriminação", "7" => "A lentidão e outros problemas da Justiça", "8" => "A destruição do meio ambiente", "9" => "A falta de perspectiva profissional para os jovens" }
+                        },
+               "p24a"=> { "Questão"   => "E na sua opinião, qual destas coisas (mostre CARTÃO 24) é o que existe de mais positivo hoje no Brasil?  ", 
+                          "Respostas" => { "1" => "Estabilidade econômica", "2" => "Políticas sociais", "3" => "Possibilidade do consumo", "4" => "Liberdade de expressão", "5" => "Possibilidades de estudo", "6" => "Ter democracia", "7" => "outras", "8" => "nenhuma", "9" => "não sabe" }
+                        },
+               "p24b"=> { "Questão"   => "E em segundo lugar?", 
+                          "Respostas" => { "1" => "Estabilidade econômica", "2" => "Políticas sociais", "3" => "Possibilidade do consumo", "4" => "Liberdade de expressão", "5" => "Possibilidades de estudo", "6" => "Ter democracia", "7" => "outras", "8" => "nenhuma", "9" => "não sabe" }
+                        },
+               "p24c"=> { "Questão"   => "E em terceiro lugar?", 
+                          "Respostas" => { "1" => "Estabilidade econômica", "2" => "Políticas sociais", "3" => "Possibilidade do consumo", "4" => "Liberdade de expressão", "5" => "Possibilidades de estudo", "6" => "Ter democracia", "7" => "outras", "8" => "nenhuma", "9" => "não sabe" }
+                        },
+               "p25" => { "Questão"   => "Na sua opinião, a política é uma coisa:", 
+                          "Respostas" => { "1" => "muito importante", "2" => "mais ou menos importante", "3" => "nada importante", "4" => "Não sabe" }
+                        },
+               "p26" => { "Questão"   => "De um modo geral, qual das seguintes frases se aproxima mais da relação que você tem com a política: (leia até alternativa 4, enumerando-as): ", 
+                          "Respostas" => { "1" => "Um, considero-me politicamente participante", "2" => "ois, não costumo participar mas me interesso por política", "3" => "Três, acho que a política deve ficar para pessoas que tem mais competência ", "4" => "Quatro, não gosto de política, não me envolvo", "5" => "Outras respostas", "6" => "não sabe" }
+                        # "Respostas" => { "1" => "", "2" => "", "3" => "", "4" => "", "5" => "", "6" => "" }
+                        },
+               "p27a"=> { "Questão"   => "Na sua opinião, qual destas formas de atuação (mostre CARTÃO 27) pode ajudar mais a mudar ou a melhorar as coisas no Brasil? ", 
+                          "Respostas" => { "1" => "A atuação em associações ou coletivos que se organizam por alguma causa", "2" => "A atuação em partidos políticos", "3" => "A atuação pela internet, opinando sobre assuntos importantes ou cobrando dos políticos e governantes", "4" => "A atuação em conselhos, conferências, audiências públicas ou outros canais de participação desse tipo", "5" => "A participação em mobilizações de rua e outras ações diretas", "7" => "outras", "8" => "nenhuma", "9" => "não sabe" }
+                        },
+               "p27b"=> { "Questão"   => "E em segundo lugar?", 
+                          "Respostas" => { "1" => "A atuação em associações ou coletivos que se organizam por alguma causa", "2" => "A atuação em partidos políticos", "3" => "A atuação pela internet, opinando sobre assuntos importantes ou cobrando dos políticos e governantes", "4" => "A atuação em conselhos, conferências, audiências públicas ou outros canais de participação desse tipo", "5" => "A participação em mobilizações de rua e outras ações diretas", "7" => "outras", "8" => "nenhuma", "9" => "não sabe" }
+                        },
+               "p33a"=> { "Questão"   => "Você é a favor ou contra que casais de gays e de lésbicas possam adotar crianças?", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33b"=> { "Questão"   => "A prisão das mulheres que fazem aborto", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33c"=> { "Questão"   => "A reserva de cotas para negros e indígenas nas universidades", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33d"=> { "Questão"   => "a prisão das pessoas que usam maconha", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33e"=> { "Questão"   => "O respeito aos direiito humanos dos presos e criminosos", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33f"=> { "Questão"   => "O uso de crucifixos e outros símbolos religiosos em paredes de órgãos públicos", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p33g"=> { "Questão"   => " a Comissão da Verdade, que investiga  as mortes e desaparecimentos do período da ditadura militar?", 
+                          "Respostas" => { "1" => "A favor Totalmente", "2" => "A favor Em parte", "3" => "Nem a favor nem contra", "4" => "Contra Totalmente", "5" => "Contra Em parte", "6" => "não sabe" }
+                        },
+               "p34" => { "Questão"   => "Pelo que você sabe ou ouviu falar, os governos no Brasil: (mostre CARTÃO 34 e leia até a alternativa 4)", 
+                          "Respostas" => { "1" => "não conhecem nem se preocupam com as necessidades dos jovens", "2" => "conhecem as necessidades dos jovens, mas não fazem nada a respeito", "3" => "apóiam e promovem programas e ações voltadas para a juventude", "4" => "você não sabe se os governos têm ou não ações para a juventude?", "5" => "Outras respostas"}
+                        },
+               "p37" => { "Questão"   => "Os últimos governos federais têm promovido conferências públicas para discutir políticas com a população, para tentar resolver diferentes problemas sociais. Essas conferências acontecem primeiro nos municípios, depois nos estados e por fim tem a etapa nacional. Você já ouviu falar dessas conferências? (se sim) Participou de alguma? De quantas?", 
+                          "Respostas" => { "1" => "Participou de 1", "2" => "Participou de 2", "3" => "Participou de 3", "4" => "Participou de 4", "5" => "Participou de 5", "6" => "Participou de 6", "7" => "Participou de 7 ou mais", "8" => "Ouviu falar mas nunca Participou de qualquer conferência", "9" => "Nunca ouviu falar"  }
+                        },
+               "p39" => { "Questão"   => "Falando agora de educação, até que ano da escola sua mãe (ou responsável do sexo feminino) completou?", 
+                          "Respostas" => { "1" => "Não estudou", "2" => "Ensino Fundamental 1ª a 4ª serie", "3" => "Ensino Fundamental 5ª a 8ª serie", "4" => "Ensino Médio 2º grau", "5" => "Superior ou pós-graduação", "6" => "Não sabe" }
+                        },
+               "p40" => { "Questão"   => "E seu pai (ou responsável do sexo masculino), até que ano de escola ele completou?", 
+                          "Respostas" => { "1" => "Não estudou", "2" => "Ensino Fundamental 1ª a 4ª serie", "3" => "Ensino Fundamental 5ª a 8ª serie", "4" => "Ensino Médio 2º grau", "5" => "Superior ou pós-graduação", "6" => "Não sabe" }
+                        },
+               "p41" => { "Questão"   => "Atualmente você está estudando, parou de estudar ou terminou os estudos?", 
+                          "Respostas" => { "1" => "Está estudando", "2" => "Parou de estudar", "3" => "Terminou os estudos", "4" => "Não frequentou escola (espontânea)" }
+                        },
+
+
+
+
+
+
+
              }
 
 end

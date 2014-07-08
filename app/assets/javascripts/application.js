@@ -64,9 +64,9 @@ $(document).ready (
 
     $('#select_temas').val('');
     $('#select_agendas_indicador').val('');
-    $('#select_agendas_fxid').val('1');
-    $('#select_agendas_area').val('1');
-    $('#select_agendas_sexo').val('1');
+    $('#select_agendas_fxid').val('65534');
+    $('#select_agendas_area').val('65535');
+    $('#select_agendas_sexo').val('65536');
 
     //
     // Dados PNAD

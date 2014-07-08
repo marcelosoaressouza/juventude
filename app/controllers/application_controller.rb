@@ -15,8 +15,14 @@ class ApplicationController < ActionController::Base
   
     campos_consulta = [ "tipo", "area", "fxid", "sexo", "#{params[:indicador]}" ]
 
+    campos_consulta.delete('fxid') if params[:fxid] == '65534'
+    campos_consulta.delete('area') if params[:area] == '65535'
+    campos_consulta.delete('sexo') if params[:sexo] == '65536'
+
+    logger.debug("===> #{campos_consulta} e #{params[:area]} e #{params[:sexo]}")
+
     campos_consulta.each_with_index do |col, i|
-      consulta += " #{col} = ?"
+      consulta += " #{col} = ? "
       consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
 
@@ -24,6 +30,11 @@ class ApplicationController < ActionController::Base
 
     Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
       valores = [ 1, params[:area], params[:fxid], params[:sexo], indicador[0] ]
+
+      valores.delete('65534') if params[:fxid] == '65534'
+      valores.delete('65535') if params[:area] == '65535'
+      valores.delete('65536') if params[:sexo] == '65536'
+
       dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
       agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
     end

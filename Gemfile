@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '4.2.1'
 #gem 'jquery-multiselect-rails', :git => 'https://github.com/arojoal/jquery-multiselect-rails.git'
 
 # To use ActiveModel has_secure_password

@@ -6,7 +6,7 @@
 
   <div id="agenda-opcoes">
     <br/><br/>
-    <%= select(nil, :id, Agenda::INDICADOR.map { |v| [ v[1]["Questão"], v[0] ] }, { include_blank: "Selecione o Indicador" },
+    <%= select(nil, :id, Agenda::INDICADOR.map { |v| [ "#{v[0]}) #{v[1]["Questão"].truncate(96)}", v[0] ] }, { include_blank: "Selecione o Indicador" },
                                                                                   { :id => 'select_agendas_indicador', 
                                                                                   :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
