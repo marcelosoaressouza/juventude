@@ -7,7 +7,7 @@
 
   <div id="pnad-opcoes">
     <br/><br/>
-    <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo), v.objetivo ] }, { include_blank: "Selecione o Objetivo" },
+    <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Selecione o Objetivo" },
                                                                                                              { :id => 'select_pnads_objetivo', 
                                                                                                                :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
