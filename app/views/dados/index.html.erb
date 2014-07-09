@@ -14,10 +14,10 @@
     <% if ! @temas.empty? %>
       <table class="table-temas">
         <% @temas.each_slice(3) do |tema_slice| %>
-          <tr>
+          <tr class="tr-temas">
             <% tema_slice.each do |tema| %>
               <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb)), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
-              <td><%= link_to image_tag(tema.imagem.url(:thumb)), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb)), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
             <% end %>
           </tr>
         <% end %>
