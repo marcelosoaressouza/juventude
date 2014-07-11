@@ -1,13 +1,21 @@
 <br/>
+
+<div class="dados-options">
+  <%= link_to "PNAD", dados_path %> |
+  <%= link_to "Agenda Juventude", agendas_path %>
+</div>
+
+<br /><br />
+
 <% if params[:tema] %>
 <div class="pnad">
   <div id="pnad-tema">
-    <%= image_tag @objetivo.imagem(:thumb) %>
+    <%= image_tag @objetivo.imagem(:thumb), :title => @objetivo.titulo %>
   </div>
 
   <div id="pnad-opcoes">
     <br/><br/>
-    <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Selecione o Objetivo" },
+    <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Selecione o Indicador" },
                                                                                                              { :id => 'select_pnads_objetivo', 
                                                                                                                :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 

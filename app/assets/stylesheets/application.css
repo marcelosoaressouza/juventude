@@ -14,8 +14,9 @@
  */
 
 .yield {
-  width: 95%;
-  margin-left: 16px;
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .table-dados {
@@ -68,7 +69,7 @@ a:hover {
 }
 
 .pnad {
-  height: 105px;
+  height: 110px;
   background: #fff;
   margin-left: auto;
   margin-right: auto;
@@ -79,7 +80,9 @@ a:hover {
 
 #pnad-tema {
   float: right;
-  width: 105px;
+  width: 108px;
+  height: 108px;
+  padding-top: 4px;
 }
 
 #pnad-opcoes {

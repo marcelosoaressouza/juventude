@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   #
   # Dados da Agenda da Juventude
   #
-
   def getAgendas (params)
     @dados   = []
     campos_consulta = []
@@ -13,29 +12,42 @@ class ApplicationController < ActionController::Base
     config   = {}
     consulta = ""
   
-    campos_consulta = [ "tipo", "area", "fxid", "sexo", "#{params[:indicador]}" ]
+    # campos_consulta = [ "tipo", "area", "fxid", "sexo", "#{params[:indicador]}" ]
+    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}" ]
 
-    campos_consulta.delete('fxid') if params[:fxid] == '65534'
+    # campos_consulta.delete('fxid') if params[:fxid] == '65534'
     campos_consulta.delete('area') if params[:area] == '65535'
     campos_consulta.delete('sexo') if params[:sexo] == '65536'
 
-    logger.debug("===> #{campos_consulta} e #{params[:area]} e #{params[:sexo]}")
-
     campos_consulta.each_with_index do |col, i|
-      consulta += " #{col} = ? "
+      consulta += " ( #{col} = ? ) "
       consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
 
     titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)}"
 
-    Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
-      valores = [ 1, params[:area], params[:fxid], params[:sexo], indicador[0] ]
+    fxid = "idade1 BETWEEN 15 AND 24" if params[:fxid] == "1524"
+    fxid = "idade1 BETWEEN 15 AND 29" if params[:fxid] == "1529"
+    fxid = "idade1 BETWEEN 18 AND 29" if params[:fxid] == "1829"
+    fxid = "idade1 BETWEEN 15 AND 17" if params[:fxid] == "1517"
+    fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
+    fxid = "idade1 BETWEEN 18 AND 24" if params[:fxid] == "1824"
+    fxid = "idade1 BETWEEN 25 AND 29" if params[:fxid] == "2529"
 
-      valores.delete('65534') if params[:fxid] == '65534'
+    Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
+      # valores = [ 1, params[:area], params[:fxid], params[:sexo], indicador[0] ]
+      valores = [ 1, params[:area], params[:sexo], indicador[0] ]
+
+      # valores.delete('65534') if params[:fxid] == '65534'
       valores.delete('65535') if params[:area] == '65535'
       valores.delete('65536') if params[:sexo] == '65536'
 
-      dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
+      if params[:fxid] != '65534'
+        dados_agenda = Agenda.where(consulta, *valores).where(fxid).group("#{params[:indicador]}").sum(params[:indicador])
+      else
+        dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
+      end
+
       agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
     end
 
@@ -53,7 +65,6 @@ class ApplicationController < ActionController::Base
     
     return @dados 
   end
-
 
   #
   # Dados da PNAD
