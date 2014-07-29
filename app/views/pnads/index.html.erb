@@ -16,8 +16,12 @@
   <div id="pnad-opcoes">
     <br/><br/>
     <%= select(nil, :id, @objetivo.filtros.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Selecione o Indicador" },
-                                                                                                             { :id => 'select_pnads_objetivo', 
-                                                                                                               :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+                                                                                                                           { :id => 'select_pnads_objetivo', 
+                                                                                                                             :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+    <%= select(nil, :id, Pnad::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
+                                                                        { :id => 'select_pnads_tipo_grafico', 
+                                                                          :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
     <%= select(nil, :id, Pnad::FXID.map { |v| [ v[0], v[1] ] }, {},
                                                                 { :id => 'select_pnads_fxid', 

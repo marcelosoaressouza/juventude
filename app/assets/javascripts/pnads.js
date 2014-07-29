@@ -7,6 +7,7 @@ $(document).ready (function() {
     $('.pnads_univ').css('border', '1px solid #fff');
 
     var objetivo = $('#select_pnads_objetivo').val();
+    var tipo_grafico = $('#select_pnads_tipo_grafico').val();
     var fxid = $('#select_pnads_fxid').val();
     var univ = $('#select_pnads_univ').val();
     var area = $('#select_pnads_area').val();
@@ -26,7 +27,7 @@ $(document).ready (function() {
     }
 
     if (objetivo && univ) {
-      var params = 'objetivo=' + objetivo + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
+      var params = 'objetivo=' + objetivo + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
       $.ajax({ url: '/pnads/show', data: params });
     }
     else {
@@ -44,6 +45,7 @@ $(document).ready (function() {
   $('#select_pnads_univ').val('0');
   $('#select_temas').val('');
   $('#select_pnads_objetivo').val('');
+  $('#select_pnads_tipo_grafico').val('line');
   $('#select_pnads_fxid').val('1524');
   $('#select_pnads_area').val('0');
   $('#select_pnads_sexo').val('0');

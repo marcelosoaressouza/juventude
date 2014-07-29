@@ -9,9 +9,10 @@ class Agenda < ActiveRecord::Base
            "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
            "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
 
-
   AREA = { "Total" => 65535, "Urbana" => 1, "Rural" => 2 }
   SEXO = { "Total" => 65536, "Homens" => 1, "Mulheres" => 2 }
+
+  TIPO_GRAFICO = { "Coluna" => "column", "Barra" => "bar"}
 
   INDICADOR = {
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 

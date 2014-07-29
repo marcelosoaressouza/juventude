@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
                                }
                        }
 
-    @dados = [ { id: "dados_agenda", type: "column", data: agenda, config: config[:agenda] } ] if agenda
+    @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
     
     return @dados 
   end
@@ -158,7 +158,7 @@ class ApplicationController < ActionController::Base
                                }
                        }
 
-    @dados = [ { id: "dados_pnad", type: "line", data: pnad_trata, config: config[:pnad] } ] if pnad_trata
+    @dados = [ { id: "dados_pnad", type: params[:tipo_grafico], data: pnad_trata, config: config[:pnad] } ] if pnad_trata
     
     return @dados 
   end

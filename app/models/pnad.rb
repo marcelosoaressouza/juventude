@@ -19,7 +19,7 @@ class Pnad < ActiveRecord::Base
   SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
   COR  = { "Total" => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2, "Branco(a)s e Amarelo(a)s ou Negro(a)s" => 3 }
 
-  TIPO_GRAFICO = { "Linha" => "line", "Barra" => "bar", "Coluna" => "column" , "Área" => 'area', "Torta" => 'pie'}
+  TIPO_GRAFICO = { "Linha" => "line", "Barra" => "bar", "Coluna" => "column" , "Área" => 'area'}
 
   # GRUPO = { "Ano" => "ano", "Sexo" => "sexo", "Cor" => "cor" }
   GRUPO = { "Ano" => "ano" }

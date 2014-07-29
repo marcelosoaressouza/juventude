@@ -17,6 +17,9 @@
                                                                                   { :id => 'select_agendas_indicador', 
                                                                                   :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
+    <%= select(nil, :id, Agenda::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
+                                                                        { :id => 'select_agendas_tipo_grafico', 
+                                                                          :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
     <%= select(nil, :id, Agenda::FXID.map { |v| [ v[0], v[1] ] }, {},
                                                                      { :id => 'select_agendas_fxid', 
                                                                        :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
