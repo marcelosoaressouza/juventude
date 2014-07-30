@@ -15,16 +15,16 @@
 </p>
 
 	<p>
-	  <b>Filtros deste Tema:</b> <br />
-          <% if @tema.filtros.count > 0 %>
-            <% @tema.filtros.each do |filtro| %>
-              <%= link_to Pnad::OBJETIVO.index(filtro.objetivo), filtro %><br />
+	  <b>Indicadors deste Tema:</b> <br />
+          <% if @tema.indicadors.count > 0 %>
+            <% @tema.indicadors.each do |indicador| %>
+              <%= link_to Pnad::OBJETIVO.index(indicador.objetivo), indicador %><br />
 	    <% end %>
             <br />
-            <b><%= link_to 'Adicione/Modifique um Novo Filtro', filtros_path %> a este Tema.</b>
+            <b><%= link_to 'Adicione/Modifique um Novo Indicador', indicadors_path %> a este Tema.</b>
 
           <% else %>
-            Nenhum Filtro Encontrado. Adicione <%= link_to 'um novo Filtro', new_filtro_path %>
+            Nenhum Indicador Encontrado. Adicione <%= link_to 'um novo Indicador', new_indicador_path %>
           <% end %>
 	</p>
 </center>

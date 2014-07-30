@@ -1,9 +1,9 @@
-<%= form_for(@filtro) do |f| %>
-  <% if @filtro.errors.any? %>
+<%= form_for(@indicador) do |f| %>
+  <% if @indicador.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@filtro.errors.count, "error") %> prohibited this filtro from being saved:</h2>
+      <h2><%= pluralize(@indicador.errors.count, "error") %> prohibited this indicador from being saved:</h2>
       <ul>
-      <% @filtro.errors.full_messages.each do |msg| %>
+      <% @indicador.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -30,7 +30,7 @@
               <td>
                 <%= image_tag tema.imagem.url(:thumb) %>
                 <b><%= label_tag :tema_ids, tema.titulo -%></b>
-                <%= check_box_tag :tema_ids, tema.id, @filtro.temas.include?(tema), :name => 'filtro[tema_ids][]' -%>
+                <%= check_box_tag :tema_ids, tema.id, @indicador.temas.include?(tema), :name => 'indicador[tema_ids][]' -%>
               </td>
             <% end -%>
           </tr>

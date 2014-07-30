@@ -2,10 +2,10 @@ class Tema < ActiveRecord::Base
   extend FriendlyId
   friendly_id :titulo, use: :slugged
 
-  has_many :temas_filtros, :dependent => :destroy
-  has_many :filtros, :through => :temas_filtros
+  has_many :temas_indicadors, :dependent => :destroy
+  has_many :indicadors, :through => :temas_indicadors
 
-  # accepts_nested_attributes_for :filtros
+  # accepts_nested_attributes_for :indicadors
 
   attr_accessible :titulo, :imagem
 

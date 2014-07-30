@@ -3,13 +3,13 @@
 <div class="dados-options">
   <%= link_to "Agenda Juventude", agendas_path %> |
   <%= link_to "Administrar Temas",   temas_path %> |
-  <%= link_to "Administrar Filtros", filtros_path %>
+  <%= link_to "Administrar Indicadors", indicadors_path %>
 </div>
 
 <br />
 
 <center>
-  <%#= collection_select(nil, :id, @filtros, :id, :titulo, {:prompt => "Selecione o Filtro"}, {:id => 'select_filtros'}) %>
+  <%#= collection_select(nil, :id, @indicadors, :id, :titulo, {:prompt => "Selecione o Indicador"}, {:id => 'select_indicadors'}) %>
   <%#= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
   <br /><br />
     <% if ! @temas.empty? %>

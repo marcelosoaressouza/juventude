@@ -884,7 +884,7 @@ ActiveRecord::Schema.define(:version => 20140627175220) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "filtros", :force => true do |t|
+  create_table "indicadors", :force => true do |t|
     t.string   "objetivo"
     t.integer  "fonte"
     t.datetime "created_at", :null => false
@@ -1058,14 +1058,14 @@ ActiveRecord::Schema.define(:version => 20140627175220) do
 
   add_index "temas", ["slug"], :name => "index_temas_on_slug", :unique => true
 
-  create_table "temas_filtros", :force => true do |t|
+  create_table "temas_indicadors", :force => true do |t|
     t.integer  "tema_id"
-    t.integer  "filtro_id"
+    t.integer  "indicador_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "temas_filtros", ["filtro_id"], :name => "index_temas_filtros_on_filtro_id"
-  add_index "temas_filtros", ["tema_id"], :name => "index_temas_filtros_on_tema_id"
+  add_index "temas_indicadors", ["indicador_id"], :name => "index_temas_indicadors_on_indicador_id"
+  add_index "temas_indicadors", ["tema_id"], :name => "index_temas_indicadors_on_tema_id"
 
 end

@@ -1,0 +1,30 @@
+<br/>
+<center>
+    <%= link_to 'Novo Indicador', new_indicador_path %> |
+    <%= link_to 'Administrar Tema', temas_path %> |
+    <%= link_to 'Ver Dados', dados_path %>
+
+    <br /><br />
+    <% if ! @indicadors.empty? %>
+        <table class="table-dados">
+          <tr id="table-header">
+            <th>Objetivo</th>
+            <th>Fonte</th>
+            <th></th>
+            <th></th>
+          </tr>
+
+        <% @indicadors.each do |indicador| %>
+          <tr class="table-<%= cycle('even', 'odd') -%>">
+            <td><b><%= link_to Pnad::OBJETIVO.index(indicador.objetivo), indicador %></b></td>
+            <td><%= Pnad::FONTE.index(indicador.fonte)%></td>
+            <td><%= link_to 'Editar', edit_indicador_path(indicador) %></td>
+            <td><%= link_to 'Apagar', indicador, method: :delete, data: { confirm: 'Você tem Certeza?' } %></td>
+          </tr>
+        <% end %>
+        </table>
+    <% else %>
+        <br />
+        <h3>Nenhum Indicador Encontrado.</h3>
+    <% end %>
+</center>

@@ -1,7 +1,7 @@
 <br/>
 <center>
     <%= link_to 'Novo Tema', new_tema_path %> |
-    <%= link_to 'Administrar Filtro', filtros_path %> |
+    <%= link_to 'Administrar Indicador', indicadors_path %> |
     <%= link_to 'Ver Dados', dados_path %>
 
     <br /><br />
@@ -9,7 +9,7 @@
       <table class="table-dados">
         <tr id="table-header">
           <th></th>
-          <th>Filtros</th>
+          <th>Indicadors</th>
           <th></th>
           <th></th>
         </tr>
@@ -17,7 +17,7 @@
       <% @temas.each do |tema| %>
         <tr class="table-<%= cycle('even', 'odd') -%>">
           <td><%= link_to image_tag(tema.imagem.url(:thumb)), tema %> <br /><b><%= tema.titulo%></b></td>
-          <td><%= tema.filtros.count %></td>
+          <td><%= tema.indicadors.count %></td>
           <td><%= link_to 'Editar', edit_tema_path(tema) %></td>
           <td><%= link_to 'Apagar', tema, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
         </tr>
