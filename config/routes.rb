@@ -1,7 +1,7 @@
 Juventude::Application.routes.draw do
 
   resources :agendas
-  resources :pnads
+  resources :pnads, :path => :pnad
   resources :dados
   resources :temas
   resources :indicadors, :path => :indicadores

@@ -1,5 +1,4 @@
-<br/>
-
+<br />
 <div class="dados-options">
   <%= link_to "Agenda Juventude", agendas_path %> |
   <%= link_to "Administrar Temas",   temas_path %> |
@@ -8,17 +7,31 @@
 
 <br />
 
-<center>
+<div id="dados-header">
+  Dados Estatísticos da Juventude
+</div>
+
+<br />
+
+<div id="dados-body">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis justo mauris, eget ornare eros scelerisque at. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac augue vitae erat dictum tristique ut a velit. Nam rutrum vestibulum sodales. Nam et luctus ipsum. Sed ut tellus at justo dictum pretium. Phasellus ut purus semper, fermentum ipsum vel, placerat est. Morbi id fringilla tellus. Etiam pharetra consectetur placerat.
+</div>
+
   <%#= collection_select(nil, :id, @indicadors, :id, :titulo, {:prompt => "Selecione o Indicador"}, {:id => 'select_indicadors'}) %>
   <%#= collection_select(nil, :id, @temas, :id, :titulo, {:prompt => "Selecione o Tema"}, {:id => 'select_temas'}) %>
-  <br /><br />
+  <br />
+<div id="dados-geral">
+
+  <div id="dados-temas">
+    <center>
+    <h3>Por Tema</h3>
     <% if ! @temas.empty? %>
       <table class="table-temas">
-        <% @temas.each_slice(3) do |tema_slice| %>
+        <% @temas.each_slice(4) do |tema_slice| %>
           <tr class="tr-temas">
             <% tema_slice.each do |tema| %>
-              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb)), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
-              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb)), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '50'), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '50'), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
             <% end %>
           </tr>
         <% end %>
@@ -27,6 +40,19 @@
         <br />
         <h3>Nenhum Tema Encontrado.</h3>
     <% end %>
+    </center>
+  </div>
 
-    <div id="dados"></div>
-</center>
+  <div id="dados-fonte">
+    <center>
+    <h3>Por Fonte</h3>
+      <table class="table-temas">
+          <tr class="tr-temas">
+              <td class="td-temas"><%= link_to image_tag('PNAD.jpg', width: '150'), pnads_path %></td>
+              <td class="td-temas"><%= link_to image_tag('participatorio.png'), agendas_path %></td>
+              <td class="td-temas"><%= link_to image_tag('IBGE.jpg', width: '150') %></td>
+          </tr>
+      </table>
+  </div>
+  </center>
+</div>
