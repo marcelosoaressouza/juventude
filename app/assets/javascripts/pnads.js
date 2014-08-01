@@ -28,7 +28,7 @@ $(document).ready (function() {
 
     if (objetivo && univ) {
       var params = 'objetivo=' + objetivo + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
-      $.ajax({ url: '/pnads/show', data: params });
+      $.ajax({ url: '/pnad/show', data: params });
     }
     else {
       if (!objetivo) $('#select_pnads_objetivo').css('border', '2px solid #EC1C23');
@@ -36,7 +36,7 @@ $(document).ready (function() {
 
       $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b>');
 
-      $.ajax({ url: '/pnads', data: params });
+      $.ajax({ url: '/pnad', data: params });
 
     }
     }
@@ -60,7 +60,7 @@ $(document).ready (function() {
     var id = $(this).attr('data-href');
     if (id) {
       var params = 'tema=' + id;
-      $.ajax({ url: '/pnads', data: params });
+      $.ajax({ url: '/pnad', data: params });
     }
     else {
       $.ajax({ url: '/dados', data: params });
