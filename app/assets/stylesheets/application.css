@@ -75,12 +75,10 @@ a:hover {
   margin-right: auto; 
 }
 
-
 .tema-box {
   width: 160px;
   text-align: center;
 }
-
 
 .select_pnads {
   max-width: 150px;
@@ -118,6 +116,11 @@ a:hover {
   width: 45%;
 }
 
+.tr-fontes {
+  background-color: #fff;
+  border:1px solid #C9C9C9;
+}
+
 .tr-temas {
   background-color: #fff;
   border:1px solid #C9C9C9;
@@ -126,10 +129,27 @@ a:hover {
   margin-right: auto;
 }
 
+.td-fontes {
+  border:1px solid #C9C9C9;
+}
+
 .td-temas {
   border:1px solid #C9C9C9;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   padding: 12px 32px 12px 32px;
+}
+
+#dados-header {
+  margin-left: 15px;
+}
+
+#dados-body {
+  margin-left: 15px;
+  width: 92%;
+  background-color: #fff;
+  text-align: justify;
+  border:1px solid #C9C9C9;
+  padding: 12px 12px 12px 12px;
 }

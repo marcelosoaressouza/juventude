@@ -3,8 +3,11 @@ class Pnad < ActiveRecord::Base
 
   FONTE = { "PNAD" => 0 }
 
-  FXID = { "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
-           "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
+  #FXID = { "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
+  #         "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
+  FXID = { "De 15 a 17 Anos" => 1517,
+           "De 18 a 24 Anos" => 1824,
+           "De 25 a 29 Anos" => 2529 }
 
   UNIV = { "Brasil" => 0, "Região Norte" => 10, "Região Nordeste" => 20, "Região Sudeste" => 30, "Regiao Sul" => 40,
            "Regiao Centro Oeste" => 49, "Acre" => 12, "Alagoas" => 27, "Amapá" => 16, "Amazonas" => 13, "Bahia" => 29,

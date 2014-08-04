@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
                                 title: { text: titulo },
                                 subtitle: { text: 'Agenda da Juventude' },
                                 xAxis: { title: { text: 'Respostas' }, labels: { enabled: false } },
+                                yAxis: { min: 0 },
                                 tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y}</b>' }
                                }
                        }
@@ -88,23 +89,27 @@ class ApplicationController < ActionController::Base
 
       universo.each_with_index do |univ, i|
         valores = [ 1, params[:area], params[:fxid], univ, params[:cor], params[:sexo] ]
-        pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
         name = Pnad::UNIV.index(univ.to_i)
         resultado = { name: "#{name}", data: pnad }
         pnad_trata.push(resultado)
       end
 
     else
-      pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      # pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
       pnad_trata = [ { name: 'Dados', data: pnad_bruto } ] if ! pnad_bruto.empty?
     end
 
     if params[:sexo] == '3'
       valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], 1 ]
-      pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      # pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
       valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], 2 ]
-      pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      # pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+      pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
       pnad_trata = [ { name: "#{Pnad::SEXO.index(1)}", data: pnad_homens },
                      { name: "#{Pnad::SEXO.index(2)}", data: pnad_mulheres } ] if (! pnad_homens.empty? || ! pnad_mulheres.empty?)
@@ -113,16 +118,20 @@ class ApplicationController < ActionController::Base
     if params[:cor] == '3'
       if params[:sexo] == '3'
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, 1 ]
-        pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, 2 ]
-        pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, 1 ]
-        pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, 2 ]
-        pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
         pnad_trata = [ { name: "Homens #{Pnad::COR.index(1)}", data: pnad_homens_brancos },
                        { name: "Homens #{Pnad::COR.index(2)}", data: pnad_homens_negros  },
@@ -132,10 +141,12 @@ class ApplicationController < ActionController::Base
 
       else 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, params[:sexo] ]
-        pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, params[:sexo] ]
-        pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        # pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
+        pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
 
 
         pnad_trata = [ { name: "#{Pnad::COR.index(1)}", data: pnad_brancos },
@@ -144,13 +155,14 @@ class ApplicationController < ActionController::Base
 
     end
 	
+    # yAxis: { title: { text: 'Respostas (%)' }, min: 0, max: 100 },
     config[:pnad] = {
                         library:
                                {
                                 title: { text: titulo },
                                 subtitle: { text: 'Dados PNAD (1992 a 2012)' },
-                                yAxis: { title: { text: 'Respostas' } },
-                                tooltip: { headerFormat: 'Ano: {point.key}<br/>', pointFormat: '{series.name}: <b>{point.y: .2f}</b>' }
+                                yAxis: { title: { text: 'Respostas (%)' }, min: 0},
+                                tooltip: { headerFormat: 'Ano: {point.key}<br/>', pointFormat: '{series.name}: <b>{point.y: .2f}%</b>' }
                                }
                        }
 

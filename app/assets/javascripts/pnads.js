@@ -46,7 +46,7 @@ $(document).ready (function() {
   $('#select_temas').val('');
   $('#select_pnads_objetivo').val('');
   $('#select_pnads_tipo_grafico').val('line');
-  $('#select_pnads_fxid').val('1524');
+  $('#select_pnads_fxid').val('1517');
   $('#select_pnads_area').val('0');
   $('#select_pnads_sexo').val('0');
   $('#select_pnads_cor').val('0');
