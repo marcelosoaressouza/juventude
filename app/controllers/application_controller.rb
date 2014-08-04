@@ -23,15 +23,14 @@ class ApplicationController < ActionController::Base
       consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
 
-    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)}"
-
-    fxid = "idade1 BETWEEN 15 AND 24" if params[:fxid] == "1524"
-    fxid = "idade1 BETWEEN 15 AND 29" if params[:fxid] == "1529"
-    fxid = "idade1 BETWEEN 18 AND 29" if params[:fxid] == "1829"
     fxid = "idade1 BETWEEN 15 AND 17" if params[:fxid] == "1517"
-    fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
     fxid = "idade1 BETWEEN 18 AND 24" if params[:fxid] == "1824"
     fxid = "idade1 BETWEEN 25 AND 29" if params[:fxid] == "2529"
+
+    # fxid = "idade1 BETWEEN 15 AND 24" if params[:fxid] == "1524"
+    # fxid = "idade1 BETWEEN 15 AND 29" if params[:fxid] == "1529"
+    # fxid = "idade1 BETWEEN 18 AND 29" if params[:fxid] == "1829"
+    # fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
 
     Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
       valores = [ 1, params[:area], params[:sexo], indicador[0] ]
@@ -49,20 +48,10 @@ class ApplicationController < ActionController::Base
                              .group("#{params[:indicador]}")
                              .sum(params[:indicador])
       end
+      logger.debug("--==>> #{dados_agenda} #{indicador[0]}")
 
-      agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
+      agenda << { name: "#{indicador[1]} (#{dados_agenda[indicador[0].to_i]})", data: dados_agenda } if ! dados_agenda.empty?
     end
-
-    config[:agenda] = {
-                        library:
-                               {
-                                title: { text: titulo },
-                                subtitle: { text: 'Agenda da Juventude' },
-                                xAxis: { title: { text: 'Respostas (%)' }, labels: { enabled: false } },
-                                yAxis: { min: 0, max: 100 },
-                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y: .2f}%</b>' }
-                               }
-                       }
 
     agenda.each do |a|
       total += a[:data].values.sum
@@ -74,6 +63,19 @@ class ApplicationController < ActionController::Base
         a[:data][key] = value
       end
     end
+
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} <br/>Total de #{total.floor} Respostas"
+
+    config[:agenda] = {
+                        library:
+                               {
+                                title: { text: titulo },
+                                subtitle: { text: 'Agenda da Juventude' },
+                                xAxis: { title: { text: 'Respostas (%)' }, labels: { enabled: false } },
+                                yAxis: { min: 0, max: 100 },
+                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y: .2f}%</b>' }
+                               }
+                       }
 
     @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
     
