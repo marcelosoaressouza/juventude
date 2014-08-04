@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     agenda   = []
     config   = {}
     consulta = ""
-    total = 0
+    total = 0.0
   
     campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}" ]
 
@@ -58,23 +58,23 @@ class ApplicationController < ActionController::Base
                                {
                                 title: { text: titulo },
                                 subtitle: { text: 'Agenda da Juventude' },
-                                xAxis: { title: { text: 'Respostas' }, labels: { enabled: false } },
-                                yAxis: { min: 0 },
-                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y}</b>' }
+                                xAxis: { title: { text: 'Respostas (%)' }, labels: { enabled: false } },
+                                yAxis: { min: 0, max: 100 },
+                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y: .2f}%</b>' }
                                }
                        }
 
-    logger.debug("---===> Debugando")
-
     agenda.each do |a|
       total += a[:data].values.sum
-      logger.debug(a[:data].values.sum)
     end
 
-    logger.debug(total)
+    agenda.each do |a|
+      a[:data].each do |key,value|
+        value = value * 100 / total
+        a[:data][key] = value
+      end
+    end
 
-    logger.debug("Debugando <===---")
-	
     @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
     
     return @dados 
