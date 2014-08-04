@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     agenda   = []
     config   = {}
     consulta = ""
+    total = 0
   
     campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}" ]
 
@@ -39,9 +40,14 @@ class ApplicationController < ActionController::Base
       valores.delete('65536') if params[:sexo] == '65536'
 
       if params[:fxid] != '65534'
-        dados_agenda = Agenda.where(consulta, *valores).where(fxid).group("#{params[:indicador]}").sum(params[:indicador])
+        dados_agenda = Agenda.where(consulta, *valores)
+                             .where(fxid)
+                             .group("#{params[:indicador]}")
+                             .sum(params[:indicador])
       else
-        dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
+        dados_agenda = Agenda.where(consulta, *valores)
+                             .group("#{params[:indicador]}")
+                             .sum(params[:indicador])
       end
 
       agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
@@ -58,6 +64,17 @@ class ApplicationController < ActionController::Base
                                }
                        }
 
+    logger.debug("---===> Debugando")
+
+    agenda.each do |a|
+      total += a[:data].values.sum
+      logger.debug(a[:data].values.sum)
+    end
+
+    logger.debug(total)
+
+    logger.debug("Debugando <===---")
+	
     @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
     
     return @dados 
