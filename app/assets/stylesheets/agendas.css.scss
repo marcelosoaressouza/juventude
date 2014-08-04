@@ -1,13 +1,5 @@
-// Place all the styles related to the Agendas controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .select_agendas {
   max-width: 150px;
-}
-
-#select_agendas_indicador {
-  min-width: 400px;
 }
 
 .agenda {
@@ -16,8 +8,7 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  border:1px solid;
-  
+  border:1px solid #C9C9C9;  
 }
 
 #agenda-tema {

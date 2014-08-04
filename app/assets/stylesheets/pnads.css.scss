@@ -1,3 +1,25 @@
-// Place all the styles related to the pnads controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.pnad {
+  height: 110px;
+  background: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border:1px solid #C9C9C9;
+}
+
+.select_pnads {
+  max-width: 150px;
+}
+
+#pnad-tema {
+  float: right;
+  width: 108px;
+  height: 108px;
+  padding-top: 3px;
+}
+
+#pnad-opcoes {
+  width:92%;
+  margin-top: auto;
+  margin-bottom: auto;
+}

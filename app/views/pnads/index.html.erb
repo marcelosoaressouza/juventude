@@ -15,7 +15,7 @@
 
   <div id="pnad-opcoes">
     <br/><br/>
-    <%= select(nil, :id, @objetivo.indicadors.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] if v.fonte == 0 }, { include_blank: "Selecione o Indicador" },
+    <%= select(nil, :id, @objetivo.indicadors.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] if v.fonte == 0 }, { include_blank: "Indicadores" },
                                                                                                                               { :id => 'select_pnads_objetivo', 
                                                                                                                                 :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
