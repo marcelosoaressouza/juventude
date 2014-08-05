@@ -1,5 +1,14 @@
 <br />
 <% if ! dados.empty? %>
+  <% dados.each do |dado| %>
+    <% if dado[:data][0][:data].count == 1 %>
+      <% dados[0][:type] = 'column'%>
+      <script>$(document).ready (function() { $('#select_pnads_tipo_grafico').val('column'); $('#select_pnads_tipo_grafico').attr('disabled', 'disabled'); }); </script>
+    <% else %>
+      <script>$(document).ready (function() { $('#select_pnads_tipo_grafico').removeAttr('disabled'); }); </script>  
+    <% end %>
+  <% end %>
+
   <% dados.each do |value| %>
     <%= pie_chart    value[:data], value[:config] if value[:type] == 'pie'    %>
     <%= bar_chart    value[:data], value[:config] if value[:type] == 'bar'    %>

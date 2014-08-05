@@ -185,6 +185,11 @@ class ApplicationController < ActionController::Base
                                }
                        }
 
+
+    pnad_trata.each do |pnad|
+      pnad[:data].keep_if {|key, value| value.to_f > 0.0 } 
+    end
+
     @dados = [ { id: "dados_pnad", type: params[:tipo_grafico], data: pnad_trata, config: config[:pnad] } ] if pnad_trata
     
     return @dados 

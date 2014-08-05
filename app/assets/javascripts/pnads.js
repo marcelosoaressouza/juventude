@@ -14,6 +14,8 @@ $(document).ready (function() {
     var sexo = $('#select_pnads_sexo').val();
     var cor  = $('#select_pnads_cor').val();
 
+    $('#select_pnads_tipo_grafico').removeAttr('disabled');
+
     if (sexo == 3 || cor == 3)
     {
       $('#select_pnads_univ').val('0');
