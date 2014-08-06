@@ -82,6 +82,7 @@ class ApplicationController < ActionController::Base
                        }
 
     @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
+    @dados = [] if total.to_f == 0.0
     
     return @dados 
   end
