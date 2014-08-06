@@ -14,8 +14,6 @@ $(document).ready (function() {
     var sexo = $('#select_pnads_sexo').val();
     var cor  = $('#select_pnads_cor').val();
 
-    $('#select_pnads_tipo_grafico').removeAttr('disabled');
-
     if (sexo == 3 || cor == 3)
     {
       $('#select_pnads_univ').val('0');
@@ -47,7 +45,7 @@ $(document).ready (function() {
   $('#select_pnads_univ').val('0');
   $('#select_temas').val('');
   $('#select_pnads_objetivo').val('');
-  $('#select_pnads_tipo_grafico').val('line');
+  $('#select_pnads_tipo_grafico').val('column');
   $('#select_pnads_fxid').val('1517');
   $('#select_pnads_area').val('0');
   $('#select_pnads_sexo').val('0');
