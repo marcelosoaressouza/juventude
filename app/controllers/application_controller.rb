@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} <br/>Total de #{total.floor} Respostas"
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} - #{Agenda::RENDA.index(params[:renda].to_i)} <br/>Total de #{total.floor} Respostas"
 
     config[:agenda] = {
                         library:
