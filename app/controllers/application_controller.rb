@@ -13,10 +13,11 @@ class ApplicationController < ActionController::Base
     consulta = ""
     total = 0.0
   
-    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}" ]
+    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154" ]
 
     campos_consulta.delete('area') if params[:area] == '65535'
     campos_consulta.delete('sexo') if params[:sexo] == '65536'
+    campos_consulta.delete('p154') if params[:cor]  == '65537'
 
     campos_consulta.each_with_index do |col, i|
       consulta += " ( #{col} = ? ) "
@@ -33,10 +34,11 @@ class ApplicationController < ActionController::Base
     # fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
 
     Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
-      valores = [ 1, params[:area], params[:sexo], indicador[0] ]
+      valores = [ 1, params[:area], params[:sexo], indicador[0], params[:cor] ]
 
       valores.delete('65535') if params[:area] == '65535'
       valores.delete('65536') if params[:sexo] == '65536'
+      valores.delete('65537') if params[:cor]  == '65537'
 
       if params[:fxid] != '65534'
         dados_agenda = Agenda.where(consulta, *valores)
@@ -64,7 +66,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} <br/>Total de #{total.floor} Respostas"
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} <br/>Total de #{total.floor} Respostas"
 
     config[:agenda] = {
                         library:
@@ -92,9 +94,16 @@ class ApplicationController < ActionController::Base
     pnad_bruto = {}
     config = {}
     consulta = ""
+    fxid = ""
   
     cons = [ "tipo", "area", "fxid", "univ", "cor", "sexo" ]
     valores = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], params[:sexo] ]
+
+    if params[:fxid] == "9999"
+      cons.delete('fxid')
+      valores.delete('9999')
+      fxid = " fxid IN ('1517', '1824', '2529') "
+    end
 
     cons.each_with_index do |col, i|
       consulta += " #{col} = ?"
@@ -108,8 +117,16 @@ class ApplicationController < ActionController::Base
 
       universo.each_with_index do |univ, i|
         valores = [ 1, params[:area], params[:fxid], univ, params[:cor], params[:sexo] ]
+        valores.delete('9999') if params[:fxid] == "9999"
+
         # pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad  = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad  = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
+
         name = Pnad::UNIV.index(univ.to_i)
         resultado = { name: "#{name}", data: pnad }
         pnad_trata.push(resultado)
@@ -117,18 +134,37 @@ class ApplicationController < ActionController::Base
 
     else
       # pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-      pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+      if params[:fxid] == "9999"
+        pnad_bruto = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+      else
+        pnad_bruto = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+      end
+
       pnad_trata = [ { name: 'Dados', data: pnad_bruto } ] if ! pnad_bruto.empty?
     end
 
     if params[:sexo] == '3'
       valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], 1 ]
+      valores.delete('9999') if params[:fxid] == "9999"
+
       # pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-      pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+      if params[:fxid] == "9999"
+        pnad_homens = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+      else
+        pnad_homens = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+      end
 
       valores  = [ 1, params[:area], params[:fxid], params[:univ], params[:cor], 2 ]
+      valores.delete('9999') if params[:fxid] == "9999"
+
       # pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-      pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+      if params[:fxid] == "9999"
+        pnad_mulheres = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+      else
+        pnad_mulheres = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+      end
 
       pnad_trata = [ { name: "#{Pnad::SEXO.index(1)}", data: pnad_homens },
                      { name: "#{Pnad::SEXO.index(2)}", data: pnad_mulheres } ] if (! pnad_homens.empty? || ! pnad_mulheres.empty?)
@@ -137,20 +173,44 @@ class ApplicationController < ActionController::Base
     if params[:cor] == '3'
       if params[:sexo] == '3'
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, 1 ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_homens_brancos = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_homens_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, 2 ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_mulheres_brancos = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_mulheres_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, 1 ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_homens_negros = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_homens_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, 2 ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_mulheres_negros = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_mulheres_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
         pnad_trata = [ { name: "Homens #{Pnad::COR.index(1)}", data: pnad_homens_brancos },
                        { name: "Homens #{Pnad::COR.index(2)}", data: pnad_homens_negros  },
@@ -160,12 +220,24 @@ class ApplicationController < ActionController::Base
 
       else 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 1, params[:sexo] ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_brancos = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_brancos = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
         valores  = [ 1, params[:area], params[:fxid], params[:univ], 2, params[:sexo] ]
+        valores.delete('9999') if params[:fxid] == "9999"
         # pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]} * 100")
-        pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+
+        if params[:fxid] == "9999"
+          pnad_negros = Pnad.where(consulta, *valores).where(fxid).group("ano").order("ano").sum("#{params[:objetivo]}")
+        else
+          pnad_negros = Pnad.where(consulta, *valores).group("ano").order("ano").sum("#{params[:objetivo]}")
+        end
 
 
         pnad_trata = [ { name: "#{Pnad::COR.index(1)}", data: pnad_brancos },

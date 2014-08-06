@@ -5,15 +5,17 @@ class Agenda < ActiveRecord::Base
 
 #  FXID = { "Total" => 65534, "De 15 a 17 Anos" => 1, "De 18 a 21 Anos" => 2, "De 22 a 25 Anos" => 3, "De 26 a 29 Anos" => 4 }
 
-  FXID = { "Total" => 65534,
+  FXID = { "Total (Idade)" => 65534,
            "De 15 a 17 Anos" => 1517,
            "De 18 a 24 Anos" => 1824,
            "De 25 a 29 Anos" => 2529 }
 
-  AREA = { "Total" => 65535, "Urbana" => 1, "Rural" => 2 }
-  SEXO = { "Total" => 65536, "Homens" => 1, "Mulheres" => 2 }
+  AREA = { "Total (Área)" => 65535, "Urbana" => 1, "Rural" => 2 }
+  SEXO = { "Total (Sexo)" => 65536, "Homens" => 1, "Mulheres" => 2 }
 
   TIPO_GRAFICO = { "Coluna" => "column", "Barra" => "bar"}
+
+  COR = { "Total (Cor)" => 65537, "Branca" => 1, "Preta" => 2, "Parda" => 3, "Amarela" => 4, "Indígena" => 5, "Outras" => 6, "Não Respondeu" => 0 }
 
   INDICADOR = {
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 

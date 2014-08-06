@@ -5,7 +5,9 @@ class Pnad < ActiveRecord::Base
 
   #FXID = { "De 15 a 24 Anos" => 1524, "De 15 a 29 Anos" => 1529, "De 18 a 29 Anos" => 1829, "De 15 a 17 Anos" => 1517,
   #         "De 18 a 21 Anos" => 1821, "De 18 a 24 Anos" => 1824, "De 25 a 29 Anos" => 2529 }
-  FXID = { "De 15 a 17 Anos" => 1517,
+
+  FXID = { "Total (Idade)"   => 9999,
+           "De 15 a 17 Anos" => 1517,
            "De 18 a 24 Anos" => 1824,
            "De 25 a 29 Anos" => 2529 }
 
@@ -18,9 +20,9 @@ class Pnad < ActiveRecord::Base
            "Sergipe" => 28, "Tocantins" => 17 }
 
   TIPO = { "Porcentagem" => 1, "Absoluto" => 2 }
-  AREA = { "Total" => 0, "Urbana" => 1, "Rural" => 2 }
-  SEXO = { "Total" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
-  COR  = { "Total" => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2, "Branco(a)s e Amarelo(a)s ou Negro(a)s" => 3 }
+  AREA = { "Total (Área)" => 0, "Urbana" => 1, "Rural" => 2 }
+  SEXO = { "Total (Sexo)" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
+  COR  = { "Total (Cor)" => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2, "Branco(a)s e Amarelo(a)s ou Negro(a)s" => 3 }
 
   TIPO_GRAFICO = { "Coluna" => "column", "Barra" => "bar", "Linha" => "line", "Área" => 'area'}
 
