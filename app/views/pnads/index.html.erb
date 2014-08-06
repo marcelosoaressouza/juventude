@@ -5,48 +5,67 @@
   <!-- <%= link_to "Agenda Juventude", agendas_path %> -->
 </div>
 
-<br /><br />
+<br />
 
 <% if params[:tema] %>
-<div class="pnad">
-  <div id="pnad-tema">
-    <%= image_tag @objetivo.imagem(:thumb), :title => @objetivo.titulo %>
-  </div>
+  <div class="pnad">
+    <div id="pnad-tema">
+      <%= image_tag @objetivo.imagem(:thumb), :title => @objetivo.titulo, width: '80' %>
+    </div>
 
-  <div id="pnad-opcoes">
-    <br/><br/>
-    <%= select(nil, :id, @objetivo.indicadors.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] if v.fonte == 0 }, { include_blank: "Indicadores" },
-                                                                                                                              { :id => 'select_pnads_objetivo', 
+    <div id="pnad-opcoes">
+      <br/><br/>
+      <%= select(nil, :id, @objetivo.indicadors.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] if v.fonte == 0 }, { include_blank: "Indicadores" },
+                                                                                                                                { :id => 'select_pnads_objetivo', 
                                                                                                                                 :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
-                                                                        { :id => 'select_pnads_tipo_grafico', 
-                                                                          :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
+                                                                             { :id => 'select_pnads_tipo_grafico', 
+                                                                               :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::FXID.map { |v| [ v[0], v[1] ] }, {},
-                                                                { :id => 'select_pnads_fxid', 
-                                                                  :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::FXID.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_pnads_fxid', 
+                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::UNIV.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
-                                                                { :multiple => true, :id => 'select_pnads_univ',
-                                                                  :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::UNIV.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
+                                                                  { :multiple => true, :id => 'select_pnads_univ',
+                                                                    :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::AREA.map { |v| [ v[0], v[1] ] }, {},
-                                                                { :id => 'select_pnads_area', 
-                                                                  :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::AREA.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_pnads_area', 
+                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, {},
-                                                                { :id => 'select_pnads_sexo', 
-                                                                  :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_pnads_sexo', 
+                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, {},
-                                                               { :id => 'select_pnads_cor', 
-                                                                 :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, {},
+                                                                    { :id => 'select_pnads_cor', 
+                                                                      :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+    </div>
   </div>
-</div>
 
-<center><div id="dados"></div></center>
+  <center><div id="dados"></div></center>
+<% else %>   
+  <div id="pnads-temas">
+    <center>
+    <div class="dados-titulo">Eixos Temáticos da PNAD de 1992 a 2012</div>
+    <% if ! @temas.empty? %>
+      <table class="table-temas">
+        <% @temas.each_slice(6) do |tema_slice| %>
+          <tr class="tr-temas">
+            <% tema_slice.each do |tema| %>
+              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '80'), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '75'), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+        <br />
+        <h3>Nenhum Tema Encontrado.</h3>
+    <% end %>
+    </center>
+  </div>
 
-<% else %>
-    <br/><br/><center><h2><%= link_to "Escolha um Tema", root_path %></h2></center>
 <% end %>

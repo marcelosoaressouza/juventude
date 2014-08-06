@@ -53,6 +53,7 @@ a:hover {
 .dados-options {
   float: left;
   font-size: 10px;
+  font-weight:900;
 }
 
 #dados-geral{ 
@@ -122,4 +123,10 @@ a:hover {
   text-align: justify;
   border:1px solid #C9C9C9;
   padding: 12px 12px 12px 12px;
+}
+
+.dados-titulo {
+  font-size: 19px;
+  font-weight:900;  
+  padding: 8px 0 8px 0;
 }

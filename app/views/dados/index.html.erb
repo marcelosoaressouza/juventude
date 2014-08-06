@@ -16,7 +16,7 @@
 
   <div id="dados-temas">
     <center>
-    <h3>Eixos Temáticos</h3>
+    <div class="dados-titulo">Eixos Temáticos</div>
     <% if ! @temas.empty? %>
       <table class="table-temas">
         <% @temas.each_slice(4) do |tema_slice| %>
@@ -42,12 +42,12 @@
 
   <div id="dados-fonte">
     <center>
-    <h3>Fonte</h3>
+    <div class="dados-titulo">Fonte</div>
       <table class="table-fontes">
           <tr class="tr-fontes">
               <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '150'), pnads_path %></td>
               <td class="td-fontes"><%= link_to image_tag('participatorio.png'), agendas_path %></td>
-              <td class="td-fontes"><%= link_to image_tag('IBGE.jpg', width: '150') %></td>
+              <td class="td-fontes"><%= image_tag('IBGE.jpg', width: '150') %></td>
           </tr>
       </table>
   </div>
