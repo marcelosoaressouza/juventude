@@ -17,6 +17,8 @@ class Agenda < ActiveRecord::Base
 
   COR = { "Total (Cor)" => 65537, "Branca" => 1, "Preta" => 2, "Parda" => 3, "Amarela" => 4, "Indígena" => 5, "Outras" => 6, "Não Respondeu" => 0 }
 
+  RENDA = { "Total (Renda)" => 65538, "Até R$ 678,00" => 1, "Mais de R$ 678,00 a R$ 1.356,00" => 2, "Mais de R$ 1.356,00 a R$ 2.034,00" => 3, "Mais de R$ 2.034,00 a R$ 2.712,00" => 4, "Mais de R$ 2.712,00 a R$ 3.390,00" => 5, "Mais de R$ 3.390,00 a R$ 4.746,00" => 6, "Mais de R$ 4.746,00 a R$ 6.780,00" => 7, "Mais de R$ 6.780,00 a R$ 10.170,00" => 8, "Mais de R$ 10.170,00 a R$ 13.560,00" => 9, "Mais de R$ 13.560,00 a R$ 20.340,00" => 10, "Mais de R$ 20.340,00 a R$ 33.900,00" => 11, "Mais de R$ 33.900,00" => 12, "não tem renda" => 13, "não sabe" => 14, "recusa" => 15 }
+
   INDICADOR = {
                "p1" => { "Questão"   => "Vou precisar mostrar algumas coisas para você ler, você sabe ler?", 
                          "Respostas" => { "1" => "Sim", "2" => "Não" }

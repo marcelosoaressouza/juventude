@@ -11,9 +11,10 @@ $(document).ready (function() {
     var area = $('#select_agendas_area').val();
     var sexo = $('#select_agendas_sexo').val();
     var cor  = $('#select_agendas_cor').val();
+    var renda  = $('#select_agendas_renda').val();
 
     if (indicador) {
-      var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
+      var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor + '&renda=' + renda;
       $.ajax({ url: '/agendas/show', data: params });
     }
     else {
@@ -33,4 +34,5 @@ $(document).ready (function() {
   $('#select_agendas_area').val('65535');
   $('#select_agendas_sexo').val('65536');
   $('#select_agendas_cor').val('65537');
+  $('#select_agendas_renda').val('65538');
 });

@@ -36,6 +36,10 @@
                                                                     { :id => 'select_agendas_cor', 
                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
+    <%= select(nil, :id, Agenda::RENDA.map { |v| [ v[0], v[1] ] }, {},
+                                                                    { :id => 'select_agendas_renda', 
+                                                                      :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
   </div>
 </div>
 
