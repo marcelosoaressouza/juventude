@@ -1,10 +1,9 @@
 .select_agendas {
   max-width: 150px;
-  text-align: center;
 }
 
 .agenda {
-  height: 105px;
+  height: 100px;
   background: #fff;
   margin-left: auto;
   margin-right: auto;
@@ -14,7 +13,8 @@
 
 #agenda-tema {
   float: right;
-  width: 105px;
+  width: 100px;
+  padding-top: 8px;
 }
 
 #agenda-opcoes {

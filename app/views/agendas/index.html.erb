@@ -14,7 +14,7 @@
 
   <div id="agenda-opcoes">
     <br/><br/>
-    <%= select(nil,  :id, @indicador.indicadors.where(fonte: 1).collect { |v| [ Agenda::INDICADOR["#{v.objetivo}"]["Questão"], v.objetivo ] },
+    <%= select(nil,  :id, @indicador.indicadors.where(fonte: 1).collect { |v| [ Agenda::INDICADOR["#{v.objetivo}"]["Questão"].truncate(100), v.objetivo ] },
                                                                                     { include_blank: "Indicadores" },
                                                                                     { :id => 'select_agendas_indicador', 
                                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
@@ -50,7 +50,7 @@
 <% else %>   
   <div id="agenda-temas">
     <center>
-    <td class="td-fontes"><%= link_to image_tag('participatorio-transparente.png', width: 100), agendas_path %></td>
+    <td class="td-fontes"><%= image_tag('participatorio-transparente.png', width: 100) %></td>
 
     <div class="dados-titulo">Agenda da Juventude</div>
     <% if ! @temas.empty? %>

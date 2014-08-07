@@ -70,7 +70,7 @@ a:hover {
 }
 
 #dados-fonte {
-  width: 50%;
+  width: 48%;
   float: right;
   margin-left: auto;
   margin-right: auto; 
@@ -129,4 +129,5 @@ a:hover {
   font-size: 19px;
   font-weight:900;  
   padding: 8px 0 8px 0;
+  max-width: 250px;
 }
