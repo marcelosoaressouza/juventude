@@ -15,14 +15,14 @@ $(document).ready (function() {
 
     if (indicador) {
       var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor + '&renda=' + renda;
-      $.ajax({ url: '/agendas/show', data: params });
+      $.ajax({ url: '/agenda/show', data: params });
     }
     else {
       if (!indicador) $('#select_agendas_indicador').css('border', '2px solid #EC1C23');
 
       $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b>');
 
-      $.ajax({ url: '/agendas', data: params });
+      $.ajax({ url: '/agenda', data: params });
 
     }
   })

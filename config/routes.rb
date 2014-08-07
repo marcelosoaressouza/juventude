@@ -1,7 +1,5 @@
 Juventude::Application.routes.draw do
 
-  resources :agendas
-
   resources :dados do
     collection do
       get :fontes
@@ -10,6 +8,7 @@ Juventude::Application.routes.draw do
 
   resources :temas
   resources :pnads,      :path => :pnad
+  resources :agendas, :path => :agenda
   resources :indicadors, :path => :indicadores
 
   root :to => 'dados#index'

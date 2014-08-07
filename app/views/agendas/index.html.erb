@@ -34,12 +34,12 @@
                                                                      { :id => 'select_agendas_sexo', 
                                                                        :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-    <%= select(nil, :id, Agenda::COR.map { |v| [ v[0], v[1] ] }, {},
-                                                                    { :id => 'select_agendas_cor', 
-                                                                      :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
-
     <%= select(nil, :id, Agenda::RENDA.map { |v| [ v[0], v[1] ] }, {},
                                                                     { :id => 'select_agendas_renda', 
+                                                                      :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+    <%= select(nil, :id, Agenda::COR.map { |v| [ v[0], v[1] ] }, {},
+                                                                    { :id => 'select_agendas_cor', 
                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
   </div>
@@ -52,7 +52,7 @@
     <center>
     <td class="td-fontes"><%= image_tag('participatorio-transparente.png', width: 100) %></td>
 
-    <div class="dados-titulo">Agenda da Juventude</div>
+    <div class="dados-titulo">Eixos Temáticos da Agenda da Juventude</div>
     <% if ! @temas.empty? %>
       <table class="table-temas">
         <% @temas.each_slice(6) do |tema_slice| %>
