@@ -32,13 +32,13 @@
                                                                      { :id => 'select_pnads_area', 
                                                                        :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-      <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, {},
-                                                                     { :id => 'select_pnads_sexo', 
-                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
-
       <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, {},
                                                                     { :id => 'select_pnads_cor', 
                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+
+      <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, {},
+                                                                     { :id => 'select_pnads_sexo', 
+                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
     </div>
   </div>
 
