@@ -2,7 +2,6 @@
 
 <div class="dados-options">
   <%= link_to "Página Principal", dados_path %>
-  <!-- <%= link_to "Agenda Juventude", agendas_path %> -->
 </div>
 
 <br />
@@ -15,9 +14,7 @@
 
     <div id="pnad-opcoes">
       <br/><br/>
-      <%= select(nil, :id, @objetivo.indicadors.collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] if v.fonte == 0 }, { include_blank: "Indicadores" },
-                                                                                                                                { :id => 'select_pnads_objetivo', 
-                                                                                                                                :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, @objetivo.indicadors.where(fonte: 0).collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Indicadores" }, { :id => 'select_pnads_objetivo', :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
       <%= select(nil, :id, Pnad::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
                                                                              { :id => 'select_pnads_tipo_grafico', 
@@ -49,6 +46,8 @@
 <% else %>   
   <div id="pnads-temas">
     <center>
+    <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '150'), pnads_path %></td>
+    <br/><br/>
     <div class="dados-titulo">Eixos Temáticos da PNAD de 1992 a 2012</div>
     <% if ! @temas.empty? %>
       <table class="table-temas">

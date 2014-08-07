@@ -23,7 +23,7 @@
           <tr class="tr-temas">
             <% tema_slice.each do |tema| %>
               <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '50'), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
-              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '50'), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '50'), fontes_dados_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
             <% end %>
           </tr>
         <% end %>

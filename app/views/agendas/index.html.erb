@@ -6,16 +6,18 @@
 
 <br />
 
-<div class="agenda">
+<% if params[:tema] %>
+  <div class="agenda">
   <div id="agenda-tema">
-    <%#= image_tag @indicador.imagem(:thumb) %>
+      <%= image_tag @indicador.imagem(:thumb), :title => @indicador.titulo, width: '80' %>
   </div>
 
   <div id="agenda-opcoes">
     <br/><br/>
-    <%= select(nil, :id, Agenda::INDICADOR.map { |v| [ "#{v[0]}) #{v[1]["Questão"].truncate(96)}", v[0] ] }, { include_blank: "Indicadores" },
-                                                                                  { :id => 'select_agendas_indicador', 
-                                                                                  :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+    <%= select(nil,  :id, @indicador.indicadors.where(fonte: 1).collect { |v| [ Agenda::INDICADOR["#{v.objetivo}"]["Questão"], v.objetivo ] },
+                                                                                    { include_blank: "Indicadores" },
+                                                                                    { :id => 'select_agendas_indicador', 
+                                                                                      :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
     <%= select(nil, :id, Agenda::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
                                                                              { :id => 'select_agendas_tipo_grafico', 
@@ -44,3 +46,29 @@
 </div>
 
 <center><div id="dados"></div></center>
+
+<% else %>   
+  <div id="agenda-temas">
+    <center>
+    <td class="td-fontes"><%= link_to image_tag('participatorio-transparente.png', width: 100), agendas_path %></td>
+
+    <div class="dados-titulo">Agenda da Juventude</div>
+    <% if ! @temas.empty? %>
+      <table class="table-temas">
+        <% @temas.each_slice(6) do |tema_slice| %>
+          <tr class="tr-temas">
+            <% tema_slice.each do |tema| %>
+              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '80'), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '75'), agendas_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+        <br />
+        <h3>Nenhum Tema Encontrado.</h3>
+    <% end %>
+    </center>
+  </div>
+
+<% end %>

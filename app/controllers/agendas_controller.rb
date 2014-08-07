@@ -1,5 +1,7 @@
 class AgendasController < ApplicationController
   def index
+    @temas = Tema.all
+
     if (params[:tema])
       @indicador = Tema.find(params[:tema])
     end

@@ -22,4 +22,7 @@ class DadosController < ApplicationController
     end
   end
 
+  def fontes
+
+  end
 end
