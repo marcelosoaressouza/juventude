@@ -12,9 +12,10 @@ $(document).ready (function() {
     var sexo = $('#select_agendas_sexo').val();
     var cor  = $('#select_agendas_cor').val();
     var renda  = $('#select_agendas_renda').val();
+    var escolaridade  = $('#select_agendas_escolaridade').val();
 
     if (indicador) {
-      var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor + '&renda=' + renda;
+      var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor + '&renda=' + renda  + '&escolaridade=' + escolaridade;
       $.ajax({ url: '/agenda/show', data: params });
     }
     else {
@@ -35,4 +36,6 @@ $(document).ready (function() {
   $('#select_agendas_sexo').val('65536');
   $('#select_agendas_cor').val('65537');
   $('#select_agendas_renda').val('65538');
+  $('#select_agendas_escolaridade').val('65539');
+
 });

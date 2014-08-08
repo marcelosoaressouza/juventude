@@ -13,12 +13,13 @@ class ApplicationController < ActionController::Base
     consulta = ""
     total = 0.0
   
-    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "rendaf" ]
+    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "rendaf", "escol_agreg" ]
 
     campos_consulta.delete('area') if params[:area]    == '65535'
     campos_consulta.delete('sexo') if params[:sexo]    == '65536'
     campos_consulta.delete('p154') if params[:cor]     == '65537'
     campos_consulta.delete('rendaf') if params[:renda] == '65538'
+    campos_consulta.delete('escol_agreg') if params[:escolaridade] == '65539'
 
     campos_consulta.each_with_index do |col, i|
       consulta += " ( #{col} = ? ) "
@@ -35,12 +36,13 @@ class ApplicationController < ActionController::Base
     # fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
 
     Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
-      valores = [ 1, params[:area], params[:sexo], indicador[0], params[:cor], params[:renda] ]
+      valores = [ 1, params[:area], params[:sexo], indicador[0], params[:cor], params[:renda], params[:escolaridade] ]
 
       valores.delete('65535') if params[:area] == '65535'
       valores.delete('65536') if params[:sexo] == '65536'
       valores.delete('65537') if params[:cor]  == '65537'
       valores.delete('65538') if params[:renda]  == '65538'
+      valores.delete('65539') if params[:escolaridade]  == '65539'
 
       if params[:fxid] != '65534'
         dados_agenda = Agenda.where(consulta, *valores)
@@ -68,7 +70,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} - #{Agenda::RENDA.index(params[:renda].to_i)} <br/>Total de #{total.floor} Respostas"
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} - #{Agenda::RENDA.index(params[:renda].to_i)} - #{Agenda::ESCOLARIDADE.index(params[:escolaridade].to_i)} <br/>Total de #{total.floor} Respostas"
 
     config[:agenda] = {
                         library:
