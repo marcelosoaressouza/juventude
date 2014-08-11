@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
       end
       logger.debug("--==>> #{dados_agenda} #{indicador[0]}")
 
-      agenda << { name: "#{indicador[1]} (#{dados_agenda[indicador[0].to_i]})", data: dados_agenda } if ! dados_agenda.empty?
+      agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
     end
 
     agenda.each do |a|
