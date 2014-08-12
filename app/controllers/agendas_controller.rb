@@ -20,4 +20,91 @@ class AgendasController < ApplicationController
       format.js
     end
   end
+
+  #
+  # Dados da Agenda da Juventude
+  #
+  def getAgendas (params)
+    @dados   = []
+    campos_consulta = []
+    valores  = []
+    agenda   = []
+    config   = {}
+    consulta = ""
+    total = 0.0
+  
+    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "rendaf", "escol_agreg" ]
+
+    campos_consulta.delete('area') if params[:area]    == '65535'
+    campos_consulta.delete('sexo') if params[:sexo]    == '65536'
+    campos_consulta.delete('p154') if params[:cor]     == '65537'
+    campos_consulta.delete('rendaf') if params[:renda] == '65538'
+    campos_consulta.delete('escol_agreg') if params[:escolaridade] == '65539'
+
+    campos_consulta.each_with_index do |col, i|
+      consulta += " ( #{col} = ? ) "
+      consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
+    end
+
+    fxid = "idade1 BETWEEN 15 AND 17" if params[:fxid] == "1517"
+    fxid = "idade1 BETWEEN 18 AND 24" if params[:fxid] == "1824"
+    fxid = "idade1 BETWEEN 25 AND 29" if params[:fxid] == "2529"
+
+    # fxid = "idade1 BETWEEN 15 AND 24" if params[:fxid] == "1524"
+    # fxid = "idade1 BETWEEN 15 AND 29" if params[:fxid] == "1529"
+    # fxid = "idade1 BETWEEN 18 AND 29" if params[:fxid] == "1829"
+    # fxid = "idade1 BETWEEN 18 AND 21" if params[:fxid] == "1821"
+
+    Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
+      valores = [ 1, params[:area], params[:sexo], indicador[0], params[:cor], params[:renda], params[:escolaridade] ]
+
+      valores.delete('65535') if params[:area] == '65535'
+      valores.delete('65536') if params[:sexo] == '65536'
+      valores.delete('65537') if params[:cor]  == '65537'
+      valores.delete('65538') if params[:renda]  == '65538'
+      valores.delete('65539') if params[:escolaridade]  == '65539'
+
+      if params[:fxid] != '65534'
+        dados_agenda = Agenda.where(consulta, *valores)
+                             .where(fxid)
+                             .group("#{params[:indicador]}")
+                             .sum(params[:indicador])
+      else
+        dados_agenda = Agenda.where(consulta, *valores)
+                             .group("#{params[:indicador]}")
+                             .sum(params[:indicador])
+      end
+
+      agenda << { name: "#{indicador[1]}", data: dados_agenda } if ! dados_agenda.empty?
+    end
+
+    agenda.each do |a|
+      total += a[:data].values.sum
+    end
+
+    agenda.each do |a|
+      a[:data].each do |key,value|
+        value = value * 100 / total
+        a[:data][key] = value
+      end
+    end
+
+    titulo = "#{Agenda::INDICADOR[params[:indicador]]["Questão"]} - #{Agenda::FXID.index(params[:fxid].to_i)} - #{Agenda::AREA.index(params[:area].to_i)} - #{Agenda::SEXO.index(params[:sexo].to_i)} - #{Agenda::COR.index(params[:cor].to_i)} - #{Agenda::RENDA.index(params[:renda].to_i)} - #{Agenda::ESCOLARIDADE.index(params[:escolaridade].to_i)} <br/>Total de #{total.floor} Respostas"
+
+    config[:agenda] = {
+                        library:
+                               {
+                                title: { text: titulo },
+                                subtitle: { text: 'Agenda da Juventude' },
+                                xAxis: { title: { text: 'Respostas (%)' }, labels: { enabled: false } },
+                                yAxis: { min: 0, max: 100 },
+                                tooltip: { headerFormat: '{series.name}: ', pointFormat: '<b>{point.y: .2f}%</b>' }
+                               }
+                       }
+
+    @dados = [ { id: "dados_agenda", type: params[:tipo_grafico], data: agenda, config: config[:agenda] } ] if agenda
+    @dados = [] if total.to_f == 0.0
+    
+    return @dados 
+  end
 end
