@@ -38,4 +38,10 @@ $(document).ready (function() {
   $('#select_agendas_renda').val('65538');
   $('#select_agendas_escolaridade').val('65539');
 
+  $('#select_agendas_cor').multiselect({classes: 'agendas_cor'});
+  $('#select_agendas_cor').multiselect('enable');
+
+  $('#select_agendas_sexo').multiselect({classes: 'agendas_sexo'});
+  $('#select_agendas_sexo').multiselect('enable');
+
 });
