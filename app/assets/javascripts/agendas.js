@@ -5,6 +5,17 @@ $(document).ready (function() {
   $('.select_agendas').change (function() {
     $('#select_agendas_indicador').css('border', '1px solid #fff');
 
+    if ($('#select_agendas_fxid').val().length > 1) {
+      vFxid = $('#select_agendas_fxid').val();
+
+      if (vFxid.indexOf('65534') == 0) {
+        vFxid.splice(vFxid.indexOf('65534'), 1);
+      }
+
+      $('#select_agendas_fxid').val(vFxid);
+      $('#select_agendas_fxid').multiselect('refresh');
+    }
+
     var indicador = $('#select_agendas_indicador').val();
     var tipo_grafico = $('#select_agendas_tipo_grafico').val();
     var fxid  = $('#select_agendas_fxid').val();
