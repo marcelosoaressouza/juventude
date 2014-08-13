@@ -45,11 +45,7 @@ class AgendasController < ApplicationController
       consulta += " ( #{col} = ? ) "
       consulta += " AND " if ! campos_consulta.to_a[i+1].nil?
     end
-
-    fxid = "idade1 BETWEEN 15 AND 17" if params[:fxid] == "1517"
-    fxid = "idade1 BETWEEN 18 AND 24" if params[:fxid] == "1824"
-    fxid = "idade1 BETWEEN 25 AND 29" if params[:fxid] == "2529"
-  
+ 
 #    if params[:cor] =~ /,/ || params[:sexo] =~ /,/
       fxid  =  params[:fxid].split(',')
       area  =  params[:area].split(',')
@@ -68,10 +64,13 @@ class AgendasController < ApplicationController
             renda.each_with_index do |r, i4|
               escolaridade.each_with_index do |e, i5|
                 cor.each_with_index do |c, i6|
-                  Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador| 
+                  Agenda::INDICADOR[params[:indicador]]["Respostas"].each do |indicador|
                     logger.debug("... Contando F: #{f} A: #{a} S: #{s} R: #{r} E: #{e} C: #{c} e indicador #{indicador[0]}")
 
-                    # [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "rendaf", "escol_agreg" ]
+                    fc = "idade1 BETWEEN 15 AND 17" if f == "1517"
+                    fc = "idade1 BETWEEN 18 AND 24" if f == "1824"
+                    fc = "idade1 BETWEEN 25 AND 29" if f == "2529"
+
                     valores = [ 1, a, s, indicador[0], c, r, e ]
 
                     valores.delete('65535') if params[:area] == '65535'
@@ -80,13 +79,22 @@ class AgendasController < ApplicationController
                     valores.delete('65538') if params[:renda]  == '65538'
                     valores.delete('65539') if params[:escolaridade]  == '65539'
 
-                    if params[:fxid] != '65534'
-                      dados_agenda = Agenda.where(consulta, *valores).where(fxid).group("#{params[:indicador]}").sum(params[:indicador])
+                    logger.debug("* FXID #{f}")
+
+                    if f != '65534'
+                      dados_agenda = Agenda.where(consulta, *valores).where(fc).group("#{params[:indicador]}").sum(params[:indicador])
                     else
                       dados_agenda = Agenda.where(consulta, *valores).group("#{params[:indicador]}").sum(params[:indicador])
                     end
 
-                    label = "#{Agenda::SEXO.index(s.to_i)} - #{indicador[1]}"
+                    label = "#{indicador[1]}"
+                    label = label + " - #{Agenda::FXID.index(f.to_i)}" if fxid.size > 1
+                    label = label + " - #{Agenda::AREA.index(a.to_i)}" if area.size > 1
+                    label = label + " - #{Agenda::SEXO.index(s.to_i)}" if sexo.size > 1
+                    label = label + " - #{Agenda::ESCOLARIDADE.index(e.to_i)}" if escolaridade.size > 1
+                    label = label + " - #{Agenda::COR.index(c.to_i)}" if cor.size > 1
+
+                    logger.debug("* Dados #{dados_agenda}")
 
                     agenda << { name: "#{label}", data: dados_agenda } if ! dados_agenda.empty?
 
@@ -97,8 +105,7 @@ class AgendasController < ApplicationController
           end
         end
       end
-#    else
-   
+#    else  
 
     agenda.each do |a|
       total += a[:data].values.sum

@@ -7,12 +7,12 @@ $(document).ready (function() {
 
     var indicador = $('#select_agendas_indicador').val();
     var tipo_grafico = $('#select_agendas_tipo_grafico').val();
-    var fxid = $('#select_agendas_fxid').val();
-    var area = $('#select_agendas_area').val();
-    var sexo = $('#select_agendas_sexo').val();
-    var cor  = $('#select_agendas_cor').val();
-    var renda  = $('#select_agendas_renda').val();
-    var escolaridade  = $('#select_agendas_escolaridade').val();
+    var fxid  = $('#select_agendas_fxid').val();
+    var area  = $('#select_agendas_area').val();
+    var sexo  = $('#select_agendas_sexo').val();
+    var cor   = $('#select_agendas_cor').val();
+    var renda = $('#select_agendas_renda').val();
+    var escolaridade = $('#select_agendas_escolaridade').val();
 
     if (indicador) {
       var params = 'indicador=' + indicador + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor + '&renda=' + renda  + '&escolaridade=' + escolaridade;
@@ -38,10 +38,19 @@ $(document).ready (function() {
   $('#select_agendas_renda').val('65538');
   $('#select_agendas_escolaridade').val('65539');
 
-  $('#select_agendas_cor').multiselect({classes: 'agendas_cor'});
-  $('#select_agendas_cor').multiselect('enable');
+  $('#select_agendas_fxid').multiselect({classes: 'agendas_fxid'});
+  $('#select_agendas_fxid').multiselect('enable');
+
+  $('#select_agendas_area').multiselect({classes: 'agendas_area'});
+  $('#select_agendas_area').multiselect('enable');
 
   $('#select_agendas_sexo').multiselect({classes: 'agendas_sexo'});
   $('#select_agendas_sexo').multiselect('enable');
+
+  $('#select_agendas_escolaridade').multiselect({classes: 'agendas_escolaridade'});
+  $('#select_agendas_escolaridade').multiselect('enable');
+
+  $('#select_agendas_cor').multiselect({classes: 'agendas_cor'});
+  $('#select_agendas_cor').multiselect('enable');
 
 });

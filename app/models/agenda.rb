@@ -3,8 +3,6 @@ class Agenda < ActiveRecord::Base
 
   FONTE = { "AGENDA" => 1 }
 
-#  FXID = { "Total" => 65534, "De 15 a 17 Anos" => 1, "De 18 a 21 Anos" => 2, "De 22 a 25 Anos" => 3, "De 26 a 29 Anos" => 4 }
-
   FXID = { "Total (Idade)" => 65534,
            "De 15 a 17 Anos" => 1517,
            "De 18 a 24 Anos" => 1824,
