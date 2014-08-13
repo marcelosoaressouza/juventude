@@ -38,19 +38,22 @@ $(document).ready (function() {
   $('#select_agendas_renda').val('65538');
   $('#select_agendas_escolaridade').val('65539');
 
-  $('#select_agendas_fxid').multiselect({classes: 'agendas_fxid'});
+  $('#select_agendas_fxid').multiselect({classes: 'agendas_fxid', selectedText: '# F. Etária'});
   $('#select_agendas_fxid').multiselect('enable');
 
-  $('#select_agendas_area').multiselect({classes: 'agendas_area'});
+  $('#select_agendas_area').multiselect({classes: 'agendas_area', selectedText: '# Área'});
   $('#select_agendas_area').multiselect('enable');
 
-  $('#select_agendas_sexo').multiselect({classes: 'agendas_sexo'});
+  $('#select_agendas_sexo').multiselect({classes: 'agendas_sexo', selectedText: '# Sexo'});
   $('#select_agendas_sexo').multiselect('enable');
 
-  $('#select_agendas_escolaridade').multiselect({classes: 'agendas_escolaridade'});
+  $('#select_agendas_renda').multiselect({classes: 'agendas_renda', selectedText: '# Renda'});
+  $('#select_agendas_renda').multiselect('enable');
+
+  $('#select_agendas_escolaridade').multiselect({classes: 'agendas_escolaridade', selectedText: '# Educação'});
   $('#select_agendas_escolaridade').multiselect('enable');
 
-  $('#select_agendas_cor').multiselect({classes: 'agendas_cor'});
+  $('#select_agendas_cor').multiselect({classes: 'agendas_cor', selectedText: '# Cor'});
   $('#select_agendas_cor').multiselect('enable');
 
 });

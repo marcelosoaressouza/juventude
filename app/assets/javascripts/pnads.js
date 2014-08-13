@@ -51,7 +51,7 @@ $(document).ready (function() {
   $('#select_pnads_sexo').val('0');
   $('#select_pnads_cor').val('0');
 
-  $('#select_pnads_univ').multiselect({classes: 'pnads_univ'});
+  $('#select_pnads_univ').multiselect({classes: 'pnads_univ', selectedText: '# Região'});
   $('#select_pnads_univ').multiselect('enable');
 
   // Antigo - Ajax

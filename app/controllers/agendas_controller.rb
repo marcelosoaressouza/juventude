@@ -33,12 +33,12 @@ class AgendasController < ApplicationController
     consulta = ""
     total = 0.0
 
-    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "rendaf", "escol_agreg" ]
+    campos_consulta = [ "tipo", "area", "sexo", "#{params[:indicador]}", "p154", "renda_ext", "escol_agreg" ]
 
     campos_consulta.delete('area')   if params[:area]  == '65535'
     campos_consulta.delete('sexo')   if params[:sexo]  == '65536'
     campos_consulta.delete('p154')   if params[:cor]   == '65537'
-    campos_consulta.delete('rendaf') if params[:renda] == '65538'
+    campos_consulta.delete('renda_ext') if params[:renda] == '65538'
     campos_consulta.delete('escol_agreg') if params[:escolaridade] == '65539'
 
     campos_consulta.each_with_index do |col, i|
@@ -92,7 +92,8 @@ class AgendasController < ApplicationController
                     label = label + " - #{Agenda::AREA.index(a.to_i)}" if area.size > 1
                     label = label + " - #{Agenda::SEXO.index(s.to_i)}" if sexo.size > 1
                     label = label + " - #{Agenda::ESCOLARIDADE.index(e.to_i)}" if escolaridade.size > 1
-                    label = label + " - #{Agenda::COR.index(c.to_i)}" if cor.size > 1
+                    label = label + " - #{Agenda::RENDA.index(r.to_i)}" if renda.size > 1
+                    label = label + " - #{Agenda::COR.index(c.to_i)}"   if cor.size > 1
 
                     logger.debug("* Dados #{dados_agenda}")
 
