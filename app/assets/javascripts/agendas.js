@@ -1,19 +1,47 @@
 $(document).ready (function() {
-  //
-  // Dados Agenda
-  //
   $('.select_agendas').change (function() {
     $('#select_agendas_indicador').css('border', '1px solid #fff');
 
     if ($('#select_agendas_fxid').val().length > 1) {
       vFxid = $('#select_agendas_fxid').val();
-
-      if (vFxid.indexOf('65534') == 0) {
-        vFxid.splice(vFxid.indexOf('65534'), 1);
-      }
-
+      if (vFxid.indexOf('65534') == 0) vFxid.splice(vFxid.indexOf('65534'), 1);
       $('#select_agendas_fxid').val(vFxid);
       $('#select_agendas_fxid').multiselect('refresh');
+    }
+
+    if ($('#select_agendas_area').val().length > 1) {
+      vArea = $('#select_agendas_area').val();
+      if (vArea.indexOf('65535') == 0) vArea.splice(vArea.indexOf('65535'), 1);
+      $('#select_agendas_area').val(vArea);
+      $('#select_agendas_area').multiselect('refresh');
+    }
+
+    if ($('#select_agendas_sexo').val().length > 1) {
+      vSexo = $('#select_agendas_sexo').val();
+      if (vSexo.indexOf('65536') == 0) vSexo.splice(vSexo.indexOf('65536'), 1);
+      $('#select_agendas_sexo').val(vSexo);
+      $('#select_agendas_sexo').multiselect('refresh');
+    }
+
+    if ($('#select_agendas_cor').val().length > 1) {
+      vCor = $('#select_agendas_cor').val();
+      if (vCor.indexOf('65537') == 0) vCor.splice(vCor.indexOf('65537'), 1);
+      $('#select_agendas_cor').val(vCor);
+      $('#select_agendas_cor').multiselect('refresh');
+    }
+
+    if ($('#select_agendas_renda').val().length > 1) {
+      vRenda = $('#select_agendas_renda').val();
+      if (vRenda.indexOf('65538') == 0) vRenda.splice(vRenda.indexOf('65538'), 1);
+      $('#select_agendas_renda').val(vRenda);
+      $('#select_agendas_renda').multiselect('refresh');
+    }
+
+    if ($('#select_agendas_escolaridade').val().length > 1) {
+      vEscolaridade = $('#select_agendas_escolaridade').val();
+      if (vEscolaridade.indexOf('65539') == 0) vEscolaridade.splice(vEscolaridade.indexOf('65539'), 1);
+      $('#select_agendas_escolaridade').val(vEscolaridade);
+      $('#select_agendas_escolaridade').multiselect('refresh');
     }
 
     var indicador = $('#select_agendas_indicador').val();
@@ -31,11 +59,8 @@ $(document).ready (function() {
     }
     else {
       if (!indicador) $('#select_agendas_indicador').css('border', '2px solid #EC1C23');
-
       $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b>');
-
       $.ajax({ url: '/agenda', data: params });
-
     }
   })
 

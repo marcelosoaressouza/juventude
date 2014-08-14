@@ -27,7 +27,7 @@ $.widget("ech.multiselect", {
 
 	// default options
 	options: {
-		header: true,
+		header: false,
 		height: 175,
 		minWidth: 225,
 		classes: '',
