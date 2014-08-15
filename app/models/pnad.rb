@@ -11,18 +11,18 @@ class Pnad < ActiveRecord::Base
            "De 18 a 24 Anos" => 1824,
            "De 25 a 29 Anos" => 2529 }
 
-  UNIV = { "Brasil" => 0, "Região Norte" => 10, "Região Nordeste" => 20, "Região Sudeste" => 30, "Regiao Sul" => 40,
-           "Regiao Centro Oeste" => 49, "Acre" => 12, "Alagoas" => 27, "Amapá" => 16, "Amazonas" => 13, "Bahia" => 29,
+  UNIV = { "Brasil" => 0, "Norte" => 10, "Nordeste" => 20, "Sudeste" => 30, "Sul" => 40,
+           "Centro Oeste" => 49, "Acre" => 12, "Alagoas" => 27, "Amapá" => 16, "Amazonas" => 13, "Bahia" => 29,
            "Ceará" => 23, "Distrito Federal" => 53, "Espirito Santo" => 32, "Goiás" => 52, "Maranhão" => 21,
            "Mato Grosso" => 51, "Mato Grosso do Sul" => 50, "Minas Gerais" => 31, "Pará" => 15, "Paraíba" => 25,
            "Paraná" => 41, "Pernambuco" => 26, "Piauí" => 22, "Rio de Janeiro" => 33, "Rio Grande do Norte" => 24,
            "Rio Grande do Sul" => 43, "Rondônia" => 11, "Roraima" => 14, "Santa Catarina" => 42, "São Paulo" => 35,
            "Sergipe" => 28, "Tocantins" => 17 }
 
-  TIPO = { "Porcentagem" => 1, "Absoluto" => 2 }
-  AREA = { "Total (Área)" => 0, "Urbana" => 1, "Rural" => 2 }
-  SEXO = { "Total (Sexo)" => 0, "Homens" => 1, "Mulheres" => 2, "Homens e Mulheres" => 3 }
-  COR  = { "Total (Cor)" => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2, "Branco(a)s e Amarelo(a)s ou Negro(a)s" => 3 }
+  TIPO = { "Porcentagem"  => 1, "Absoluto" => 2 }
+  AREA = { "Total (Área)" => 0, "Urbana"   => 1, "Rural"    => 2 }
+  SEXO = { "Total (Sexo)" => 0, "Homens"   => 1, "Mulheres" => 2}
+  COR  = { "Total (Cor)"  => 0, "Branco(a)s ou Amarelo(a)s" => 1, "Negro(a)s" => 2 }
 
   TIPO_GRAFICO = { "Coluna" => "column", "Barra" => "bar", "Linha" => "line", "Área" => 'area'}
 

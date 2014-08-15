@@ -17,28 +17,28 @@
       <%= select(nil, :id, @objetivo.indicadors.where(fonte: 0).collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Indicadores" }, { :id => 'select_pnads_objetivo', :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
       <%= select(nil, :id, Pnad::TIPO_GRAFICO.map { |v| [ v[0], v[1] ] }, {},
-                                                                             { :id => 'select_pnads_tipo_grafico', 
-                                                                               :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+                                                                          { :id => 'select_pnads_tipo_grafico', 
+                                                                            :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-      <%= select(nil, :id, Pnad::FXID.map { |v| [ v[0], v[1] ] }, {},
-                                                                     { :id => 'select_pnads_fxid', 
-                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::FXID.map { |v| [ v[0], v[1] ] }, { :selected=> 9999 },
+                                                                  { :multiple => true, :id => 'select_pnads_fxid', 
+                                                                    :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
       <%= select(nil, :id, Pnad::UNIV.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
                                                                   { :multiple => true, :id => 'select_pnads_univ',
                                                                     :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-      <%= select(nil, :id, Pnad::AREA.map { |v| [ v[0], v[1] ] }, {},
-                                                                     { :id => 'select_pnads_area', 
-                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::AREA.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
+                                                                  { :multiple => true, :id => 'select_pnads_area', 
+                                                                    :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-      <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, {},
-                                                                    { :id => 'select_pnads_cor', 
-                                                                      :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::COR.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
+                                                                 { :multiple => true, :id => 'select_pnads_cor', 
+                                                                   :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
-      <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, {},
-                                                                     { :id => 'select_pnads_sexo', 
-                                                                       :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
+      <%= select(nil, :id, Pnad::SEXO.map { |v| [ v[0], v[1] ] }, { :selected=> 0 },
+                                                                  { :multiple => true, :id => 'select_pnads_sexo', 
+                                                                    :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
     </div>
   </div>
 
