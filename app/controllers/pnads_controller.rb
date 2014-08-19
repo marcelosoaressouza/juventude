@@ -60,7 +60,7 @@ class PnadsController < ApplicationController
 
               valores = [ 1, a, u, c, s ]
 
-              dados_pnad = Pnad.where(consulta, *valores).where(fc).group("ano").order("ano").sum("#{params[:objetivo]}")
+              dados_pnad = Pnad.where(consulta, *valores).where(fc).group("ano").order("ano").sum("#{params[:objetivo]} * 10")
 
               label = "#{Pnad::OBJETIVO.index(params[:objetivo])}"
               label = label + " - #{Pnad::FXID.index(f.to_i)}" if fxid.size > 1
