@@ -22,7 +22,7 @@
 .table-dados {
   text-align: center;
   width: 100%;
-  border: 1px solid;
+/*  border: 1px solid; */
 }
 
 .table-dados .table-odd {
@@ -30,15 +30,15 @@
 }
 
 .table-dados #table-header {
-  border: 1px solid;
+/*  border: 1px solid; */
 }
 
 .table-dados th {
-  border:1px solid;
+/*  border:1px solid; */
 }
 
 .table-dados td {
-  border:1px solid;
+/*  border:1px solid; */
 }
 
 a:hover {
@@ -51,27 +51,47 @@ a:hover {
 }
 
 .dados-options {
-  float: left;
+  float: right;
+  margin-right: 10px;
   font-size: 10px;
   font-weight:900;
 }
 
+#dados-body {
+  line-height: 150%;
+  margin-left: 15px;
+/*
+  width: 92%;
+  border:1px solid #C9C9C9;
+*/
+  background-color: #fff;
+  text-align: justify;
+  padding: 12px 12px 12px 12px;
+  font-size: 13px;
+}
+
+.dados-titulo {
+  font-size: 19px;
+  font-weight:900;  
+  padding: 10px 0 10px 0;
+  max-width: 400px;
+}
+
 #dados-geral{ 
   max-width: 100%;
-  margin-left: auto;
-  margin-right: auto; 
 }
 
 #dados-temas{
-  width: 50%;
-  float: left;
+  width: 100%;
+/*  float: left; */
   margin-left: auto;
   margin-right: auto; 
 }
 
 #dados-fonte {
-  width: 48%;
-  float: right;
+/*   border: 1px solid; */
+/*  width: 48%; */
+/*  float: right; */
   margin-left: auto;
   margin-right: auto; 
 }
@@ -88,23 +108,24 @@ a:hover {
 
 .tr-fontes {
   background-color: #fff;
-  border:1px solid #C9C9C9;
+/*  border:1px solid #C9C9C9; */
 }
 
 .tr-temas {
   background-color: #fff;
-  border:1px solid #C9C9C9;
+/*   border:1px solid #C9C9C9; */
+  border: 1px solid #fff;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .td-fontes {
-  border:1px solid #C9C9C9;
+/*  border:1px solid #C9C9C9; */
 }
 
 .td-temas {
-  border:1px solid #C9C9C9;
+/*  border:1px solid #C9C9C9; */
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -112,22 +133,11 @@ a:hover {
 }
 
 #dados-header {
-  margin-left: 15px;
+  margin-left: 23px;
 }
 
-#dados-body {
-  line-height: 150%;
-  margin-left: 15px;
-  width: 92%;
-  background-color: #fff;
-  text-align: justify;
-  border:1px solid #C9C9C9;
-  padding: 12px 12px 12px 12px;
+.table-fontes {
+  border: 1px solid #fff;
+
 }
 
-.dados-titulo {
-  font-size: 19px;
-  font-weight:900;  
-  padding: 10px 0 10px 0;
-  max-width: 400px;
-}

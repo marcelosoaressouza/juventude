@@ -19,7 +19,7 @@ $(document).ready (function() {
       if (!objetivo) $('#select_pnads_objetivo').css('border', '2px solid #EC1C23');
       if (!univ) $('.pnads_univ').css('border', '2px solid #EC1C23');
 
-      $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b>');
+      $('#dados').html('<br/><br/><b>Informe Todos as Opções de Pesquisa</b><br/><br/>');
 
       $.ajax({ url: '/pnad', data: params });
     }
