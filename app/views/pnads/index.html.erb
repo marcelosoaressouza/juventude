@@ -7,11 +7,12 @@
 <br />
 
 <% if params[:tema] %>
+  <% if @objetivo.indicadors.where(fonte: 0).size != 0 %>
+
   <div class="pnad">
     <div id="pnad-tema">
       <%= image_tag @objetivo.imagem(:thumb), :title => @objetivo.titulo, width: '80' %>
     </div>
-
     <div id="pnad-opcoes">
       <br/><br/>
       <%= select(nil, :id, @objetivo.indicadors.where(fonte: 0).collect { |v| [ Pnad::OBJETIVO.index(v.objetivo).truncate(100), v.objetivo ] }, { include_blank: "Indicadores" }, { :id => 'select_pnads_objetivo', :class => 'select_pnads ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
@@ -43,6 +44,16 @@
   </div>
 
   <center><div id="dados"></div></center>
+
+  <% else %>
+    <br/>
+    <div id="pnads-temas">
+      <center>
+        <h3>Nenhum Indicador para Este Tema.</h3>
+      </center>
+    </div>
+  <% end %>
+
 <% else %>   
   <br/>
   <div id="pnads-temas">
