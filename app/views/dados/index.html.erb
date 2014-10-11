@@ -20,13 +20,11 @@
     <% if ! @temas.empty? %>
       <table class="table-temas">
         <% @temas.each_slice(3) do |tema_slice| %>
-          <tr class="tr-temas">
+          <tr class="tr-temas" style="background-color: #fff;">
             <% tema_slice.each do |tema| %>
-              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '50'), '#', :class => 'link_tema', :style => 'border: 1px solid;', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
               <td class="td-temas">
-                <%= link_to image_tag(tema.imagem.url(:medium), width: '150'), fontes_dados_path + "?tema=#{tema.slug}", :class => 'link_tema', :style => 'background-color: #fff;', :'data-href' => tema.slug %> <br />
-                <!-- <%= link_to image_tag(tema.imagem.url(:thumb), width: '50'), fontes_dados_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /> -->
-                <!-- <b><%= tema.titulo%></b> -->
+                <%= link_to image_tag(tema.imagem.url(:medium), width: '190', height: '190'), fontes_dados_path + "?tema=#{tema.slug}", :class => 'link_tema', :style => 'background-color: #fff;', :'data-href' => tema.slug %> <br />
+                <b><%= tema.titulo%></b>
               </td>
             <% end %>
           </tr>
@@ -38,18 +36,16 @@
         <br />
         <h3>Nenhum Tema Encontrado.</h3>
     <% end %>
+    <br/>
     <div class="dados-titulo">Bases de dados</div>
       <table class="table-fontes">
           <tr class="tr-fontes">
-              <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '150'), pnads_path %></td>
+              <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '220'), pnads_path %></td>
               <td class="td-fontes"><%= link_to image_tag('participatorio.png'), agendas_path %></td>
-              <td class="td-fontes"><%= image_tag('IBGE.jpg', width: '150') %></td>
+              <td class="td-fontes"><%= image_tag('IBGE.jpg', width: '250') %></td>
           </tr>
       </table>
    </div>
-<!--
-  </center>
--->
 
     <!--
     <div class="dados-options">

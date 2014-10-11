@@ -107,13 +107,11 @@ a:hover {
 }
 
 .tr-fontes {
-  background-color: #fff;
-/*  border:1px solid #C9C9C9; */
+/*  border:1px solid #C9C9C9;  */
 }
 
 .tr-temas {
   background-color: #fff;
-/*   border:1px solid #C9C9C9; */
   border: 1px solid #fff;
   text-align: center;
   margin-left: auto;
@@ -122,6 +120,9 @@ a:hover {
 
 .td-fontes {
 /*  border:1px solid #C9C9C9; */
+  padding: 18px 21px 18px 21px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .td-temas {
@@ -129,7 +130,7 @@ a:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 12px 32px 12px 32px;
+  padding: 12px 50px 12px 50px;
 }
 
 #dados-header {
@@ -140,4 +141,3 @@ a:hover {
   border: 1px solid #fff;
 
 }
-

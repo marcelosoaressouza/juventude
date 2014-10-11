@@ -44,18 +44,18 @@
 
   <center><div id="dados"></div></center>
 <% else %>   
+  <br/>
   <div id="pnads-temas">
     <center>
-    <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '150'), pnads_path %></td>
+    <td class="td-fontes"><%= link_to image_tag('PNAD.jpg', width: '190'), pnads_path %></td>
     <br/><br/>
     <div class="dados-titulo">Eixos Temáticos da PNAD de 1992 a 2012</div>
     <% if ! @temas.empty? %>
       <table class="table-temas">
-        <% @temas.each_slice(6) do |tema_slice| %>
-          <tr class="tr-temas">
+        <% @temas.each_slice(3) do |tema_slice| %>
+          <tr class="tr-temas"  style="background-color: #fff;">
             <% tema_slice.each do |tema| %>
-              <!-- <td><%= link_to image_tag(tema.imagem.url(:thumb), :size => '80'), '#', :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td> -->
-              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '75'), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
+              <td class="td-temas"><%= link_to image_tag(tema.imagem.url(:thumb), width: '190'), pnads_path + "?tema=#{tema.slug}", :class => 'link_tema', :style => 'background-color: #fff;', :'data-href' => tema.slug %> <br /><b><%= tema.titulo%></b></td>
             <% end %>
           </tr>
         <% end %>
