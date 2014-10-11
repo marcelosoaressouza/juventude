@@ -52,3 +52,7 @@ gem 'active_median'
 gem 'friendly_id', '4.0.10.1'
 
 gem 'paperclip', '4.1.1'
+
+# Twitter
+
+gem 'twitter'

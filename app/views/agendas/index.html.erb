@@ -8,6 +8,7 @@
 
 <% if params[:tema] %>
   <div class="agenda">
+  <% if @indicador.indicadors.where(fonte: 1).size != 0 %>
 
   <div id="agenda-tema">
       <%= image_tag @indicador.imagem(:thumb), :title => @indicador.titulo, width: '80' %>
@@ -52,6 +53,14 @@
 </div>
 
 <center><div id="dados"></div></center>
+  <% else %>
+    <br/>
+    <div id="pnads-temas">
+      <center>
+        <h3>Nenhum Indicador para Este Tema.</h3>
+      </center>
+    </div>
+  <% end %>
 
 <% else %>   
   </br>

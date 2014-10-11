@@ -7,9 +7,8 @@
 <br />
 
 <% if params[:tema] %>
-  <% if @objetivo.indicadors.where(fonte: 0).size != 0 %>
-
   <div class="pnad">
+  <% if @objetivo.indicadors.where(fonte: 0).size != 0 %>
     <div id="pnad-tema">
       <%= image_tag @objetivo.imagem(:thumb), :title => @objetivo.titulo, width: '80' %>
     </div>
