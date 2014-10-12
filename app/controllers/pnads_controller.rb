@@ -62,6 +62,7 @@ class PnadsController < ApplicationController
               dados_pnad = Pnad.where(consulta, *valores).where(fc).group("ano").order("ano").sum("#{objetivo} * 10")
 
               label = "#{Pnad::OBJETIVO.index(objetivo)}"
+              label = label + " - #{Pnad::UNIV.index(u.to_i)}" if univ.size > 1
               label = label + " - #{Pnad::FXID.index(f.to_i)}" if fxid.size > 1
               label = label + " - #{Pnad::AREA.index(a.to_i)}" if area.size > 1
               label = label + " - #{Pnad::SEXO.index(s.to_i)}" if sexo.size > 1
