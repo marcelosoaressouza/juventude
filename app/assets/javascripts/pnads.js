@@ -1,4 +1,14 @@
 $(document).ready (function() {
+  $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
+  }
+
   $('.select_pnads').change (function() {
     $('#select_pnads_objetivo').css('border', '1px solid #fff');
     $('.pnads_univ').css('border', '1px solid #fff');
@@ -11,11 +21,14 @@ $(document).ready (function() {
     var sexo = $('#select_pnads_sexo').val();
     var cor  = $('#select_pnads_cor').val();
 
-    if (objetivo && univ) {
+    // if (objetivo && univ) {
+    if (objetivo && tipo_grafico && fxid && univ && area && sexo && cor)
+    {
       var params = 'objetivo=' + objetivo + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
       $.ajax({ url: '/pnad/show', data: params });
     }
-    else {
+    else
+    {
       if (!objetivo) $('#select_pnads_objetivo').css('border', '2px solid #EC1C23');
       if (!univ) $('.pnads_univ').css('border', '2px solid #EC1C23');
 
@@ -34,6 +47,17 @@ $(document).ready (function() {
   $('#select_pnads_sexo').val('0');
   $('#select_pnads_cor').val('0');
 
+  if ($.urlParam('objetivo') && $.urlParam('tipo_grafico') && $.urlParam('fxid') && $.urlParam('univ') && $.urlParam('area') && $.urlParam('sexo') && $.urlParam('cor')) {
+    $('#select_pnads_objetivo').val($.urlParam('objetivo'));
+    $('#select_pnads_tipo_grafico').val($.urlParam('tipo_grafico'));
+    $('#select_pnads_fxid').val($.urlParam('fxid').split(","));
+    $('#select_pnads_univ').val($.urlParam('univ').split(","));
+    $('#select_pnads_area').val($.urlParam('area').split(","));
+    $('#select_pnads_cor').val($.urlParam('cor').split(","));
+    $('#select_pnads_sexo').val($.urlParam('sexo').split(","));
+    $(".select_pnads").trigger('change');
+  }
+
   $('#select_pnads_univ').multiselect({classes: 'pnads_univ', selectedText: '# Região'});
   $('#select_pnads_univ').multiselect('enable');
 
@@ -48,19 +72,4 @@ $(document).ready (function() {
 
   $('#select_pnads_cor').multiselect({classes: 'pnads_cor', selectedText: '# Cor'});
   $('#select_pnads_cor').multiselect('enable');
-
-  // Antigo - Ajax
-  /*
-  $('.link_tema').on('click', function(event) {
-    var id = $(this).attr('data-href');
-    if (id) {
-      var params = 'tema=' + id;
-      $.ajax({ url: '/pnad', data: params });
-    }
-    else {
-      $.ajax({ url: '/dados', data: params });
-
-    }
-  });
-  */
 });
