@@ -27,10 +27,6 @@ class PnadsController < ApplicationController
     config  = {}
     consulta = ""
 
-    # valores = []
-    # pnad_trata = []
-    # pnad_bruto = {}
-  
     cons = [ "tipo", "area", "univ", "cor", "sexo" ]
 
     cons.each_with_index do |col, i|
@@ -43,6 +39,9 @@ class PnadsController < ApplicationController
     univ = params[:univ].split(',')
     cor  = params[:cor].split(',')
     sexo = params[:sexo].split(',')
+    tema = params[:tema]
+    objetivo = params[:objetivo]
+    tipo_grafico = params[:tipo_grafico]
 
     logger.debug("------------------------------------------------------------------")
     logger.debug("* AREA #{area} FXID #{fxid} UNIV #{univ} COR #{cor} SEXO #{sexo} *")
@@ -60,9 +59,9 @@ class PnadsController < ApplicationController
 
               valores = [ 1, a, u, c, s ]
 
-              dados_pnad = Pnad.where(consulta, *valores).where(fc).group("ano").order("ano").sum("#{params[:objetivo]} * 10")
+              dados_pnad = Pnad.where(consulta, *valores).where(fc).group("ano").order("ano").sum("#{objetivo} * 10")
 
-              label = "#{Pnad::OBJETIVO.index(params[:objetivo])}"
+              label = "#{Pnad::OBJETIVO.index(objetivo)}"
               label = label + " - #{Pnad::FXID.index(f.to_i)}" if fxid.size > 1
               label = label + " - #{Pnad::AREA.index(a.to_i)}" if area.size > 1
               label = label + " - #{Pnad::SEXO.index(s.to_i)}" if sexo.size > 1
@@ -80,7 +79,7 @@ class PnadsController < ApplicationController
 
     # titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])} - #{Pnad::FXID.index(params[:fxid].to_i)} - #{Pnad::AREA.index(params[:area].to_i)} - #{Pnad::SEXO.index(params[:sexo].to_i)} - #{Pnad::COR.index(params[:cor].to_i)}"
     
-    titulo = "#{Pnad::OBJETIVO.index(params[:objetivo])}"
+    titulo = "#{Pnad::OBJETIVO.index(objetivo)}"
 
     config[:pnad] = {
                         library:
@@ -97,7 +96,11 @@ class PnadsController < ApplicationController
       pnad[:data].keep_if {|key, value| value.to_f > 0.0 } 
     end
 
-    @dados = [ { id: "dados_pnad", type: params[:tipo_grafico], data: pnad, config: config[:pnad] } ] if pnad
+    url = "#{request.base_url}/pnad?tema=#{params[:tema]}&objetivo=#{params[:objetivo]}&tipo_grafico=#{params[:tipo_grafico]}&fxid=#{params[:fxid]}&univ=#{params[:univ]}&area=#{params[:area]}&sexo=#{params[:sexo]}&cor=#{params[:cor]}"
+    logger.debug(url)
+    logger.debug(params)
+
+    @dados = [ { id: "dados_pnad", type: params[:tipo_grafico], data: pnad, config: config[:pnad], url: url, titulo: titulo} ] if pnad
     
     return @dados 
   end

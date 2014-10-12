@@ -9,6 +9,8 @@ $(document).ready (function() {
     }
   }
 
+  var tema = $.urlParam('tema');
+
   $('.select_pnads').change (function() {
     $('#select_pnads_objetivo').css('border', '1px solid #fff');
     $('.pnads_univ').css('border', '1px solid #fff');
@@ -24,7 +26,7 @@ $(document).ready (function() {
     // if (objetivo && univ) {
     if (objetivo && tipo_grafico && fxid && univ && area && sexo && cor)
     {
-      var params = 'objetivo=' + objetivo + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
+      var params = 'tema=' + tema + '&objetivo=' + objetivo + '&tipo_grafico=' + tipo_grafico + '&fxid=' + fxid + '&univ=' + univ + '&area=' + area + '&sexo=' + sexo + '&cor=' + cor;
       $.ajax({ url: '/pnad/show', data: params });
     }
     else

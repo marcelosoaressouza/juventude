@@ -7,6 +7,9 @@
     <%= column_chart value[:data], value[:config] if value[:type] == 'column' %>
     <%= area_chart   value[:data], value[:config] if value[:type] == 'area'   %>
   <% end %>
+
+  <%= social_share_button_tag(dados[0][:titulo], :url => dados[0][:url]) %>
+
 <% else %>
   <br /><br />
   <center>

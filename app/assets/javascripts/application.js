@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require_tree .
 //= require chartkick
+//= require social-share-button
 
 Highcharts.setOptions({
   lang: {
