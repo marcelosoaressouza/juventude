@@ -9,9 +9,7 @@ $(document).ready (function() {
     }
   }
 
-  var tema = $.urlParam('tema');
-
-  $('.select_pnads').change (function() {
+  $.gerarGrafico = function () {
     $('#select_pnads_objetivo').css('border', '1px solid #fff');
     $('.pnads_univ').css('border', '1px solid #fff');
 
@@ -38,6 +36,12 @@ $(document).ready (function() {
 
       $.ajax({ url: '/pnad', data: params });
     }
+  }
+
+  var tema = $.urlParam('tema');
+
+  $('.select_pnads').change (function() {
+    $.gerarGrafico();
   })
 
   $('#select_pnads_univ').val('0');
@@ -57,7 +61,8 @@ $(document).ready (function() {
     $('#select_pnads_area').val($.urlParam('area').split(","));
     $('#select_pnads_cor').val($.urlParam('cor').split(","));
     $('#select_pnads_sexo').val($.urlParam('sexo').split(","));
-    $(".select_pnads").trigger('change');
+
+    $.gerarGrafico();
   }
 
   $('#select_pnads_univ').multiselect({classes: 'pnads_univ', selectedText: '# Região'});
