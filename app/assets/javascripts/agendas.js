@@ -86,7 +86,7 @@ $(document).ready (function() {
   $('#select_agendas_renda').multiselect({classes: 'agendas_renda', selectedText: '# Renda'});
   $('#select_agendas_renda').multiselect('enable');
 
-  $('#select_agendas_escolaridade').multiselect({classes: 'agendas_escolaridade', selectedText: '# Educação'});
+  $('#select_agendas_escolaridade').multiselect({classes: 'agendas_escolaridade', selectedText: '# Escolar.'});
   $('#select_agendas_escolaridade').multiselect('enable');
 
   $('#select_agendas_cor').multiselect({classes: 'agendas_cor', selectedText: '# Cor'});

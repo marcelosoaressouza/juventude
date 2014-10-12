@@ -8,7 +8,9 @@
     <%= area_chart   value[:data], value[:config] if value[:type] == 'area'   %>
   <% end %>
 
-  <%= social_share_button_tag(dados[0][:titulo], :url => short_url(dados[0][:url])) %>
+  <% if params[:controller] != 'agendas'%>
+    <%= social_share_button_tag(dados[0][:titulo], :url => short_url(dados[0][:url])) %>
+  <% end %>
 
   <br/>
 <% else %>

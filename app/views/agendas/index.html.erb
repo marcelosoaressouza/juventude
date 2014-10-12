@@ -17,7 +17,7 @@
   <div id="agenda-opcoes">
     <br/><br/>
     <%= select(nil,  :id, @indicador.indicadors.where(fonte: 1).collect { |v| [ Agenda::INDICADOR["#{v.objetivo}"]["Questão"].truncate(100), v.objetivo ] },
-                                                                                    { include_blank: "Indicadores" },
+                                                                                    { include_blank: "Indicador" },
                                                                                     { :id => 'select_agendas_indicador', 
                                                                                       :class => 'select_agendas ui-multiselect ui-widget ui-state-default ui-corner-all' }) %>
 
