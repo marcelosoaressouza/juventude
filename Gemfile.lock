@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/huacnlee/social-share-button.git
+  revision: eb1a0158c87d7e67d16c56837c5443218909ef7a
+  specs:
+    social-share-button (0.1.8)
+      coffee-rails
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,9 +111,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    social-share-button (0.1.8)
-      coffee-rails
-      sass-rails
+    shortener (0.3.1)
+      rails (>= 3.0.7)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -139,6 +146,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.19)
   sass-rails (~> 3.2.3)
-  social-share-button
+  shortener
+  social-share-button!
   therubyracer
   uglifier (>= 1.0.3)

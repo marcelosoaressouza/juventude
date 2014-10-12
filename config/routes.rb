@@ -11,5 +11,8 @@ Juventude::Application.routes.draw do
   resources :agendas, :path => :agenda
   resources :indicadors, :path => :indicadores
 
+  match '/:id' => "shortener/shortened_urls#show"
+
   root :to => 'dados#index'
+
 end

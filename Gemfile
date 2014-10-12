@@ -53,5 +53,8 @@ gem 'friendly_id', '4.0.10.1'
 
 gem 'paperclip', '4.1.1'
 
-# Share
-gem 'social-share-button'
+# Share in Social Networks
+gem 'social-share-button', :git => 'https://github.com/huacnlee/social-share-button.git'
+
+# Short URL
+gem 'shortener'

@@ -96,9 +96,9 @@ class PnadsController < ApplicationController
       pnad[:data].keep_if {|key, value| value.to_f > 0.0 } 
     end
 
+    # url = "#{request.base_url}/pnad?tema=#{params[:tema]}&objetivo=#{params[:objetivo]}&tipo_grafico=#{params[:tipo_grafico]}&fxid=#{params[:fxid]}&univ=#{params[:univ]}&area=#{params[:area]}&sexo=#{params[:sexo]}&cor=#{params[:cor]}"
+
     url = "#{request.base_url}/pnad?tema=#{params[:tema]}&objetivo=#{params[:objetivo]}&tipo_grafico=#{params[:tipo_grafico]}&fxid=#{params[:fxid]}&univ=#{params[:univ]}&area=#{params[:area]}&sexo=#{params[:sexo]}&cor=#{params[:cor]}"
-    logger.debug(url)
-    logger.debug(params)
 
     @dados = [ { id: "dados_pnad", type: params[:tipo_grafico], data: pnad, config: config[:pnad], url: url, titulo: titulo} ] if pnad
     
